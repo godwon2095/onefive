@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>한/시/오/분</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
+  <!--Import Google Icon Font-->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!--Let browser know website is optimized for mobile-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+</head>
+<body>
+  <nav>
+    <div class="nav-wrapper indigo darken-4">
+      <a href="#!" class="brand-logo">한/시/오/분</a>
+      <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+      <ul class="right hide-on-med-and-down">
+        <% if user_signed_in? %>
+        <li><%= link_to '로그아웃', destroy_user_session_path, method: :delete %></li>
+        <li><%= link_to '마이페이지', edit_user_registration_path %></li>
+        <li><%= link_to '알람', '#' %></li>
+        <% else %>
+        <li><%= link_to '로그인', new_user_session_path %></li>
+        <li><%= link_to '회원가입', new_user_registration_path %></li>
+        <% end %>
+      </ul>
+    </div>
+  </nav>
+
+  <ul class="sidenav" id="mobile-demo">
+      <% if user_signed_in? %>
+      <li><%= link_to '로그아웃', destroy_user_session_path, method: :delete %></li>
+      <li><%= link_to '마이페이지', edit_user_registration_path %></li>
+      <li><%= link_to '알람', '#' %></li>
+      <% else %>
+      <li><%= link_to '로그인', new_user_session_path %></li>
+      <li><%= link_to '회원가입', new_user_registration_path %></li>
+      <% end %>
+  </ul>
+<%= yield %>
+  <script>
+      $(document).ready(function(){
+      $('.sidenav').sidenav();
+    });
+  </script>
+</body>
+</html>
