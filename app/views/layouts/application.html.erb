@@ -16,7 +16,7 @@
 <body>
   <nav>
     <div class="nav-wrapper indigo darken-4">
-      <a href="#!" class="brand-logo">한/시/오/분</a>
+      <%= link_to '한/시/오/분', root_path, class: "brand-logo" %>
       <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
       <ul class="right hide-on-med-and-down">
         <% if user_signed_in? %>
