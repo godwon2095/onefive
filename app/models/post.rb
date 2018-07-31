@@ -6,7 +6,7 @@ class Post < ActiveRecord::Base
     
     #좋아요
     has_many :likes
-    has_many :liked_users, through: :likes, sources: :post
+    has_many :liked_users, through: :likes, source: :user
     
     mount_uploader :image, PostImageUploader
 end
