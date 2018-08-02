@@ -17,3 +17,7 @@
 .pre-line {
   white-space: pre-line;
 }
+.thumbnail-size {
+    width: 35px;
+    height: 35px;
+}

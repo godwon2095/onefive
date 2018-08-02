@@ -14,15 +14,27 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 </head>
 <body>
-  <nav>
-    <div class="nav-wrapper indigo darken-4">
-      <%= link_to '한/시/오/분', root_path, class: "brand-logo" %>
-      <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+  <nav class="nav-extended">
+    <div class="nav-content indigo darken-4">
+      <span class="nav-title">One Five</span>
+      </a>
+    </div>
+    <div class="nav-wrapper white">
+      <%= link_to '한/시/오/분', root_path, class: "brand-logo indigo-text text-darken-4" %>
+      <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons indigo-text text-darken-4">menu</i></a>
       <ul class="right hide-on-med-and-down">
         <% if user_signed_in? %>
-        <li><%= link_to '로그아웃', destroy_user_session_path, method: :delete %></li>
-        <li><%= link_to '마이페이지', edit_user_registration_path %></li>
-        <li><%= link_to '알람', '#' %></li>
+        <li><a href="<%= root_path %>"><i class="material-icons indigo-text text-darken-4">home</i></a></li>
+        <li><a href="#"><i class="material-icons indigo-text text-darken-4">search</i></a></li>
+        <li><a href="#"><i class="material-icons indigo-text text-darken-4">library_music</i></a></li>
+        <li><a href="#" class="dropdown-trigger" data-target='dropdown1'><img class="circle thumbnail-size" src="/people.png"></a></li>
+        <ul id='dropdown1' class='dropdown-content'>
+          <li><%= link_to '로그아웃', destroy_user_session_path, method: :delete %></li>
+          <li class="divider" tabindex="-1"></li>
+          <li><%= link_to '마이페이지', edit_user_registration_path %></li>
+          <li class="divider" tabindex="-1"></li>
+          <li><%= link_to '알람', '#' %></li>
+        </ul>
         <% else %>
         <li><%= link_to '로그인', new_user_session_path %></li>
         <li><%= link_to '회원가입', new_user_registration_path %></li>
@@ -32,20 +44,50 @@
   </nav>
 
   <ul class="sidenav" id="mobile-demo">
-      <% if user_signed_in? %>
+    <% if user_signed_in? %>
+    <li><div class="user-view">
+      <div class="background">
+        <img src="/download.png">
+      </div>
+      <a href="#user"><img class="circle" src="/people.png"></a>
+      <a href="#email"><span class="white-text email"><%= current_user.email %></span></a>
+    <% end %>
+    </div></li>
+    <% if user_signed_in? %>
+    <li><a href="<%= edit_user_registration_path %>"><i class="material-icons">add_alert</i>알람</a></li>
+    <li><a href="<%= edit_user_registration_path %>"><i class="material-icons">perm_identity</i>마이페이지</a></li>
+    <% end %>
+    <li><div class="divider"></div></li>
+    <li><a class="subheader">한/시/오/분</a></li>
+    <li ><a href="<%= root_path %>"><i class="material-icons">home<i/></a></li>
+    <% if user_signed_in? %>
+      <li><a href="#"><i class="material-icons">search</i></a></li>
+      <li><a href="#"><i class="material-icons">library_music</i></a></li>
       <li><%= link_to '로그아웃', destroy_user_session_path, method: :delete %></li>
-      <li><%= link_to '마이페이지', edit_user_registration_path %></li>
-      <li><%= link_to '알람', '#' %></li>
-      <% else %>
+    <% else %>
       <li><%= link_to '로그인', new_user_session_path %></li>
       <li><%= link_to '회원가입', new_user_registration_path %></li>
-      <% end %>
+    <% end %>
   </ul>
+  
+  <div class="fixed-action-btn">
+    <a class="btn-floating btn-large indigo darken-4">
+      <i class="large material-icons">mode_edit</i>
+    </a>
+    <ul>
+      <li><a class="btn-floating red"><i class="material-icons">insert_chart</i></a></li>
+      <li><a class="btn-floating yellow darken-1"><i class="material-icons">format_quote</i></a></li>
+      <li><a class="btn-floating green"><i class="material-icons">publish</i></a></li>
+      <li><a class="btn-floating blue"><i class="material-icons">attach_file</i></a></li>
+    </ul>
+  </div>
+  
 <%= yield %>
   <script>
       $(document).ready(function(){
       $('.sidenav').sidenav();
     });
+      $('.dropdown-trigger').dropdown();
   </script>
 </body>
 </html>
