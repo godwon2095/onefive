@@ -76,7 +76,6 @@ ActiveRecord::Schema.define(version: 20180731074237) do
   create_table "posts", force: :cascade do |t|
     t.string   "title"
     t.text     "content"
-    t.string   "image"
     t.integer  "user_id"
     t.integer  "view_count", default: 0
     t.datetime "created_at",             null: false
@@ -88,7 +87,6 @@ ActiveRecord::Schema.define(version: 20180731074237) do
     t.string   "thumbnail"
     t.text     "information"
     t.string   "phonenumber"
-    t.integer  "user_id"
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"

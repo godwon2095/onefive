@@ -8,7 +8,6 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.string :thumbnail
       t.text :information
       t.string :phonenumber
-      t.references :user
       t.string :email,              null: false, default: ""
       t.string :encrypted_password, null: false, default: ""
 
