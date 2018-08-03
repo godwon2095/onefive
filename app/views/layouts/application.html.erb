@@ -29,15 +29,15 @@
         <li><a href="#"><i class="material-icons indigo-text text-darken-4">library_music</i></a></li>
         <li><a href="#" class="dropdown-trigger" data-target='dropdown1'><img class="circle thumbnail-size" src="/people.png"></a></li>
         <ul id='dropdown1' class='dropdown-content'>
-          <li><%= link_to '로그아웃', destroy_user_session_path, method: :delete %></li>
+          <li><%= link_to '로그아웃', destroy_user_session_path, method: :delete, class: "indigo-text text-darken-4" %></li>
           <li class="divider" tabindex="-1"></li>
-          <li><%= link_to '마이페이지', edit_user_registration_path %></li>
+          <li><%= link_to '마이페이지', edit_user_registration_path, class: "indigo-text text-darken-4" %></li>
           <li class="divider" tabindex="-1"></li>
-          <li><%= link_to '알람', '#' %></li>
+          <li><%= link_to '알람', '#', class: "indigo-text text-darken-4" %></li>
         </ul>
         <% else %>
-        <li><%= link_to '로그인', new_user_session_path %></li>
-        <li><%= link_to '회원가입', new_user_registration_path %></li>
+        <li><%= link_to '로그인', new_user_session_path, class: "indigo-text text-darken-4" %></li>
+        <li><%= link_to '회원가입', new_user_registration_path, class: "indigo-text text-darken-4" %></li>
         <% end %>
       </ul>
     </div>
@@ -70,17 +70,6 @@
     <% end %>
   </ul>
   
-  <div class="fixed-action-btn">
-    <a class="btn-floating btn-large indigo darken-4" href="<%= new_post_path %>">
-      <i class="large material-icons">mode_edit</i>
-    </a>
-    <ul>
-      <li><a class="btn-floating red"><i class="material-icons">insert_chart</i></a></li>
-      <li><a class="btn-floating yellow darken-1"><i class="material-icons">format_quote</i></a></li>
-      <li><a class="btn-floating green"><i class="material-icons">publish</i></a></li>
-      <li><a class="btn-floating blue"><i class="material-icons">attach_file</i></a></li>
-    </ul>
-  </div>
 <div class="container">
   <%= yield %>
 </div>

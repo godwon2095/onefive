@@ -75,11 +75,14 @@ ActiveRecord::Schema.define(version: 20180731074237) do
 
   create_table "posts", force: :cascade do |t|
     t.string   "title"
+    t.text     "subtitle"
     t.text     "content"
+    t.string   "music_images", default: "--- []\n"
+    t.string   "music_titles", default: "--- []\n"
     t.integer  "user_id"
-    t.integer  "view_count", default: 0
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.integer  "view_count",   default: 0
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
   end
 
   create_table "users", force: :cascade do |t|
