@@ -3,10 +3,12 @@ class PostsController < ApplicationController
 
   def index
     @posts = Post.all.order(created_at: :desc)
-    @search = Post.search do
-        fulltext params[:search]
+    
+    if params[:search]
+      @posts = Post.search(params[:search])
+    else
+      @posts = Post.all
     end
-    @posts = @search.result
   end
 
   def new

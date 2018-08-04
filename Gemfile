@@ -1,7 +1,5 @@
 source 'https://rubygems.org'
 
-gem 'sunspot_solr'
-gem 'sunspot_rails'
 gem 'activeadmin'
 gem 'devise'
 gem "active_material", github: "vigetlabs/active_material"

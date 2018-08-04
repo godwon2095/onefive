@@ -8,11 +8,9 @@ class Post < ActiveRecord::Base
     has_many :likes
     has_many :liked_users, through: :likes, source: :user
     
-    #검색
-    searchable do
-        string :title
-        text :subtitle
-        text :content
+    # Post.search([object HTMLSpanElement][object HTMLSpanElement][object HTMLSpanElement] [object HTMLSpanElement][object HTMLSpanElement])
+    def self.search(query)
+        self.where("title || content LIKE ?","%#{query}%")
     end
     mount_uploaders :music_images, PostImageUploader
 end
