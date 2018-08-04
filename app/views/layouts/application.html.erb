@@ -3,7 +3,7 @@
 <head>
   <title>한/시/오/분</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <!-- <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %> -->
   <%= csrf_meta_tags %>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
   <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
@@ -30,11 +30,12 @@
           <div class="modal-content">
             <h4>검색하게따</h4>
             <form action='posts' method="GET">
-              <label>검색해보세염ㅇㅅㅇ</label>
+              <label>제목을 검색해보세염ㅇㅅㅇ</label>
               <input type="text" name="search">
               <input type="submit">
             </form>
-                      </div>
+            
+          </div>
           <div class="modal-footer">
             <a href="#!" class="modal-close waves-effect waves-green btn-flat">돌아갈래요!</a>
           </div>
@@ -82,7 +83,7 @@
       <li><%= link_to '회원가입', new_user_registration_path %></li>
     <% end %>
   </ul>
-  
+
 <div class="container">
   <%= yield %>
 </div>

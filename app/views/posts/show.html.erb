@@ -12,12 +12,12 @@
   <% if user_signed_in? && current_user != @user %>
     <% if current_user.followings.include?(@user) %>
         <%= form_tag follow_path(followed_id: @user.id), method: :delete, class: "follow" do %>
-         <%= button_tag "팔로우 취소", class: "btn indigo darken-4" %>
+         <%= button_tag "구독 취소", class: "btn indigo darken-4" %>
         <% end %>
     <% else %>
         <%= form_tag follows_path, class: "follow" do %>
             <input type="hidden" name="followed_id" value="<%= @user.id %>">
-            <%= button_tag "팔로우", class: "btn purple indigo darken-4" %>
+            <%= button_tag "구독", class: "btn purple indigo darken-4" %>
         <% end %>
     <% end %>
   <% end %>
@@ -33,7 +33,7 @@
 
 <div class="icon-size">
     <p class="right">0</p><i class="material-icons right">timeline</i>
-    <p class="right"><%= @post.comments.size %></p><i class="material-icons right">sms</i>
+    <p class="right" id="comment-size"><%= @post.comments.size %></p><i class="material-icons right">sms</i>
     <p class="right" id="like_size"><%= @post.likes.size %></p>
     <% if current_user.is_like?(@post) %>
         <%= link_to 'bookmark', post_like_path(@post), method: :post, class: "material-icons right black-text", id: 'like_toggle' %>
@@ -41,18 +41,18 @@
         <%= link_to 'bookmark_border', post_like_path(@post), method: :post, class: "material-icons right black-text", id: 'like_toggle'%>
     <% end %>
 </div>
-<br><br>
+<br><br><br>
 
 <% if @post.comments.present? %>
     <ul class="collection">
       <div id="postcomment">
         <% @post.comments.each do |c| %>
-          <li class="collection-item">
+          <li class="collection-item" id="comment_<%= c.id %>">
             <span class="title"><%= c.user.name %></span>
             <span class="right"><%= c.created_at %></span>
             <p class="pre-line"><%= c.content %>
             <% if c.user.id == current_user.id %>
-              <%= link_to '삭제', post_comment_path(@post, c), method: :delete, class: "right" %>
+              <%= link_to '삭제', post_comment_path(@post, c), method: :delete, class: "right", remote: true %>
             <% end %>
             </p>
           </li>
@@ -72,7 +72,7 @@
       <%= f.text_area :content, class: "materialize-textarea", placeholder: "댓글쓰기...", required: true, id: "comment" %>
     </div>
     <div class="input-field">
-      <%= f.submit "댓글 쓰기", class: "btn indigo darken-4 right" %>
+      <%= f.button "댓글 쓰기", class: "btn indigo darken-4 right" %>
     </div>
   <% end %><br><br>
 
