@@ -26,4 +26,5 @@ class User < ActiveRecord::Base
     Like.find_by(user_id: self.id,
                  post_id: post.id).present?
   end
+  
 end
