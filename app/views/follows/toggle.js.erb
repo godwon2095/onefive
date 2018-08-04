@@ -1,0 +1,5 @@
+<% if current_user.followings.include?(@user) %>
+  $('#follow').text("구독 취소");
+<% else %>
+  $('#follow').text("구독 하기");
+<% end %>

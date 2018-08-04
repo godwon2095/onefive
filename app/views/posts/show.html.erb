@@ -14,18 +14,9 @@
         <% end %>
 
 <!--팔로우기능-->
-<div class="right" id="follow">
+<div class="right">
   <% if user_signed_in? && current_user != @user %>
-    <% if current_user.followings.include?(@user) %>
-        <%= form_tag follow_path(followed_id: @user.id), method: :delete, class: "follow" do %>
-         <%= button_tag "구독 취소", class: "btn indigo darken-4" %>
-        <% end %>
-    <% else %>
-        <%= form_tag follows_path, class: "follow" do %>
-            <input type="hidden" name="followed_id" value="<%= @user.id %>">
-            <%= button_tag "구독", class: "btn purple indigo darken-4" %>
-        <% end %>
-    <% end %>
+    <%= link_to (current_user.followings.include?(@user) ? '구독 취소' : '구독 하기'), toggle_follow_path(@user), method: :post, class: "btn indigo darken-4", id: 'follow', remote: true %>
   <% end %>
 </div>
 <br><br>
