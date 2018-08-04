@@ -51,6 +51,7 @@ class PostsController < ApplicationController
       format.html{redirect_to root_path, notice: "게시물이 성공적으로 삭제되었습니다."}
     end
   end
+  
 
   # def search
   #   if params[:search].present?
@@ -64,7 +65,7 @@ class PostsController < ApplicationController
   def set_params
     params.require(:post).permit(:title, :subtitle, :content, music_titles: [], music_images: [])
   end
-
+  
   def set_post
     @post = Post.find(params[:id])
   end

@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+gem 'rails_db'
 gem 'activeadmin'
 gem 'devise'
 gem "active_material", github: "vigetlabs/active_material"

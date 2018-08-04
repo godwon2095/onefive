@@ -1,22 +1,24 @@
 <br><br>
-<% @posts.each do |p| %> 
-    <div class="row">
-        <div class="col s12 m7">
-          <div class="card">
-            <div class="card-image">
-              <img src="/onefive.png">
-              <span class="card-title indigo-text text-darken-4"><%= p.title %></span>
-            </div>
-            <div class="card-content">
-              <p><b><%= p.subtitle %></b><br><br>
-              <%= p.content %></p>
-            </div>
-            <div class="card-action">
-              <%= link_to '음악을 읽다', post_path(p), class: "indigo-text text-darken2" %>
+<% if @posts.present? %>
+  <% @posts.each do |p| %> 
+      <div class="row">
+          <div class="col s12 m7">
+            <div class="card">
+              <div class="card-image">
+                <img src="/onefive.png">
+                <span class="card-title indigo-text text-darken-4"><%= p.title %></span>
+              </div>
+                <div class="card-content">
+                  <p><b><%= p.subtitle %></b><br><br>
+                  <%= p.content %></p>
+                </div>
+              <div class="card-action">
+                <%= link_to '음악을 읽다', post_path(p), class: "indigo-text text-darken2" %>
+              </div>
             </div>
           </div>
-        </div>
-    </div>
+      </div>
+  <% end %>
 <% end %>
     
 <!--글 쓰기 버튼-->

@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
   root 'posts#index'
+  resources :timelines, only: [:index] do
+    member do
+      get :profile
+      get :feed
+    end
+  end
   resources :posts do
     post "/like", to:"likes#like_toggle"
     resources :comments, only: [:create, :destroy]

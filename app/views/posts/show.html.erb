@@ -4,7 +4,7 @@
     <div class="col">
         <h3><%= @post.title %></h3>
         <% if user_signed_in? %>
-            <img src="/people.png" class="thumbnail-size circle"><%= link_to "#{@post.user.email}", "#" %>
+            <img src="/people.png" class="thumbnail-size circle"><%= link_to "#{@post.user.name}", profile_timeline_path(@post.user.id) %>
         <% end %>
 
 <!--팔로우기능-->
