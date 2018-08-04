@@ -1,5 +1,6 @@
 <br><br>
-<% @posts.each do |p| %> 
+<% @posts.each do |p| %>
+  <a href="<%= post_path(p) %>">
     <div class="row">
         <div class="col s12 m7">
           <div class="card">
@@ -8,17 +9,20 @@
               <span class="card-title indigo-text text-darken-4"><%= p.title %></span>
             </div>
             <div class="card-content">
-              <p><b><%= p.subtitle %></b><br><br>
+              <p class="indigo-text text-darken-4"><b><%= p.subtitle %></b><br><br>
               <%= p.content %></p>
             </div>
             <div class="card-action">
-              <%= link_to '음악을 읽다', post_path(p), class: "indigo-text text-darken2" %>
+              <span class="black-text"><i class="material-icons">bookmark</i><%= p.likes.size %></span>
+              <span class="black-text"><i class="material-icons">sms</i><%= p.comments.size %></span>
+              <%= link_to "#{p.user.email}", "#", class: "right indigo-text text-darken-4" %>
             </div>
           </div>
         </div>
     </div>
+  </a>
 <% end %>
-    
+
 <!--글 쓰기 버튼-->
   <div class="fixed-action-btn">
     <a class="btn-floating btn-large indigo darken-4" href="<%= new_post_path %>">
