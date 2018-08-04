@@ -3,7 +3,7 @@
 <head>
   <title>한/시/오/분</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <!-- <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %> -->
   <%= csrf_meta_tags %>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
   <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
@@ -69,7 +69,7 @@
       <li><%= link_to '회원가입', new_user_registration_path %></li>
     <% end %>
   </ul>
-  
+
 <div class="container">
   <%= yield %>
 </div>
