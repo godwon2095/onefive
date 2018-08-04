@@ -1,3 +1,85 @@
-<%= @post.title %>
-<%= @post.subtitle %>
+<br>
+<div class="row">
+    <img src="/onefive.png" class="image-size col">
+    <div class="col">
+        <h3><%= @post.title %></h3>
+        <% if user_signed_in? %>
+            <img src="/people.png" class="thumbnail-size circle"><%= link_to "#{@post.user.email}", "#" %>
+        <% end %>
+
+<!--팔로우기능-->
+<div class="right" id="follow">
+  <% if user_signed_in? && current_user != @user %>
+    <% if current_user.followings.include?(@user) %>
+        <%= form_tag follow_path(followed_id: @user.id), method: :delete, class: "follow" do %>
+         <%= button_tag "팔로우 취소", class: "btn indigo darken-4" %>
+        <% end %>
+    <% else %>
+        <%= form_tag follows_path, class: "follow" do %>
+            <input type="hidden" name="followed_id" value="<%= @user.id %>">
+            <%= button_tag "팔로우", class: "btn purple indigo darken-4" %>
+        <% end %>
+    <% end %>
+  <% end %>
+</div>
+<br><br>
+        <h5 class="grey-text">"<%= @post.subtitle %>"</h5>
+    </div>
+</div>
+
+<hr><br>
 <%= @post.content %>
+<br><hr>
+
+<div class="icon-size">
+    <p class="right">0</p><i class="material-icons right">timeline</i>
+    <p class="right"><%= @post.comments.size %></p><i class="material-icons right">sms</i>
+    <p class="right" id="like_size"><%= @post.likes.size %></p>
+    <% if current_user.is_like?(@post) %>
+        <%= link_to 'bookmark', post_like_path(@post), method: :post, class: "material-icons right black-text", id: 'like_toggle' %>
+    <% else %>
+        <%= link_to 'bookmark_border', post_like_path(@post), method: :post, class: "material-icons right black-text", id: 'like_toggle'%>
+    <% end %>
+</div>
+<br><br>
+
+<% if @post.comments.present? %>
+    <ul class="collection">
+      <div id="postcomment">
+        <% @post.comments.each do |c| %>
+          <li class="collection-item">
+            <span class="title"><%= c.user.name %></span>
+            <span class="right"><%= c.created_at %></span>
+            <p class="pre-line"><%= c.content %>
+            <% if c.user.id == current_user.id %>
+              <%= link_to '삭제', post_comment_path(@post, c), method: :delete, class: "right", :data => {:confirm => '정말 삭제하시겠습니까?'} %>
+            <% end %>
+            </p>
+          </li>
+        <% end %>
+      </div>
+    </ul>
+  <% else %>
+    <ul class="collection">
+      <div id="postcomment">
+      </div>
+    </ul>
+  <% end %>
+
+  <!-- 댓글작성기능 -->
+  <%= form_for(@comment, url: post_comments_path(@post)) do |f| %>
+    <div class="input-field">
+      <%= f.text_area :content, class: "materialize-textarea", placeholder: "댓글쓰기...", required: true, id: "comment" %>
+    </div>
+    <div class="input-field">
+      <%= f.submit "댓글 쓰기", class: "btn indigo darken-4 right" %>
+    </div>
+  <% end %><br><br>
+
+<!--글 쓰기 버튼-->
+  <div class="fixed-action-btn">
+    <a class="btn-floating btn-large indigo darken-4" href="<%= new_post_path %>">
+      <i class="large material-icons">mode_edit</i>
+    </a>
+  </div>
+<!--//-->
