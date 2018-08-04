@@ -9,7 +9,7 @@
     </div>
     
     <div class="field">
-      <%= f.label :ID %><br />
+      <%= f.label :identity, 'ID' %><br />
       <%= f.text_field :identity, autofocus: false, autocomplete: "off" %>
     </div>
     
@@ -35,6 +35,11 @@
       <%= f.label :password_confirmation %><br />
       <%= f.password_field :password_confirmation, autocomplete: "off" %>
     </div>
+    
+    <div class="field">
+      <%= f.label :thumbnail, '프로필 이미지' %><br />
+      <%= f.file_field :thumbnail %>
+    </div><br>
   
     <div class="field">
       <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />

@@ -4,7 +4,13 @@
     <div class="col">
         <h3><%= @post.title %></h3>
         <% if user_signed_in? %>
-            <img src="/people.png" class="thumbnail-size circle"><%= link_to "#{@post.user.name}", profile_timeline_path(@post.user.id) %>
+          <% if @post.user.thumbnail.present? %>
+            <%= image_tag(@post.user.thumbnail, class: "thumbnail-size circle") %><%= link_to "#{@post.user.email}", "#" %>
+          <% else %>
+            <img src="/people.png" class="thumbnail-size circle"><%= link_to "#{@post.user.email}", "#" %>
+          <% end %>
+        <% else %>
+          <img src="/people.png" class="thumbnail-size circle"><%= link_to "#{@post.user.email}", "#" %>
         <% end %>
 
 <!--팔로우기능-->
@@ -29,17 +35,26 @@
 
 <hr><br>
 <%= @post.content %>
+<br><br>
+<% if current_user.id == @post.user.id %>
+  <%= link_to '삭제', post_path(@post.id), method: :delete, class: "btn indigo darken-4 right between-btn", :data => {:confirm => '정말 삭제하시겠습니까?'} %>
+  <%= link_to '수정', edit_post_path(@post), class: "btn indigo darken-4 right between-btn" %>
+<% end %>
+<%= link_to '목록', posts_path, class: "btn indigo darken-4 right between-btn" %><br>
 <br><hr>
 
+<!-- 저장기능 -->
 <div class="icon-size">
     <p class="right">0</p><i class="material-icons right">timeline</i>
     <p class="right" id="comment-size"><%= @post.comments.size %></p><i class="material-icons right">sms</i>
     <p class="right" id="like_size"><%= @post.likes.size %></p>
-    <% if current_user.is_like?(@post) %>
-        <%= link_to 'bookmark', post_like_path(@post), method: :post, class: "material-icons right black-text", id: 'like_toggle' %>
-    <% else %>
-        <%= link_to 'bookmark_border', post_like_path(@post), method: :post, class: "material-icons right black-text", id: 'like_toggle'%>
-    <% end %>
+    <span id= 'like_toggle'>
+      <% if current_user.is_like?(@post) %>
+          <%= link_to 'bookmark', post_like_path(@post), method: :post, class: "material-icons right black-text", id: "like_default", remote: true %>
+      <% else %>
+          <%= link_to 'bookmark_border', post_like_path(@post), method: :post, class: "material-icons right black-text", id: "like_default" ,remote: true%>
+      <% end %>
+    </span>
 </div>
 <br><br><br>
 
@@ -49,7 +64,7 @@
         <% @post.comments.each do |c| %>
           <li class="collection-item" id="comment_<%= c.id %>">
             <span class="title"><%= c.user.name %></span>
-            <span class="right"><%= c.created_at %></span>
+            <span class="right"><%= time_ago_in_words c.created_at %> 전</span>
             <p class="pre-line"><%= c.content %>
             <% if c.user.id == current_user.id %>
               <%= link_to '삭제', post_comment_path(@post, c), method: :delete, class: "right", remote: true %>
