@@ -21,7 +21,9 @@ class CommentsController < ApplicationController
         @comment = Comment.find_by(id: params[:id])
         @comment.destroy
 
-        redirect_to :back
+        respond_to do |format|
+          format.js
+        end
     end
 
     private
