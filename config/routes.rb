@@ -2,10 +2,9 @@ Rails.application.routes.draw do
   root 'posts#index'
   resources :posts do
     post "/like", to:"likes#like_toggle"
-    resources :comments, only: [:create, :destroy]
+    resources :comments, only: [:create, :destroy], defaults: { format: 'js' }
   end
   resources :follows, only: [:create, :destroy]
-
   devise_for :users
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)

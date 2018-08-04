@@ -52,7 +52,7 @@
             <span class="right"><%= c.created_at %></span>
             <p class="pre-line"><%= c.content %>
             <% if c.user.id == current_user.id %>
-              <%= link_to '삭제', post_comment_path(@post, c), method: :delete, class: "right", :data => {:confirm => '정말 삭제하시겠습니까?'} %>
+              <%= link_to '삭제', post_comment_path(@post, c), method: :delete, class: "right" %>
             <% end %>
             </p>
           </li>
@@ -67,7 +67,7 @@
   <% end %>
 
   <!-- 댓글작성기능 -->
-  <%= form_for(@comment, url: post_comments_path(@post)) do |f| %>
+  <%= form_for(@comment, url: post_comments_path(@post), remote: true) do |f| %>
     <div class="input-field">
       <%= f.text_area :content, class: "materialize-textarea", placeholder: "댓글쓰기...", required: true, id: "comment" %>
     </div>
