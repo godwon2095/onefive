@@ -25,7 +25,19 @@
       <ul class="right hide-on-med-and-down">
         <% if user_signed_in? %>
         <li><a href="<%= root_path %>"><i class="material-icons indigo-text text-darken-4">home</i></a></li>
-        <li><a href="#"><i class="material-icons indigo-text text-darken-4">search</i></a></li>
+        <li><a class ="modal-trigger" href="#modal1"><i class="material-icons indigo-text text-darken-4">search</i></a></li>
+          <div id="modal1" class="modal">
+            <div class="modal-content">
+              <h4>검색하겠어</h4>
+              <%= form_tag posts_path, :method => :get do %>
+              <%= text_field_tag :search, params[:search] %>
+              <%= submit_tag "검색", :name => nil %>
+              <% end %>
+              </div>
+            <div class="modal-footer">
+              <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
+            </div>
+          </div>
         <li><a href="#"><i class="material-icons indigo-text text-darken-4">library_music</i></a></li>
         <li><a href="#" class="dropdown-trigger" data-target='dropdown1'><img class="circle thumbnail-size" src="/people.png"></a></li>
         <ul id='dropdown1' class='dropdown-content'>
@@ -78,6 +90,12 @@
       $('.sidenav').sidenav();
     });
       $('.dropdown-trigger').dropdown();
+      
+      $(document).ready(function(){
+      $('.modal').modal();
+    });
   </script>
 </body>
 </html>
+
+
