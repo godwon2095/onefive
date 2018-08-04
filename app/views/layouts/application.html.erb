@@ -41,7 +41,7 @@
           </div>
          </div>
         <li><a href="#"><i class="material-icons indigo-text text-darken-4">library_music</i></a></li>
-        <li><a href="#" class="dropdown-trigger" data-target='dropdown1'><img class="circle thumbnail-size" src="/people.png"></a></li>
+        <li><a href="#" class="dropdown-trigger" data-target='dropdown1'><i class="material-icons indigo-text test-darken-4">person</i></a></li>
         <ul id='dropdown1' class='dropdown-content'>
           <li><%= link_to '로그아웃', destroy_user_session_path, method: :delete, class: "indigo-text text-darken-4" %></li>
           <li class="divider" tabindex="-1"></li>
@@ -63,7 +63,11 @@
       <div class="background">
         <img src="/download.png">
       </div>
-      <a href="#user"><img class="circle" src="/people.png"></a>
+      <% if current_user.thumbnail.present? %>
+        <a href="#user"><%= image_tag(current_user.thumbnail, class: :circle) %></a>
+      <% else %>
+        <a href="#user"><img class="circle" src="/people.png"></a>
+      <% end %>
       <a href="#email"><span class="white-text email"><%= current_user.email %></span></a>
     <% end %>
     </div></li>

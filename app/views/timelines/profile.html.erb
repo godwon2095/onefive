@@ -1,0 +1,7 @@
+<% if @posts.present? %>
+  <% @posts.each do |p| %> 
+      <%= p.title %><br>
+      <%= p.subtitle %></p>
+      <br><br>
+  <% end %>
+<% end %>
