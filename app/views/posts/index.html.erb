@@ -5,7 +5,11 @@
         <div class="col s12 m7">
           <div class="card">
             <div class="card-image">
-              <img src="/onefive.png">
+              <% if p.image.present? %>
+                <%= image_tag(p.image) %>
+              <% else %>
+                <img src="/onefive.png">
+              <% end %>
               <span class="card-title indigo-text text-darken-4"><%= p.title %></span>
             </div>
             <div class="card-content">
@@ -22,6 +26,8 @@
     </div>
   </a>
 <% end %>
+
+<%= will_paginate @posts %>
 
 <!--글 쓰기 버튼-->
   <div class="fixed-action-btn">

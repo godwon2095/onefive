@@ -2,7 +2,11 @@ class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
 
   def index
-    @posts = Post.all.order(created_at: :desc)
+    @posts = Post.order(created_at: :desc).paginate(:page => params[:page], :per_page => 3)
+
+    if params[:search]
+      @posts = Post.search(params[:search])
+    end
   end
 
   def new
@@ -51,7 +55,7 @@ class PostsController < ApplicationController
       format.html{redirect_to root_path, notice: "게시물이 성공적으로 삭제되었습니다."}
     end
   end
-  
+
 
   # def search
   #   if params[:search].present?
@@ -63,9 +67,9 @@ class PostsController < ApplicationController
 
   private
   def set_params
-    params.require(:post).permit(:title, :subtitle, :content, music_titles: [], music_images: [])
+    params.require(:post).permit(:title, :subtitle, :content, :image, music_titles: [], music_images: [])
   end
-  
+
   def set_post
     @post = Post.find(params[:id])
   end

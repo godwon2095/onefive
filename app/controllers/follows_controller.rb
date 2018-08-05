@@ -1,15 +1,20 @@
 class FollowsController < ApplicationController
     before_action :authenticate_user!
     
-    def create
+    def toggle
+      follow = Follow.find_by(follower_id: current_user.id,
+                              followed_id: params[:id])
+      if follow.present?
+        follow.destroy
+      else
         Follow.create(follower_id: current_user.id,
-                       followed_id: params[:followed_id])
-        redirect_to :back
-    end
-    
-    def destroy
-        Follow.find_by(follower_id: current_user.id,
-                       followed_id: params[:id]).destroy
-        redirect_to :back
+                      followed_id: params[:id])
+      end
+
+      @user = User.find(params[:id])
+
+      respond_to do |format|
+        format.js
+      end
     end
 end

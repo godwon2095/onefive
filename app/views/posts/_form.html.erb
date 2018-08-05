@@ -8,14 +8,14 @@
   </div><br>
 
   <div class="field">
+  <%= f.label :image, '대표 사진' %>
+  <%= f.file_field :image, multipart: true, accept: "image/jpeg, image/jpg, image/gif, image/png" %>
+  </div><br>
+
+  <div class="field">
     <%= f.label :subtitle, '부제목' %>
     <%= f.text_area :subtitle %>
   </div><br>
-
-  <!-- <div class="field">
-  <%= f.label :music_images %>
-  <%= f.file_field :music_images, multipart: true, accept: "image/jpeg, image/jpg, image/gif, image/png" %>
-  </div><br> -->
 
   <div class="field">
     <%= f.label :content, '내용' %>
