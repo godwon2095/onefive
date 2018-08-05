@@ -3,14 +3,13 @@ Rails.application.routes.draw do
   resources :timelines, only: [:index] do
     member do
       get :profile
-      get :feed
     end
   end
   resources :posts do
     post "/like", to:"likes#like_toggle", defaults: { format: 'js' }
     resources :comments, only: [:create, :destroy], defaults: { format: 'js' }
   end
-  resources :follows, only: [:create, :destroy] do
+  resources :follows, only: [:create] do
     member do
       post :toggle, defaults: { format: 'js' }
     end

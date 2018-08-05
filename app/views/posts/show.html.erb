@@ -1,6 +1,10 @@
 <br>
 <div class="row">
-    <img src="/onefive.png" class="image-size col">
+    <% if @post.image.present? %>
+      <%= image_tag(@post.image, class: "image-size col") %>
+    <% else %>
+      <img src="/onefive.png" class="image-size col">
+    <% end %>
     <div class="col">
         <h3><%= @post.title %></h3>
         <% if user_signed_in? %>
@@ -12,20 +16,19 @@
         <% else %>
           <img src="/people.png" class="thumbnail-size circle"><%= link_to "#{@post.user.name}", profile_timeline_path(@post.user) %>
         <% end %>
-
-<!--팔로우기능-->
-<div class="right">
-  <% if user_signed_in? && current_user != @user %>
-    <%= link_to (current_user.followings.include?(@user) ? '구독 취소' : '구독 하기'), toggle_follow_path(@user), method: :post, class: "btn indigo darken-4", id: 'follow', remote: true %>
-  <% end %>
-</div>
-<br><br>
-        <h5 class="grey-text">"<%= @post.subtitle %>"</h5>
     </div>
+<!--구독 기능-->
+  <div class="right">
+    <% if user_signed_in? && current_user != @user %>
+      <%= link_to (current_user.is_follower?(@user) ? '구독 취소' : '구독 하기'), toggle_follow_path(@user), method: :post, class: "btn indigo darken-4", id: 'follow', remote: true %>
+    <% end %>
+  </div>
 </div>
+
+<h5 class="grey-text">"<%= @post.subtitle %>"</h5>
 
 <hr><br>
-<%= @post.content %>
+<p class="pre-line"><%= @post.content %></p>
 <br><br>
 <% if current_user.id == @post.user.id %>
   <%= link_to '삭제', post_path(@post.id), method: :delete, class: "btn indigo darken-4 right between-btn", :data => {:confirm => '정말 삭제하시겠습니까?'} %>
@@ -54,13 +57,17 @@
       <div id="postcomment">
         <% @post.comments.each do |c| %>
           <li class="collection-item" id="comment_<%= c.id %>">
+            <% if c.user.thumbnail.present? %>
+              <%= image_tag(c.user.thumbnail, class: "thumbnail-size circle") %>
+            <% else %>
+              <img src="/people.jpg" class="thumbnail-size circle">
+            <% end %>
             <span class="title"><%= link_to "#{c.user.name}", profile_timeline_path(c.user) %></span>
-            <span class="right"><%= time_ago_in_words c.created_at %> 전</span>
-            <p class="pre-line"><%= c.content %>
+            <span class="right"><%= time_ago_in_words c.created_at %> 전</span><br><br><br>
+            <span class="pre-line"><%= c.content %></span>
             <% if c.user.id == current_user.id %>
               <%= link_to '삭제', post_comment_path(@post, c), method: :delete, class: "right", remote: true %>
             <% end %>
-            </p>
           </li>
         <% end %>
       </div>

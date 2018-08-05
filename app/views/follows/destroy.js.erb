@@ -1,5 +1,0 @@
-<% if current_user.followings.include?(@user) %>
-  $('#follow_<%= @user.id %>').html('<%= link_to "구독 취소", follow_path(@user), class: "white-text", remote: true %>');
-<% else %>
-  $("#follow_<%= @user.id %>").html('<%= link_to "구독 하기", follows_path(@user), class: "white-text", method: :post, remote: true %>')
-<% end %>

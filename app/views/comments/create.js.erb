@@ -1,6 +1,11 @@
 $('#comment').val("");
 $('#comment-size').text("<%= @post.comments.size %>");
 $('#postcomment').append('<li class="collection-item" id="comment_<%= @new_comment.id %>">'+
+                        '<% if @new_comment.user.thumbnail.present? %>'+
+                          '<%= image_tag(@new_comment.user.thumbnail, class: "thumbnail-size circle") %>'+
+                        '<% else %>'+
+                          '<img src="/people.jpg" class="thumbnail-size circle">'+
+                        '<% end %>'+
                         '<span class="title">'+"<%= @new_comment.user.name %>"+'</span>'+
                         '<span class="right">'+"<%= time_ago_in_words @new_comment.created_at %> 전"+'</span>'+
                         '<p class="pre-line">'+"<%= @new_comment.content %>"+'<br>'+

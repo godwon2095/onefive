@@ -34,18 +34,20 @@
               <input type="text" name="search">
               <input type="submit">
             </form>
-            
+
           </div>
           <div class="modal-footer">
             <a href="#!" class="modal-close waves-effect waves-green btn-flat">돌아갈래요!</a>
           </div>
          </div>
         <li><a href="#"><i class="material-icons indigo-text text-darken-4">library_music</i></a></li>
-        <li><a href="#" class="dropdown-trigger" data-target='dropdown1'><i class="material-icons indigo-text test-darken-4">person</i></a></li>
+        <li><a href="#" class="dropdown-trigger" data-target='dropdown1'><i class="material-icons indigo-text text-darken-4">person</i></a></li>
         <ul id='dropdown1' class='dropdown-content'>
           <li><%= link_to '로그아웃', destroy_user_session_path, method: :delete, class: "indigo-text text-darken-4" %></li>
           <li class="divider" tabindex="-1"></li>
-          <li><%= link_to '마이페이지', edit_user_registration_path, class: "indigo-text text-darken-4" %></li>
+          <li><%= link_to '타임라인', profile_timeline_path(current_user), class: "indigo-text text-darken-4" %></li>
+          <li class="divider" tabindex="-1"></li>
+          <li><%= link_to '정보수정', edit_user_registration_path, class: "indigo-text text-darken-4" %></li>
           <li class="divider" tabindex="-1"></li>
           <li><%= link_to '알람', '#', class: "indigo-text text-darken-4" %></li>
         </ul>
@@ -66,22 +68,33 @@
       <% if current_user.thumbnail.present? %>
         <a href="#user"><%= image_tag(current_user.thumbnail, class: :circle) %></a>
       <% else %>
-        <a href="#user"><img class="circle" src="/people.png"></a>
+        <a href="#user"><img class="circle" src="/people.jpg"></a>
       <% end %>
       <a href="#email"><span class="white-text email"><%= current_user.email %></span></a>
     <% end %>
     </div></li>
     <% if user_signed_in? %>
     <li><a href="<%= edit_user_registration_path %>"><i class="material-icons">add_alert</i>알람</a></li>
-    <li><a href="<%= edit_user_registration_path %>"><i class="material-icons">perm_identity</i>마이페이지</a></li>
+    <li><a href="<%= profile_timeline_path(current_user) %>"><i class="material-icons">perm_identity</i>타임라인</a></li>
     <% end %>
     <li><div class="divider"></div></li>
     <li><a class="subheader">한/시/오/분</a></li>
     <li ><a href="<%= root_path %>"><i class="material-icons">home</i></a></li>
     <% if user_signed_in? %>
-      <li><a href="#"><i class="material-icons">search</i></a></li>
+      <li><a class="modal-trigger" href="#modal2"><i class="material-icons">search</i></a></li>
+      <div id="modal2" class="modal">
+       <div class="modal-content">
+         <h4><div class="search_gamrom">검색하게따</div></h4>
+         <form action='posts' method="GET">
+           <label>제목을 검색해보세염ㅇㅅㅇ</label>
+           <input type="text" name="search">
+           <input type="submit">
+         </form>
+       </div>
+     </div>
       <li><a href="#"><i class="material-icons">library_music</i></a></li>
       <li><%= link_to '로그아웃', destroy_user_session_path, method: :delete %></li>
+      <li><%= link_to '정보수정', edit_user_registration_path %></li>
     <% else %>
       <li><%= link_to '로그인', new_user_session_path %></li>
       <li><%= link_to '회원가입', new_user_registration_path %></li>
@@ -96,10 +109,9 @@
       $('.sidenav').sidenav();
     });
       $('.dropdown-trigger').dropdown();
-      
-       $(document).ready(function(){
-    $('.modal').modal();
-  });
+      $(document).ready(function(){
+      $('.modal').modal();
+    });
   </script>
 </body>
 </html>

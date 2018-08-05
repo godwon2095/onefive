@@ -1,28 +1,21 @@
 <br>
 <div class = "center">
-  <%= link_to image_tag(@user.thumbnail, class: "tl-size circle"), profile_timeline_path(@user.id) %>
-  
+  <% if @user.thumbnail.present? %>
+    <%= link_to image_tag(@user.thumbnail, class: "tl-size circle"), profile_timeline_path(@user.id) %>
+  <% else %>
+    <img src="/people.jpg" class="tl-size circle">
+  <% end %>
+
   <h4>
     <%= @user.name %>
   </h4>
-    
-  <p><%= @user.followings.size %>명을 구독하고, <%= @user.followers.size %>명이 구독 중</p><br>
+
+  <p><span id="followings-size"><%= @user.followings.size %></span>명을 구독하고, <span id="followers-size"><%= @user.followers.size %></span>명이 구독 중</p><br>
   <p><%= @user.information %></p>
-  
-  <div class = "center" id="follow">
-    <% if user_signed_in? && current_user != @user %>
-      <% if current_user.followings.include?(@user) %>
-          <%= form_tag follow_path(followed_id: @user.id), method: :delete, class: "follow" do %>
-           <%= button_tag "구독 취소", class: "btn indigo darken-4" %>
-          <% end %>
-      <% else %>
-          <%= form_tag follows_path, class: "follow" do %>
-              <input type="hidden" name="followed_id" value="<%= @user.id %>">
-              <%= button_tag "구독", class: "btn purple indigo darken-4" %>
-          <% end %>
-      <% end %>
-    <% end %>
-  </div>
+
+  <% if user_signed_in? && current_user != @user %>
+    <%= link_to (current_user.is_follower?(@user) ? '구독 취소' : '구독 하기'), toggle_follow_path(@user), method: :post, class: "btn indigo darken-4", id: 'follow', remote: true %>
+  <% end %>
 
 </div>
 
@@ -38,7 +31,11 @@
             <div class="col s12 m7">
               <div class="card">
                 <div class="card-image">
-                  <img src="/onefive.png">
+                  <% if p.image.present? %>
+                    <%= image_tag(p.image) %>
+                  <% else %>
+                    <img src="/onefive.png">
+                  <% end %>
                   <span class="card-title indigo-text text-darken-4"><%= p.title %></span>
                 </div>
                 <div class="card-content">
