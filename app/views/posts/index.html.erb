@@ -27,6 +27,8 @@
   </a>
 <% end %>
 
+<%= will_paginate @posts %>
+
 <!--글 쓰기 버튼-->
   <div class="fixed-action-btn">
     <a class="btn-floating btn-large indigo darken-4" href="<%= new_post_path %>">
