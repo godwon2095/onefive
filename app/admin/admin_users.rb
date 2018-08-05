@@ -1,4 +1,5 @@
 ActiveAdmin.register AdminUser do
+  menu parent: "사용자 관리"
   permit_params :email, :password, :password_confirmation
 
   index do
