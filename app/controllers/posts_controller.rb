@@ -15,7 +15,7 @@ class PostsController < ApplicationController
       music_titles({ css: ".ellipsis.rank01"  }, :list)
       # music_owners({ css: ".ellipsis.rank02"  }, :list)
       # music_albums({ css: ".ellipsis.rank03"  }, :list)
-      music_images({ xpath: ".//img/@src" }, :list)
+      music_images({ xpath: ".//a[1]//img/@src" }, :list)
 
 
       # links do
