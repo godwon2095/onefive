@@ -11,29 +11,11 @@ ActiveAdmin.register User do
     end
     column :email
     column :name
-    column :identity
     column :created_at
     column :updated_at
 
     actions
   end
-
-  form do |f|
-  f.inputs do
-    f.input :email
-    f.input :name
-    f.input :identity
-    f.input :password
-    f.input :password_confirmation
-    f.input :phonenumber
-    f.input :information
-    f.input :thumbnail do |obj|
-      image_tag obj.thumbnail.url, class: "thumbnail-size" if obj.thumbnail?
-    end
-
-    f.actions
-  end
-end
 
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters

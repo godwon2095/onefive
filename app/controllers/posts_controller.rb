@@ -2,10 +2,10 @@ class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
 
   def index
-    @posts = Post.order(created_at: :desc).paginate(:page => params[:page], :per_page => 3)
-
     if params[:search]
-      @posts = Post.search(params[:search])
+      @posts = Post.search(params[:search]).paginate(:page => params[:page], :per_page => 3)
+    else
+      @posts = Post.order(created_at: :desc).paginate(:page => params[:page], :per_page => 3)
     end
   end
 
