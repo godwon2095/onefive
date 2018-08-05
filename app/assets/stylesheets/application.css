@@ -28,7 +28,6 @@
 .between-btn {
   margin: 5px;
 }
-
 .tl-size{
   width: 150px;
   height: 150px;
@@ -40,4 +39,7 @@
 
 hr{
   width: 60%;
+}
+.search_gamrom {
+  color: black;
 }
