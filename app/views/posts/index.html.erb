@@ -1,4 +1,15 @@
 <br><br>
+
+<!-- <ol>
+  <% @result["music_titles"].each do |t| %>
+    <li><%= t %></li>
+  <% end %>
+</ol> -->
+
+<% @result["music_images"].each do |image| %>
+  <img src="<%= image %>">
+<% end %>
+
 <% @posts.each do |p| %>
   <a href="<%= post_path(p) %>">
     <div class="row">
@@ -19,7 +30,7 @@
             <div class="card-action">
               <span class="black-text"><i class="material-icons">bookmark</i><%= p.likes.size %></span>
               <span class="black-text"><i class="material-icons">sms</i><%= p.comments.size %></span>
-              <%= link_to "#{p.user.name}", profile_timeline_path(p.user), class: "right indigo-text text-darken-4" %>
+              <%= link_to "#{p.user.identity} 씀", profile_timeline_path(p.user), class: "right indigo-text text-darken-4" %>
             </div>
           </div>
         </div>

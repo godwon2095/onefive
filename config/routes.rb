@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
   root 'posts#index'
+
+  get 'test/test'
+
   resources :timelines, only: [:index] do
     member do
       get :profile

@@ -7,6 +7,25 @@ class PostsController < ApplicationController
     if params[:search]
       @posts = Post.search(params[:search])
     end
+
+    @result = Wombat.crawl do
+      base_url "https://www.melon.com/"
+      path "/chart/index.htm"
+
+      music_titles({ css: ".ellipsis.rank01"  }, :list)
+      # music_owners({ css: ".ellipsis.rank02"  }, :list)
+      # music_albums({ css: ".ellipsis.rank03"  }, :list)
+      music_images({ xpath: ".//img/@src" }, :list)
+
+
+      # links do
+      #   explore xpath: '/html/body/header/div/div/nav[1]/a[4]' do |e|
+      #     e.gsub(/Explore/, "Love")
+      #   end
+
+        features css: '.nav-item-opensource'
+        business css: '.nav-item-business'
+    end
   end
 
   def new
