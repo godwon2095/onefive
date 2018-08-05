@@ -5,12 +5,12 @@
         <h3><%= @post.title %></h3>
         <% if user_signed_in? %>
           <% if @post.user.thumbnail.present? %>
-            <%= image_tag(@post.user.thumbnail, class: "thumbnail-size circle") %><%= link_to "#{@post.user.email}", "#" %>
+            <%= image_tag(@post.user.thumbnail, class: "thumbnail-size circle") %><%= link_to "#{@post.user.name}", profile_timeline_path(@post.user) %>
           <% else %>
-            <img src="/people.png" class="thumbnail-size circle"><%= link_to "#{@post.user.email}", "#" %>
+            <img src="/people.png" class="thumbnail-size circle"><%= link_to "#{@post.user.name}", profile_timeline_path(@post.user) %>
           <% end %>
         <% else %>
-          <img src="/people.png" class="thumbnail-size circle"><%= link_to "#{@post.user.email}", "#" %>
+          <img src="/people.png" class="thumbnail-size circle"><%= link_to "#{@post.user.name}", profile_timeline_path(@post.user) %>
         <% end %>
 
 <!--팔로우기능-->
@@ -54,7 +54,7 @@
       <div id="postcomment">
         <% @post.comments.each do |c| %>
           <li class="collection-item" id="comment_<%= c.id %>">
-            <span class="title"><%= c.user.name %></span>
+            <span class="title"><%= link_to "#{c.user.name}", profile_timeline_path(c.user) %></span>
             <span class="right"><%= time_ago_in_words c.created_at %> 전</span>
             <p class="pre-line"><%= c.content %>
             <% if c.user.id == current_user.id %>

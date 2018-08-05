@@ -28,3 +28,16 @@
 .between-btn {
   margin: 5px;
 }
+
+.tl-size{
+  width: 150px;
+  height: 150px;
+}
+
+.center{
+  text-align: center;
+}
+
+hr{
+  width: 60%;
+}
