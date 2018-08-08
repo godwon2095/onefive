@@ -10,8 +10,8 @@
     <%= @user.name %>
   </h4>
 
-  <p><span id="followings-size"><%= @user.followings.size %></span>명을 구독하고, <span id="followers-size"><%= @user.followers.size %></span>명이 구독 중</p><br>
-  <p><%= @user.information %></p>
+  <a href="<%= subscribe_timeline_path(@user) %>" class="indigo-text text-darken-4"><span id="followings-size"><%= @user.followings.size %></span>명을 구독하고, <span id="followers-size"><%= @user.followers.size %></span>명이 구독 중</a><br>
+  <p class="indigo-text text-darken-4"><%= @user.information %></p>
 
   <% if user_signed_in? && current_user != @user %>
     <%= link_to (current_user.is_follower?(@user) ? '구독 취소' : '구독 하기'), toggle_follow_path(@user), method: :post, class: "btn indigo darken-4", id: 'follow', remote: true %>

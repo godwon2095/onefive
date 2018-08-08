@@ -1,0 +1,58 @@
+<br>
+<div class = "center">
+  <% if @user.thumbnail.present? %>
+    <%= link_to image_tag(@user.thumbnail, class: "tl-size circle"), profile_timeline_path(@user.id) %>
+  <% else %>
+    <img src="/people.jpg" class="tl-size circle">
+  <% end %>
+
+  <h4>
+    <%= @user.name %>
+  </h4>
+
+  <a href="<%= subscribe_timeline_path(@user) %>" class="indigo-text text-darken-4"><span id="followings-size"><%= @user.followings.size %></span>명을 구독하고, <span id="followers-size"><%= @user.followers.size %></span>명이 구독 중</a><br>
+  <p class="indigo-text text-darken-4"><%= @user.information %></p>
+
+  <% if user_signed_in? && current_user != @user %>
+    <%= link_to (current_user.is_follower?(@user) ? '구독 취소' : '구독 하기'), toggle_follow_path(@user), method: :post, class: "btn indigo darken-4", id: 'follow', remote: true %>
+  <% end %>
+
+</div>
+
+<br>
+<hr>
+<br>
+<div class="center">
+  <h4 class="indigo-text text-darken-4"><%= @user.name %> 님이 구독하는</h4>
+  <% @user.followings.each do |following| %>
+    <div class="row">
+      <span class="col">
+        <% if following.thumbnail.present? %>
+          <%= link_to image_tag(following.thumbnail, class: "thumbnail-size circle"), profile_timeline_path(following) %>
+        <% else %>
+          <a href="<%= profile_timeline_path(following) %>"><img src="/people.jpg" class="thumbnail-size circle"></a>
+        <% end %>
+      </span>
+      <span class="col">
+        <%= following.name %><br>
+        <p><%= following.information %></p>
+      </span>
+    </div>
+  <% end %>
+  <h4 class="indigo-text text-darken-4"><%= @user.name %> 님을 구독하는</h4>
+  <% @user.followers.each do |follower| %>
+    <div class="row">
+      <span class="col">
+        <% if follower.thumbnail.present? %>
+          <%= link_to image_tag(follower.thumbnail, class: "thumbnail-size circle"), profile_timeline_path(follower) %>
+        <% else %>
+          <a href="<%= profile_timeline_path(follower) %>"><img src="/people.jpg" class="thumbnail-size circle"></a>
+        <% end %>
+      </span>
+      <span class="col">
+        <%= follower.name %><br>
+        <p><%= follower.information %></p>
+      </span>
+    </div>
+  <% end %>
+</div>

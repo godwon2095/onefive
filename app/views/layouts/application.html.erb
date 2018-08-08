@@ -36,29 +36,29 @@
               <li class="tab col s3 disabled"><a href="#test4">Test 4</a></li>
               </ul>
            </div>
-           
-           
-            <div id="test1" class="col s12"><br>            
+
+
+            <div id="test1" class="col s12"><br>
             <h4><div class="search_gamrom">무슨 음악이 궁금하느냐!</div></h4>
-                <form action='posts' method="GET">
-                <label>제목을 검색해보세염ㅇㅅㅇ</label>
-                <input type="text" name="search">
-                <input type="submit">
+                <form action='<%= posts_path %>' method="GET">
+                  <label>제목을 검색해보세염ㅇㅅㅇ</label>
+                  <input type="text" name="search">
+                  <input type="submit">
                 </form>
             </div>
 
-            <div id="test2" class="col s12"><br>          
+            <div id="test2" class="col s12"><br>
             <h4><div class="search_gamrom">어떤 아티스트가 궁금하느냐!</div></h4>
-              <form action='posts' method="GET">
+              <form action='<%= posts_path %>' method="GET">
                 <label>아티스트를 검색해보세염ㅇㅅㅇ</label>
                 <input type="text" name="search">
                 <input type="submit">
               </form>
             </div>
 
-            <div id="test3" class="col s12"><br>          
+            <div id="test3" class="col s12"><br>
             <h4><div class="search_gamrom">어떤 글쟁이가 궁금하느냐!</div></h4>
-              <form action='posts' method="GET">
+              <form action='<%= posts_path %>' method="GET">
                 <label>사용자를 검색해보세염ㅇㅅㅇ</label>
                 <input type="text" name="search_user">
                 <input type="submit">
@@ -67,7 +67,7 @@
 
 
 
-              
+
     <div id="test4" class="col s12">Test 4</div>
 
            </div>
@@ -114,8 +114,8 @@
     <li><div class="divider"></div></li>
     <li><a class="subheader">한/시/오/분</a></li>
     <li ><a href="<%= root_path %>"><i class="material-icons">home</i></a></li>
-    
-    
+
+
     <% if user_signed_in? %>
       <li><a class="modal-trigger" href="#modal2"><i class="material-icons">search</i></a></li>
       <div id="modal2" class="modal">
@@ -128,8 +128,8 @@
          </form>
        </div>
 
-     
-     
+
+
       <li><a href="#"><i class="material-icons">library_music</i></a></li>
       <li><%= link_to '로그아웃', destroy_user_session_path, method: :delete %></li>
       <li><%= link_to '정보수정', edit_user_registration_path %></li>

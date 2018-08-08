@@ -8,17 +8,17 @@
       <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
     </div>
 
-    
+
     <div class="field">
       <%= f.label :identity, 'ID' %><br />
       <%= f.text_field :identity, autofocus: false, autocomplete: "off" %>
     </div>
-    
+
     <div class="field">
       <%= f.label :name %><br />
       <%= f.text_field :name, autofocus: false, autocomplete: "off" %>
     </div>
-  
+
     <div class="field">
       <%= f.label :password %>
       <% if @minimum_password_length %>
@@ -35,6 +35,11 @@
     <div class="field">
       <%= f.label :thumbnail, '프로필 이미지' %><br />
       <%= f.file_field :thumbnail %>
+    </div><br>
+
+    <div class="field">
+      <%= f.label :information, '한 줄' %><br />
+      <%= f.text_area :information %>
     </div><br>
 
     <div class="actions">
