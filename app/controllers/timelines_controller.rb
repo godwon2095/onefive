@@ -1,6 +1,10 @@
 class TimelinesController < ApplicationController
   # before_action :authenticate_user!
-  before_action :set_timeline
+  before_action :set_timeline, only: [:profile, :subscribe]
+
+  def index
+    @posts = Post.where(user_id: current_user.followings).order(created_at: :desc).paginate(:page => params[:page], :per_page => 3)
+  end
 
   def profile
   end

@@ -19,12 +19,15 @@
       <span class="nav-title">One Five</span>
       </a>
     </div>
+
+    <!-- 네브바 시작 -->
     <div class="nav-wrapper white">
       <%= link_to '한/시/오/분', root_path, class: "brand-logo indigo-text text-darken-4" %>
       <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons indigo-text text-darken-4">menu</i></a>
       <ul class="right hide-on-med-and-down">
         <% if user_signed_in? %>
         <li><a href="<%= root_path %>"><i class="material-icons indigo-text text-darken-4">home</i></a></li>
+        <!-- 검색기능 시작 -->
         <li><a class="modal-trigger" href="#modal1"><i class="material-icons indigo-text text-darken-4">search</i></a></li>
          <div id="modal1" class="modal">
           <div class="row">
@@ -36,17 +39,14 @@
               <li class="tab col s3 disabled"><a href="#test4">Test 4</a></li>
               </ul>
            </div>
-
-
-            <div id="test1" class="col s12"><br>
-            <h4><div class="search_gamrom">무슨 음악이 궁금하느냐!</div></h4>
-                <form action='<%= posts_path %>' method="GET">
-                  <label>제목을 검색해보세염ㅇㅅㅇ</label>
-                  <input type="text" name="search">
-                  <input type="submit">
-                </form>
-            </div>
-
+           <div id="test1" class="col s12"><br>
+             <h4><div class="search_gamrom">무슨 음악이 궁금하느냐!</div></h4>
+             <form action='<%= posts_path %>' method="GET">
+               <label>제목을 검색해보세염ㅇㅅㅇ</label>
+               <input type="text" name="search">
+               <input type="submit">
+             </form>
+           </div>
             <div id="test2" class="col s12"><br>
             <h4><div class="search_gamrom">어떤 아티스트가 궁금하느냐!</div></h4>
               <form action='<%= posts_path %>' method="GET">
@@ -55,7 +55,6 @@
                 <input type="submit">
               </form>
             </div>
-
             <div id="test3" class="col s12"><br>
             <h4><div class="search_gamrom">어떤 글쟁이가 궁금하느냐!</div></h4>
               <form action='<%= posts_path %>' method="GET">
@@ -64,16 +63,14 @@
                 <input type="submit">
               </form>
             </div>
-
-
-
-
-    <div id="test4" class="col s12">Test 4</div>
-
+            <div id="test4" class="col s12">
+              Test 4
+            </div>
            </div>
           </div>
-
-      <li><a href="#"><i class="material-icons indigo-text text-darken-4">library_music</i></a></li>
+          <!-- 검색기능 끝 -->
+          
+        <li><a href="<%= timelines_path %>"><i class="material-icons indigo-text text-darken-4">library_music</i></a></li>
         <li><a href="#" class="dropdown-trigger" data-target='dropdown1'><i class="material-icons indigo-text text-darken-4">person</i></a></li>
         <ul id='dropdown1' class='dropdown-content'>
           <li><%= link_to '로그아웃', destroy_user_session_path, method: :delete, class: "indigo-text text-darken-4" %></li>
