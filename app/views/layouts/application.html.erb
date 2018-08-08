@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html5>
 <html>
 <head>
   <title>한/시/오/분</title>
@@ -26,20 +26,43 @@
         <% if user_signed_in? %>
         <li><a href="<%= root_path %>"><i class="material-icons indigo-text text-darken-4">home</i></a></li>
         <li><a class="modal-trigger" href="#modal1"><i class="material-icons indigo-text text-darken-4">search</i></a></li>
-         <div id="modal1" class="modal">
-          <div class="modal-content">
-            <h4><div class="search_gamrom">검색하게따</div></h4>
-            <form action='posts' method="GET">
-              <label>제목을 검색해보세염ㅇㅅㅇ</label>
-              <input type="text" name="search">
-              <input type="submit">
-            </form>
+         <!-- 검색 누르면 뜨는것 -->
+           <div id="modal1" class="modal">
+            <div class="modal-content">
+              <div id="search123"> <!-- 큰틀하나 -->
+                <div id=#search1> <!-- 첫번째 세션 -->
+                  <form action='posts' method="GET">
+                    <div class="search_input"> <!--아이콘과 검색바 -->
+                      <!--아이콘-->
+                      <i class="large material-icons search_icon">search</i>
+                      <!--검색-->
+                      <div class="search_input_div"><input type="text" class="search_input_div_bar" name="search" ></div>
+                    </div>
+                  </form>
+                </div> <!-- 첫 세션끝 -->
+                <div id="search2"><!-- 작은것 두번째 -->
+                  <div class="search2_music search2_son">음악</div>
+                  <div>|</div>
+                  <div class="search2_user search2_son">사용자</div>
+                  <div>|</div>
+                  <div class="search2_note search2_son">글</div>
+                </div><!-- 작은것 두번째 종료 -->
+                <div id="search3"><!-- 작은것 세번째 -->  <!--이미지와 글씨 세개 -->
+                    <div><img src="/hello" class="album_img" /></div> <!-- 앨범이미지 -->
+                    <div class="threeWrite"> <!-- 글씨 세개 -->
+                      <span class="write1">뜨거운여름밤은 가고 남은 것은 볼품 없지만</span> <!-- 제목 -->
+                      <span class="write2">잔나비</span><!-- 작가 -->
+                      <span class="write3">[MONKEY HOTEL]</span> <!-- 앨범 -->
+                    </div> <!-- 글씨 세개 끝 --> <!-- 이미지와 글씨 세개 끝 -->
 
-          </div>
-          <div class="modal-footer">
-            <a href="#!" class="modal-close waves-effect waves-green btn-flat">돌아갈래요!</a>
-          </div>
-         </div>
+                </div><!-- 작은것 세번째 종료 -->
+                <hr id="search_hrTag"/> <!-- 구분선 -->
+              </div>
+           </div>
+        </div>
+            <!-- 검색누르면 뜨는 것종료 -->
+
+
         <li><a href="#"><i class="material-icons indigo-text text-darken-4">library_music</i></a></li>
         <li><a href="#" class="dropdown-trigger" data-target='dropdown1'><i class="material-icons indigo-text text-darken-4">person</i></a></li>
         <ul id='dropdown1' class='dropdown-content'>
@@ -57,6 +80,7 @@
         <% end %>
       </ul>
     </div>
+
   </nav>
 
   <ul class="sidenav" id="mobile-demo">
