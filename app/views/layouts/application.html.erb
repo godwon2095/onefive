@@ -27,20 +27,53 @@
         <li><a href="<%= root_path %>"><i class="material-icons indigo-text text-darken-4">home</i></a></li>
         <li><a class="modal-trigger" href="#modal1"><i class="material-icons indigo-text text-darken-4">search</i></a></li>
          <div id="modal1" class="modal">
-          <div class="modal-content">
-            <h4><div class="search_gamrom">검색하게따</div></h4>
-            <form action='posts' method="GET">
-              <label>제목을 검색해보세염ㅇㅅㅇ</label>
+          <div class="row">
+           <div class="col s12">
+              <ul class="tabs">
+              <li class="tab col s3"><a class="active" href="#test1">음악 제목</a></li>
+              <li class="tab col s3"><a class="active" href="#test2">아티스트</a></a></li>
+              <li class="tab col s3"><a href="#test3">닉네임</a></li>
+              <li class="tab col s3 disabled"><a href="#test4">Test 4</a></li>
+              </ul>
+           </div>
+           
+           
+            <div id="test1" class="col s12"><br>            
+            <h4><div class="search_gamrom">무슨 음악이 궁금하느냐!</div></h4>
+                <form action='posts' method="GET">
+                <label>제목을 검색해보세염ㅇㅅㅇ</label>
+                <input type="text" name="search">
+                <input type="submit">
+                </form>
+            </div>
+
+            <div id="test2" class="col s12"><br>          
+            <h4><div class="search_gamrom">어떤 아티스트가 궁금하느냐!</div></h4>
+              <form action='posts' method="GET">
+              <label>아티스트를 검색해보세염ㅇㅅㅇ</label>
               <input type="text" name="search">
               <input type="submit">
-            </form>
+              </form>
+            </div>
 
+            <div id="test3" class="col s12"><br>          
+            <h4><div class="search_gamrom">어떤 글쟁이가 궁금하느냐!</div></h4>
+              <form action='posts' method="GET">
+              <label>사용자를 검색해보세염ㅇㅅㅇ</label>
+              <input type="text" name="search">
+              <input type="submit">
+              </form>
+            </div>
+
+
+
+              
+    <div id="test4" class="col s12">Test 4</div>
+
+           </div>
           </div>
-          <div class="modal-footer">
-            <a href="#!" class="modal-close waves-effect waves-green btn-flat">돌아갈래요!</a>
-          </div>
-         </div>
-        <li><a href="#"><i class="material-icons indigo-text text-darken-4">library_music</i></a></li>
+
+      <li><a href="#"><i class="material-icons indigo-text text-darken-4">library_music</i></a></li>
         <li><a href="#" class="dropdown-trigger" data-target='dropdown1'><i class="material-icons indigo-text text-darken-4">person</i></a></li>
         <ul id='dropdown1' class='dropdown-content'>
           <li><%= link_to '로그아웃', destroy_user_session_path, method: :delete, class: "indigo-text text-darken-4" %></li>
@@ -56,6 +89,7 @@
         <li><%= link_to '회원가입', new_user_registration_path, class: "indigo-text text-darken-4" %></li>
         <% end %>
       </ul>
+    </div>
     </div>
   </nav>
 
@@ -80,6 +114,8 @@
     <li><div class="divider"></div></li>
     <li><a class="subheader">한/시/오/분</a></li>
     <li ><a href="<%= root_path %>"><i class="material-icons">home</i></a></li>
+    
+    
     <% if user_signed_in? %>
       <li><a class="modal-trigger" href="#modal2"><i class="material-icons">search</i></a></li>
       <div id="modal2" class="modal">
@@ -91,7 +127,9 @@
            <input type="submit">
          </form>
        </div>
-     </div>
+
+     
+     
       <li><a href="#"><i class="material-icons">library_music</i></a></li>
       <li><%= link_to '로그아웃', destroy_user_session_path, method: :delete %></li>
       <li><%= link_to '정보수정', edit_user_registration_path %></li>
@@ -112,6 +150,9 @@
       $(document).ready(function(){
       $('.modal').modal();
     });
+     $(document).ready(function(){
+    $('.tabs').tabs();
+  });
   </script>
 </body>
 </html>
