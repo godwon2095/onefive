@@ -2,8 +2,8 @@
 <html>
 <head>
   <title>한/시/오/분</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <!-- <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %> -->
+  <%#= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
   <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
@@ -69,7 +69,6 @@
            </div>
           </div>
           <!-- 검색기능 끝 -->
-          
         <li><a href="<%= timelines_path %>"><i class="material-icons indigo-text text-darken-4">library_music</i></a></li>
         <li><a href="#" class="dropdown-trigger" data-target='dropdown1'><i class="material-icons indigo-text text-darken-4">person</i></a></li>
         <ul id='dropdown1' class='dropdown-content'>
