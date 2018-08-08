@@ -1,14 +1,20 @@
 <br><br>
 
-<!-- <ol>
-  <% @result["music_titles"].each do |t| %>
+<ol>
+  <% @result["music_albums"].each do |t| %>
     <li><%= t %></li>
   <% end %>
-</ol> -->
+</ol>
 
-<% @result["music_images"].each do |image| %>
-  <img src="<%= image %>">
-<% end %>
+<ol>
+  <% @result["music_titles"].each_with_index do |t, index| %>
+    <li><img src="<%= @result["music_images"][index] %>"><%= t %></li>
+  <% end %>
+</ol>
+
+result["music_titles"].each_with_index do |r, index|
+    Song.find_or_create_by(title: r, image: result["music_images"][index])
+end
 
 <% @posts.each do |p| %>
   <a href="<%= post_path(p) %>">

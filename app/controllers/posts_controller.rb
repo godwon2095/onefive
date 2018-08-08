@@ -9,13 +9,16 @@ class PostsController < ApplicationController
     end
 
     @result = Wombat.crawl do
-      base_url "https://www.melon.com/"
-      path "/chart/index.htm"
-
-      music_titles({ css: ".ellipsis.rank01"  }, :list)
-      # music_owners({ css: ".ellipsis.rank02"  }, :list)
-      # music_albums({ css: ".ellipsis.rank03"  }, :list)
-      music_images({ xpath: ".//a[1]//img/@src" }, :list)
+      # byebug
+      # base_url "https://www.melon.com/"
+      base_url "https://music.naver.com/"
+      # path "/chart/index.htm"
+      path "/artist/track.nhn?artistId=270284&sorting=popular" #아티스트
+      music_titles({ css: ".track"  }, :list)
+      #music_titles({ css: "._title > .ellipsis"  }, :list) #top100
+      music_singers({ css: ".tb_artist"  }, :list)
+      music_albums({ css: ".album"  }, :list)
+      music_images({ xpath: ".//td//a[1]//img/@src" }, :list)
 
 
       # links do
