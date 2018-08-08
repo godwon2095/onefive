@@ -5,7 +5,7 @@ class PostsController < ApplicationController
     if params[:search]
       @posts = Post.search(params[:search]).paginate(:page => params[:page], :per_page => 3)
     elsif params[:search_user]
-      @users = User.search(params[:search_user]).paginate(:page => params[:page], :per_page => 3)
+      @posts = User.search(params[:search_user]).find_posts.paginate(:page => params[:page], :per_page => 3)
     else
       @posts = Post.order(created_at: :desc).paginate(:page => params[:page], :per_page => 3)
     end
@@ -34,6 +34,13 @@ class PostsController < ApplicationController
     @post.view_count += 1
     @post.save
     @user = @post.user
+    if params[:search]
+      @posts = Post.search(params[:search]).paginate(:page => params[:page], :per_page => 3)
+      redirect_to root_path
+    elsif params[:search_user]
+      @posts = User.search(params[:search_user]).find_posts.paginate(:page => params[:page], :per_page => 3)
+      redirect_to root_path
+    end
   end
 
   def edit
