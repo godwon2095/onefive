@@ -30,4 +30,12 @@ class User < ActiveRecord::Base
   def is_follower?(user)
     self.followings.include?(user)
   end
+
+  def self.search(query)
+    self.where("email LIKE ?","%#{query}%")
+  end
+
+  def self.find_posts
+    Post.where(user_id: self.ids)
+  end
 end

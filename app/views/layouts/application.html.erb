@@ -19,13 +19,17 @@
       <span class="nav-title">One Five</span>
       </a>
     </div>
+
+    <!-- 네브바 시작 -->
     <div class="nav-wrapper white">
       <%= link_to '한/시/오/분', root_path, class: "brand-logo indigo-text text-darken-4" %>
       <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons indigo-text text-darken-4">menu</i></a>
       <ul class="right hide-on-med-and-down">
         <% if user_signed_in? %>
         <li><a href="<%= root_path %>"><i class="material-icons indigo-text text-darken-4">home</i></a></li>
+        <!-- 검색기능 시작 -->
         <li><a class="modal-trigger" href="#modal1"><i class="material-icons indigo-text text-darken-4">search</i></a></li>
+
          <!-- 검색 누르면 뜨는것 -->
            <div id="modal1" class="modal">
             <div class="modal-content">
@@ -80,7 +84,7 @@
         <% end %>
       </ul>
     </div>
-
+    </div>
   </nav>
 
   <ul class="sidenav" id="mobile-demo">
@@ -104,6 +108,8 @@
     <li><div class="divider"></div></li>
     <li><a class="subheader">한/시/오/분</a></li>
     <li ><a href="<%= root_path %>"><i class="material-icons">home</i></a></li>
+
+
     <% if user_signed_in? %>
       <li><a class="modal-trigger" href="#modal2"><i class="material-icons">search</i></a></li>
       <div id="modal2" class="modal">
@@ -115,7 +121,9 @@
            <input type="submit">
          </form>
        </div>
-     </div>
+
+
+
       <li><a href="#"><i class="material-icons">library_music</i></a></li>
       <li><%= link_to '로그아웃', destroy_user_session_path, method: :delete %></li>
       <li><%= link_to '정보수정', edit_user_registration_path %></li>
@@ -136,6 +144,9 @@
       $(document).ready(function(){
       $('.modal').modal();
     });
+     $(document).ready(function(){
+    $('.tabs').tabs();
+  });
   </script>
 </body>
 </html>

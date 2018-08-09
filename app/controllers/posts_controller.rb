@@ -4,6 +4,8 @@ class PostsController < ApplicationController
   def index
     if params[:search]
       @posts = Post.search(params[:search]).paginate(:page => params[:page], :per_page => 3)
+    elsif params[:search_user]
+      @posts = User.search(params[:search_user]).find_posts.paginate(:page => params[:page], :per_page => 3)
     else
       @posts = Post.order(created_at: :desc).paginate(:page => params[:page], :per_page => 3)
     end
