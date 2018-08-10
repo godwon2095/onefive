@@ -58,10 +58,6 @@
  	border-spacing: 0;
  }
 
-
-
-
-
 .pre-line {
   white-space: pre-line;
 }
@@ -90,4 +86,7 @@ hr{
 }
 .search_gamrom {
   color: black;
+}
+#small-font {
+  font-size: 10px;
 }

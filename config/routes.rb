@@ -15,6 +15,9 @@ Rails.application.routes.draw do
       post :toggle, defaults: { format: 'js' }
     end
   end
+  resources :alarms, only: [:index]
+  resources :alarms, only: [:destroy], defaults: { format: 'js' }
+
   devise_for :users
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
