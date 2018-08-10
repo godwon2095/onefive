@@ -1,0 +1,48 @@
+<h4 class="indigo-text text-darken-4">알람을 읽다(<span id="alarm-size"><%= current_user.alarms.size %></span>)</h4>
+
+<ul class="collapsible">
+  <% @alarms.each do |alarm| %>
+    <% if alarm.post? %>
+      <a href="<%= post_path(alarm.findable_id) %>" class="black-text">
+        <li id="alarm-<%= alarm.id %>">
+          <div class="collapsible-header">
+            <% if alarm.is_read == false %>
+              <i class="material-icons red-text">audiotrack</i>
+            <% else %>
+              <i class="material-icons">audiotrack</i>
+            <% end %>
+            <p>알람 : [ <%= alarm.content %> ] 님이 새로운 음악을 적으셨습니다. | <%= link_to '삭제', alarm_path(alarm), method: :delete, remote: true %></p>
+          </div>
+        </li>
+      </a>
+    <% elsif alarm.comment? %>
+      <a href="<%= post_path(alarm.findable_id) %>" class="black-text">
+        <li id="alarm-<%= alarm.id %>">
+          <div class="collapsible-header">
+            <% if alarm.is_read == false %>
+              <i class="material-icons red-text">audiotrack</i>
+            <% else %>
+              <i class="material-icons">audiotrack</i>
+            <% end %>
+            <p>알람 : [ <%= alarm.content %> ] 님이 회원님의 글에 댓글을 달았습니다. | <%= link_to '삭제', alarm_path(alarm), method: :delete, remote: true %></p>
+          </div>
+        </li>
+      </a>
+    <% else %>
+      <a href="<%= profile_timeline_path(alarm.findable_id) %>" class="black-text">
+        <li id="alarm-<%= alarm.id %>">
+          <div class="collapsible-header">
+            <% if alarm.is_read == false %>
+              <i class="material-icons red-text">audiotrack</i>
+            <% else %>
+              <i class="material-icons">audiotrack</i>
+            <% end %>
+            <p>알람 : [ <%= alarm.content %> ] 님이 회원님을 구독하셨습니다. | <%= link_to '삭제', alarm_path(alarm), method: :delete, remote: true %></p>
+          </div>
+        </li>
+      <% end %>
+      </a>
+  <% end %>
+</ul>
+
+<!-- 글을 도중에 삭제 했을 때 글이 지워졌다고 알려주는 기능 추가 하기 -->
