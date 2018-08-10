@@ -58,10 +58,6 @@
  	border-spacing: 0;
  }
 
-
-
-
-
 .pre-line {
   white-space: pre-line;
 }
@@ -76,15 +72,13 @@
 .between-btn {
   margin: 5px;
 }
-.tl-size{
+.tl-size {
   width: 150px;
   height: 150px;
 }
-
 .center{
   text-align: center;
 }
-
 hr{
   width: 60%;
 }
