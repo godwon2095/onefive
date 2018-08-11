@@ -19,7 +19,7 @@
 
   <div class="field">
     <%= f.label :content, '내용' %>
-    <%= f.text_area :content %>
+    <%= f.text_area :content, class: "editable" %>
   </div><br>
 
   <div class="input-field">
@@ -29,3 +29,9 @@
 
 
 <% end %>
+
+<script>
+  var editor = new MediumEditor('.editable', {
+    // options go here
+  });
+</script>
