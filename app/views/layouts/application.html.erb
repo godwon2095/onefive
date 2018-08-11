@@ -80,6 +80,8 @@
           <li><%= link_to '정보수정', edit_user_registration_path, class: "indigo-text text-darken-4" %></li>
           <li class="divider" tabindex="-1"></li>
           <li><%= link_to '알람', alarms_path, class: "indigo-text text-darken-4" %></li>
+          <li class="divider" tabindex="-1"></li>
+          <li><%= link_to '담은글', saves_timelines_path, class: "indigo-text text-darken-4" %></li>
         </ul>
         <% else %>
         <li><%= link_to '로그인', new_user_session_path, class: "indigo-text text-darken-4" %></li>

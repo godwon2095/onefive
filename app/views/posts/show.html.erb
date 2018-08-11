@@ -42,7 +42,7 @@
     <p class="right">0</p><i class="material-icons right">timeline</i>
     <p class="right" id="comment-size"><%= @post.comments.size %></p><i class="material-icons right">sms</i>
     <p class="right" id="like_size"><%= @post.likes.size %></p>
-    <span id= 'like_toggle'>
+    <span id='like_toggle'>
       <% if current_user.is_like?(@post) %>
           <%= link_to 'bookmark', post_like_path(@post), method: :post, class: "material-icons right black-text", id: "like_default", remote: true %>
       <% else %>
