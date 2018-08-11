@@ -2,53 +2,53 @@
 
 <%= form_for(resource, as: resource_name, url: user_registration_path, html: { method: :put }) do |f| %>
     <%= devise_error_messages! %>
-    
+
 <div class="center">
-      
+
   <% if @user.thumbnail.present? %>
     <%= image_tag(@user.thumbnail, class: "tl-size circle")  %>
   <% else %>
     <img src="/people.jpg" class="tl-size circle">
   <% end %><br>
-  
+
 
 
   <%= f.label :thumbnail, '사진 바꾸기' %><br />
   <%= f.file_field :thumbnail %>
-  
+
 </div><br><br><br>
-  
-  
+
+
     <div class="field">
       <%= f.label :identity, '아이디' %><br />
       <%= f.text_field :identity, autofocus: true, autocomplete: "off" %>
     </div><br><br>
-    
-    
+
+
     <div class="field">
       <%= f.label :name, '이름' %><br />
       <%= f.text_field :name, autofocus: false, autocomplete: "off" %>
     </div><br><br>
-    
-    
-    
+
+
+
     <div class="field">
       <%= f.label :email, '이메일' %><br />
       <%= f.email_field :email, autofocus: false, autocomplete: "email" %>
     </div><br><br>
-    
-    
+
+
     <div class="field">
       <%= f.label :information, '한 줄' %><br />
       <%= f.text_area :information %>
     </div><br><br>
-    
 
-  
+
+
     <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
       <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
     <% end %>
-  
+
     <div class="field">
       <%= f.label :password, '비밀번호' %><br />
       <%= f.password_field :password, autocomplete: "off" %>
@@ -57,57 +57,51 @@
         <i>(<%= @minimum_password_length %>자 이상)</i>
       <% end %>
     </div><br><br>
-  
+
     <div class="field">
       <%= f.label :password_confirmation, '비밀번호 확인' %><br />
       <%= f.password_field :password_confirmation, autocomplete: "off" %>
     </div><br><br>
-    
+
 
     <div class="field">
       <%= f.label :current_password, '현재 비밀번호' %> <i>(정보 변경을 위해 현재 비밀번호가 필요합니다.)</i><br />
       <%= f.password_field :current_password, autocomplete: "off" %>
     </div><br><br>
-    
-  
+
+
     알림<br><br>
     <div class="switch">
           구독
           <label>
-            끄기
-            <input type="checkbox">
-            <span class="lever"></span>
-            켜기
+            <div class = "switch"><label>Off<%= f.check_box :follow_on, {}, "true", "false" %>
+            <span class = "lever"></span>On</label></div>
           </label>
     </div>
-        
+
     <div class="switch">
           댓글
           <label>
-            끄기
-            <input type="checkbox">
-            <span class="lever"></span>
-            켜기
+            <div class = "switch"><label>Off<%= f.check_box :comment_on, {}, "true", "false" %>
+            <span class = "lever"></span>On</label></div>
           </label>
     </div>
-    
-    
-    
+
+
+
     <div class="switch">
       담기
       <label>
-        끄기
-        <input type="checkbox">
-        <span class="lever"></span>
-        켜기
+        <div class = "switch"><label>Off<%= f.check_box :like_on, {}, "true", "false" %>
+        <span class = "lever"></span>On</label></div>
       </label>
     </div><br><br>
-    
-    
+
+
       <div class="actions">
         <%= f.submit "확인" %>
       </div><br><br>
-      
-      
+
+
+
   <% end %>
-  
