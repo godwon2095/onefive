@@ -52,7 +52,6 @@ ActiveRecord::Schema.define(version: 20180810163718) do
     t.boolean  "is_read"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
-    t.integer  "type"
     t.integer  "alarm_type"
     t.integer  "findable_id"
   end
@@ -109,7 +108,7 @@ ActiveRecord::Schema.define(version: 20180810163718) do
   end
 
   add_index "singers", ["company"], name: "index_singers_on_company"
-  add_index "singers", ["name", nil, "uid"], name: "index_singers_on_name_and_campany_and_uid", unique: true
+  add_index "singers", ["name", "company", "uid"], name: "index_singers_on_name_and_company_and_uid", unique: true
   add_index "singers", ["name"], name: "index_singers_on_name"
 
   create_table "songs", force: :cascade do |t|
@@ -124,7 +123,7 @@ ActiveRecord::Schema.define(version: 20180810163718) do
   add_index "songs", ["album"], name: "index_songs_on_album"
   add_index "songs", ["image"], name: "index_songs_on_image"
   add_index "songs", ["singer_id"], name: "index_songs_on_singer_id"
-  add_index "songs", ["title", nil, "album", "image"], name: "index_songs_on_title_and_singer_and_album_and_image", unique: true
+  add_index "songs", ["title", "singer_id", "album", "image"], name: "index_songs_on_title_and_singer_id_and_album_and_image", unique: true
   add_index "songs", ["title"], name: "index_songs_on_title"
 
   create_table "users", force: :cascade do |t|

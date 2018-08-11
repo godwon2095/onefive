@@ -11,6 +11,6 @@ class CreateSongs < ActiveRecord::Migration
     add_index :songs, :title
     add_index :songs, :image
     add_index :songs, :album
-    add_index :songs, [:title, :singer, :album, :image], unique: true
+    add_index :songs, [:title, :singer_id, :album, :image], unique: true
   end
 end
