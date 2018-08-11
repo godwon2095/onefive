@@ -3,6 +3,13 @@ Rails.application.routes.draw do
   resources :posts do
     post "/like", to:"likes#like_toggle", defaults: { format: 'js' }
     resources :comments, only: [:create, :destroy], defaults: { format: 'js' }
+    collection do
+      get :search, defaults: { format: 'js' }
+    end
+    member do
+      get :autoinit, defaults: { format: 'js' }
+      get :cancel, defaults: { format: 'js' }
+    end
   end
   resources :timelines, only: [:index] do
     collection do

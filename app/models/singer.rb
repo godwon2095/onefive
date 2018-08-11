@@ -23,4 +23,8 @@ class Singer < ActiveRecord::Base
       end
     # end
   end
+
+  def self.search(query)
+      self.where("name LIKE ?","%#{query}%")
+  end
 end

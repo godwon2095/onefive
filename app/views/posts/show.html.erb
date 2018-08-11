@@ -28,6 +28,10 @@
 <h5 class="grey-text">"<%= @post.subtitle %>"</h5>
 
 <hr><br>
+<% @post.song_ids.each do |song| %>
+  <p><%= image_tag(Song.find(song.to_i).image) %><%= Song.find(song.to_i).title %> | <%= Song.find(song.to_i).album %></p>
+<% end %>
+<br>
 <p class="pre-line"><%= @post.content.html_safe %></p>
 <br><br>
 <% if current_user.id == @post.user.id %>

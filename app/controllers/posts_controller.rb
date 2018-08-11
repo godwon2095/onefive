@@ -38,6 +38,32 @@ class PostsController < ApplicationController
     @post = Post.new
   end
 
+  def search
+    if params[:search_music]
+      @musics = Song.search(params[:search_music])
+    end
+
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def autoinit
+    @music = Song.find(params[:id])
+
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def cancel
+    @music = Song.find(params[:id])
+
+    respond_to do |format|
+      format.js
+    end
+  end
+
   def create
     @post = Post.new(set_params)
     @post.user_id = current_user.id
@@ -92,7 +118,7 @@ class PostsController < ApplicationController
 
   private
   def set_params
-    params.require(:post).permit(:title, :subtitle, :content, :image, music_titles: [], music_images: [], post_images: [])
+    params.require(:post).permit(:title, :subtitle, :content, :image, song_ids: [], post_images: [])
   end
 
   def set_post

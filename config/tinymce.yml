@@ -1,6 +1,8 @@
+menubar: false
 toolbar:
-  - styleselect | bold italic | undo redo
-  - uploadimage | link
+  - styleselect | bold italic | undo redo | uploadimage | link, alignleft aligncenter alignright | outdent indent | bullist numlist | media
 plugins:
   - uploadimage
   - link
+  - media
+  - lists

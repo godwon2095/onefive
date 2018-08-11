@@ -8,6 +8,13 @@
   </div><br>
 
   <div class="field">
+    <%= f.label :music_titles, '음악 불러오기' %><br><br>
+    <a href="#modal" class="modal-trigger"><i class="material-icons black-text" id="medium-font">library_music</i></a>
+    <div id="music-result">
+    </div>
+  </div><br><br>
+
+  <div class="field">
   <%= f.label :image, '대표 사진' %>
   <%= f.file_field :image, multipart: true %>
   </div><br>
@@ -28,5 +35,26 @@
     <%= link_to '목록', posts_path, class: "btn indigo darken-4" %>
   </div>
 
-
 <% end %>
+
+<!-- Modal Structure -->
+<div id="modal" class="modal">
+  <div class="modal-content">
+    <h4>노래 제목으로 검색하세요</h4>
+    <%= form_tag(search_posts_path, method: :get, remote: true) do %>
+      <input type="text" name="search_music">
+      <input type="submit" class="btn right indigo darken-4" value="검색">
+    <% end %>
+    <ol id="music-lists">
+    </ol>
+  </div>
+  <div class="modal-footer">
+    <a href="#!" class="modal-close waves-effect waves-green btn-flat">취소</a>
+  </div>
+</div>
+
+<script>
+  $(document).ready(function(){
+    $('.modal').modal();
+  });
+</script>
