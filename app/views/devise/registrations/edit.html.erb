@@ -4,7 +4,7 @@
     <%= devise_error_messages! %>
 
 <div class="center">
-
+      
   <% if @user.thumbnail.present? %>
     <%= image_tag(@user.thumbnail, class: "tl-size circle")  %>
   <% else %>
