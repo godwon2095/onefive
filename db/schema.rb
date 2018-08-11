@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180810163718) do
+ActiveRecord::Schema.define(version: 20180810124944) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace"
@@ -49,11 +49,11 @@ ActiveRecord::Schema.define(version: 20180810163718) do
   create_table "alarms", force: :cascade do |t|
     t.text     "content"
     t.integer  "user_id"
+    t.integer  "findable_id"
     t.boolean  "is_read"
+    t.integer  "alarm_type"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
-    t.integer  "alarm_type"
-    t.integer  "findable_id"
   end
 
   add_index "alarms", ["findable_id"], name: "index_alarms_on_findable_id"
