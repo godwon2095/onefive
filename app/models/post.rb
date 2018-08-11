@@ -1,5 +1,5 @@
 class Post < ActiveRecord::Base
-  after_create :generate_alarms
+  # after_create :generate_alarms
 
   belongs_to :user
 
@@ -16,12 +16,12 @@ class Post < ActiveRecord::Base
   def self.search(query)
       self.where("title || content LIKE ?","%#{query}%")
   end
-
-  def generate_alarms
-    if self.user.followers.present?
-      self.user.followers.each do |follower|
-        Alarm.create(user_id: follower.id, content: self.user.name, findable_id: self.id, is_read: false, alarm_type: "post")
-      end
-    end
-  end
+  #
+  # def generate_alarms
+  #   if self.user.followers.present?
+  #     self.user.followers.each do |follower|
+  #       Alarm.create(user_id: follower.id, content: self.user.name, findable_id: self.id, is_read: false, alarm_type: "post")
+  #     end
+  #   end
+  # end
 end
