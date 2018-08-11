@@ -9,6 +9,6 @@ class CreateSingers < ActiveRecord::Migration
     end
     add_index :singers, :name
     add_index :singers, :company
-    add_index :singers, [:name, :campany, :uid], unique: true
+    add_index :singers, [:name, :company, :uid], unique: true
   end
 end

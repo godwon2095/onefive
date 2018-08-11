@@ -35,7 +35,7 @@ class User < ActiveRecord::Base
   end
 
   def self.search(query)
-    self.where("email LIKE ?","%#{query}%")
+    self.where("name || identity LIKE ?","%#{query}%")
   end
 
   def self.find_posts
