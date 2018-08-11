@@ -1,10 +1,13 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
-  
+
+  # config.action_mailer.delivery_method = :letter_opener
+  # config.action_mailer.perform_deliveries = true
+
   # devise : 이메일 인증 설정
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.perform_deliveries = true
-  config.action_mailer.default_url_options = { host: 'https://onefive2-jmlees.c9users.io/' }
+  config.action_mailer.default_url_options = { host: 'http://localhost:3000' }
   ActionMailer::Base.smtp_settings = {
     :address              => 'smtp.gmail.com',
     :domain               => 'mail.google.com',
