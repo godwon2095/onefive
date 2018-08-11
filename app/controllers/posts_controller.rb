@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
   before_action :set_post, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -91,7 +92,7 @@ class PostsController < ApplicationController
 
   private
   def set_params
-    params.require(:post).permit(:title, :subtitle, :content, :image, music_titles: [], music_images: [])
+    params.require(:post).permit(:title, :subtitle, :content, :image, music_titles: [], music_images: [], post_images: [])
   end
 
   def set_post

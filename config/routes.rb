@@ -18,6 +18,8 @@ Rails.application.routes.draw do
   resources :alarms, only: [:index]
   resources :alarms, only: [:destroy], defaults: { format: 'js' }
 
+  post '/tinymce_assets' => 'tinymce_assets#create'
+
   devise_for :users
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)

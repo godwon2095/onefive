@@ -28,7 +28,7 @@
 <h5 class="grey-text">"<%= @post.subtitle %>"</h5>
 
 <hr><br>
-<p class="pre-line"><%= @post.content %></p>
+<p class="pre-line"><%= @post.content.html_safe %></p>
 <br><br>
 <% if current_user.id == @post.user.id %>
   <%= link_to '삭제', post_path(@post.id), method: :delete, class: "btn indigo darken-4 right between-btn", :data => {:confirm => '정말 삭제하시겠습니까?'} %>

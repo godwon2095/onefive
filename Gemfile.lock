@@ -1,4 +1,12 @@
 GIT
+  remote: git://github.com/PerfectlyNormal/tinymce-rails-imageupload.git
+  revision: dd7ba5d2fcc088ed8053a7ca54b304852dee741a
+  specs:
+    tinymce-rails-imageupload (4.0.17.beta.3)
+      railties (>= 3.2, < 6)
+      tinymce-rails (~> 4.0)
+
+GIT
   remote: git://github.com/vigetlabs/active_material.git
   revision: 40f80e98196168203467f645ecca96711dc26c55
   specs:
@@ -243,6 +251,8 @@ GEM
     thor (0.20.0)
     thread_safe (0.3.6)
     tilt (2.0.8)
+    tinymce-rails (4.8.2)
+      railties (>= 3.1.1)
     turbolinks (5.1.1)
       turbolinks-source (~> 5.1)
     turbolinks-source (5.1.0)
@@ -287,6 +297,8 @@ DEPENDENCIES
   sdoc (~> 0.4.0)
   spring
   sqlite3
+  tinymce-rails
+  tinymce-rails-imageupload!
   turbolinks
   uglifier (>= 1.3.0)
   web-console (~> 2.0)
