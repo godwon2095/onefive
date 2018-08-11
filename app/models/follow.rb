@@ -6,7 +6,9 @@ class Follow < ActiveRecord::Base
 
   def generate_alarm
     if Alarm.find_by(user_id: self.followed.id, alarm_type: 2).nil?
-      Alarm.create(user_id: self.followed.id, content: self.follower.name, findable_id: self.follower.id, is_read: false, alarm_type: "follow")
+      if self.followed.follow_on == true
+        Alarm.create(user_id: self.followed.id, content: self.follower.name, findable_id: self.follower.id, is_read: false, alarm_type: "follow")
+      end
     end
   end
 end
