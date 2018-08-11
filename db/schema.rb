@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180805050304) do
+ActiveRecord::Schema.define(version: 20180810124944) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace"
@@ -45,6 +45,19 @@ ActiveRecord::Schema.define(version: 20180805050304) do
 
   add_index "admin_users", ["email"], name: "index_admin_users_on_email", unique: true
   add_index "admin_users", ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
+
+  create_table "alarms", force: :cascade do |t|
+    t.text     "content"
+    t.integer  "user_id"
+    t.integer  "findable_id"
+    t.boolean  "is_read"
+    t.integer  "alarm_type"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "alarms", ["findable_id"], name: "index_alarms_on_findable_id"
+  add_index "alarms", ["user_id"], name: "index_alarms_on_user_id"
 
   create_table "comments", force: :cascade do |t|
     t.integer  "user_id"
@@ -85,6 +98,33 @@ ActiveRecord::Schema.define(version: 20180805050304) do
     t.datetime "updated_at",                        null: false
     t.string   "image"
   end
+
+  create_table "singers", force: :cascade do |t|
+    t.string   "name"
+    t.string   "company"
+    t.integer  "uid"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "singers", ["company"], name: "index_singers_on_company"
+  add_index "singers", ["name", "company", "uid"], name: "index_singers_on_name_and_company_and_uid", unique: true
+  add_index "singers", ["name"], name: "index_singers_on_name"
+
+  create_table "songs", force: :cascade do |t|
+    t.string   "title"
+    t.string   "image"
+    t.integer  "singer_id"
+    t.string   "album"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "songs", ["album"], name: "index_songs_on_album"
+  add_index "songs", ["image"], name: "index_songs_on_image"
+  add_index "songs", ["singer_id"], name: "index_songs_on_singer_id"
+  add_index "songs", ["title", "singer_id", "album", "image"], name: "index_songs_on_title_and_singer_id_and_album_and_image", unique: true
+  add_index "songs", ["title"], name: "index_songs_on_title"
 
   create_table "users", force: :cascade do |t|
     t.string   "name"

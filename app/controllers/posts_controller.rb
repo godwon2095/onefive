@@ -9,6 +9,28 @@ class PostsController < ApplicationController
     else
       @posts = Post.order(created_at: :desc).paginate(:page => params[:page], :per_page => 3)
     end
+
+    @result = Wombat.crawl do
+      # byebug
+      # base_url "https://www.melon.com/"
+      base_url "https://music.naver.com/"
+      # path "/chart/index.htm"
+      path "/artist/track.nhn?artistId=270284&sorting=popular" #아티스트
+      music_titles({ css: ".track"  }, :list)
+      #music_titles({ css: "._title > .ellipsis"  }, :list) #top100
+      music_singers({ css: ".tb_artist"  }, :list)
+      music_albums({ css: ".album"  }, :list)
+      music_images({ xpath: ".//td//a[1]//img/@src" }, :list)
+
+
+      # links do
+      #   explore xpath: '/html/body/header/div/div/nav[1]/a[4]' do |e|
+      #     e.gsub(/Explore/, "Love")
+      #   end
+
+        features css: '.nav-item-opensource'
+        business css: '.nav-item-business'
+    end
   end
 
   def new

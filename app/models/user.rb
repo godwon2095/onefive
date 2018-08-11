@@ -10,6 +10,9 @@ class User < ActiveRecord::Base
   #댓글
   has_many :comments
 
+  #알람
+  has_many :alarms
+
   #좋아요
   has_many :likes
   has_many :liked_posts, through: :likes, source: :post
@@ -32,7 +35,7 @@ class User < ActiveRecord::Base
   end
 
   def self.search(query)
-    self.where("email LIKE ?","%#{query}%")
+    self.where("name || identity LIKE ?","%#{query}%")
   end
 
   def self.find_posts
