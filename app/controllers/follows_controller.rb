@@ -17,9 +17,4 @@ class FollowsController < ApplicationController
         format.js
       end
     end
-
-    # private
-    # def check_follow_self
-    #   if Follow.find_by
-    # end
 end

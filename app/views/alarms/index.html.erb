@@ -2,7 +2,7 @@
 
 <ul class="collapsible">
   <% @alarms.each do |alarm| %>
-    <% if alarm.post? %>
+    <% if alarm.like? %>
       <a href="<%= post_path(alarm.findable_id) %>" class="black-text">
         <li id="alarm-<%= alarm.id %>">
           <div class="collapsible-header">
@@ -11,7 +11,7 @@
             <% else %>
               <i class="material-icons">audiotrack</i>
             <% end %>
-            <p>알람 : [ <%= alarm.content %> ] 님이 새로운 음악을 적으셨습니다. | <%= link_to '삭제', alarm_path(alarm), method: :delete, remote: true %></p>
+            <p>알람 : [ <%= alarm.content %> ] 님이 회원님의 글을 저장 하셨습니다. | <%= link_to '삭제', alarm_path(alarm), method: :delete, remote: true %></p>
           </div>
         </li>
       </a>
