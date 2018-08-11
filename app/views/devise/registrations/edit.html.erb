@@ -1,27 +1,130 @@
-  <h2>Edit <%= resource_name.to_s.humanize %></h2>
-  
+<%= form_for(resource, as: resource_name, url: user_registration_path, html: { method: :put }) do |f| %>
+  <%= devise_error_messages! %> <!-- 이거 수정해야함 -->
+  <div id="editPage">
+
+    <div>
+      <img src="#" id="profileEditImg" />
+    </div>
+    <div id="changeImage_edit">
+      사진 바꾸기
+    </div>
+  </div>
+
+  <div class="profileEditElement">
+    <div>
+      아이디
+    </div>
+    <div>
+      <div class="field all_element_editProfile">
+        <%= f.email_field :email, autofocus: true, autocomplete: "email"%>
+      </div>
+    </div>
+    <div class="nameLabel">
+      이름
+    </div>
+    <div>
+      <div class="field all_element_editProfile">
+      <%= f.text_field :identity, autofocus: false, autocomplete: "off" %>
+      </div>
+    </div>
+    <div class="oneLineLable">
+      한 줄
+    </div>
+    <div>
+      <textarea id="profileEditTextArea"></textarea>
+    </div>
+    <div id="passwordLable">
+      비밀번호
+    </div>
+    <div>
+      <%= f.password_field :password, autocomplete: "off" %>
+      <!-- 비번 유효성 -->
+      <!-- <% if @minimum_password_length %>
+        <br />
+        <em><%= @minimum_password_length %> characters minimum</em>
+      <% end %> -->
+    </div>
+    <div id="passwordConfirmLabel">
+      비밀번호 확인
+    </div>
+    <div>
+      <%= f.password_field :password_confirmation, autocomplete: "off" %>
+    </div>
+    <div id="alertLabel">
+      알림
+    </div>
+    <div id="alertElement">
+      <div class="eleAlert"  style="margin-top:25px">
+        <div class="elementOfAlert">
+          구독
+        </div>
+        <div class="switch">
+          <label>
+            Off
+            <input type="checkbox">
+            <span class="lever"></span>
+            On
+          </label>
+        </div>
+     </div>
+       <div class="eleAlert"  style="margin-top:25px">
+         <div class="elementOfAlert">
+           댓글
+         </div>
+         <div class="switch">
+           <label>
+             Off
+             <input type="checkbox">
+             <span class="lever"></span>
+             On
+           </label>
+         </div>
+      </div>
+      <div class="eleAlert"  style="margin-top:25px">
+        <div class="elementOfAlert">
+          담기
+        </div>
+        <div class="switch">
+          <label>
+            Off
+            <input type="checkbox">
+            <span class="lever"></span>
+            On
+          </label>
+        </div>
+     </div>
+     <div><hr id="EditProfile_hrTag"/></div>
+    </div>
+  </div>
+  <div id="submitEditProfile">
+    <button id="submitEditProfileButton">확인</button>
+  </div>
+
+<% end %>
+  <!-- <h2>Edit <%= resource_name.to_s.humanize %></h2>
+
   <%= form_for(resource, as: resource_name, url: user_registration_path, html: { method: :put }) do |f| %>
     <%= devise_error_messages! %>
-  
+
     <div class="field">
       <%= f.label :email %><br />
       <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
     </div>
-    
+
     <div class="field">
       <%= f.label :identity, 'ID' %><br />
       <%= f.text_field :identity, autofocus: false, autocomplete: "off" %>
     </div>
-    
+
     <div class="field">
       <%= f.label :name %><br />
       <%= f.text_field :name, autofocus: false, autocomplete: "off" %>
     </div>
-  
+
     <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
       <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
     <% end %>
-  
+
     <div class="field">
       <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
       <%= f.password_field :password, autocomplete: "off" %>
@@ -30,29 +133,30 @@
         <em><%= @minimum_password_length %> characters minimum</em>
       <% end %>
     </div>
-  
+
     <div class="field">
       <%= f.label :password_confirmation %><br />
       <%= f.password_field :password_confirmation, autocomplete: "off" %>
     </div>
-    
+
     <div class="field">
       <%= f.label :thumbnail, '프로필 이미지' %><br />
       <%= f.file_field :thumbnail %>
     </div><br>
-  
+
     <div class="field">
       <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
       <%= f.password_field :current_password, autocomplete: "off" %>
     </div>
-  
+
     <div class="actions">
-      <%= f.submit "Update" %>
+      <%= f.submit "shyw" %>
     </div>
   <% end %>
-  
+
   <h3>Cancel my account</h3>
-  
+
   <p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
-  
+
   <%= link_to "Back", :back %>
+</div> -->
