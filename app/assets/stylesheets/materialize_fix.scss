@@ -1,0 +1,51 @@
+input:not([type]),
+input[type=text]:not(.browser-default),
+input[type=password]:not(.browser-default),
+input[type=email]:not(.browser-default),
+input[type=url]:not(.browser-default),
+input[type=time]:not(.browser-default),
+input[type=date]:not(.browser-default),
+input[type=datetime]:not(.browser-default),
+input[type=datetime-local]:not(.browser-default),
+input[type=tel]:not(.browser-default),
+input[type=number]:not(.browser-default),
+input[type=search]:not(.browser-default),
+textarea.materialize-textarea {
+ height: 2rem !important;
+ font-size: 18px !important;
+ font-family: 'Noto Sans KR' !important;
+ width: 346px !important;
+}
+
+input:not([type]):focus:not([readonly]),
+input[type=text]:not(.browser-default):focus:not([readonly]),
+input[type=password]:not(.browser-default):focus:not([readonly]),
+input[type=email]:not(.browser-default):focus:not([readonly]),
+input[type=url]:not(.browser-default):focus:not([readonly]),
+input[type=time]:not(.browser-default):focus:not([readonly]),
+input[type=date]:not(.browser-default):focus:not([readonly]),
+input[type=datetime]:not(.browser-default):focus:not([readonly]),
+input[type=datetime-local]:not(.browser-default):focus:not([readonly]),
+input[type=tel]:not(.browser-default):focus:not([readonly]),
+input[type=number]:not(.browser-default):focus:not([readonly]),
+input[type=search]:not(.browser-default):focus:not([readonly]),
+textarea.materialize-textarea:focus:not([readonly]) {
+  border-bottom: 1px solid #0b1d7b !important;
+  -webkit-box-shadow: 0 1px 0 0 #0b1d7b !important;
+          box-shadow: 0 1px 0 0 #0b1d7b !important;
+}
+
+button:focus {
+  outline: none !important;
+  background-color: white !important;
+
+}
+
+
+.switch label input[type=checkbox]:checked + .lever {
+  background-color: #5460a2 !important;
+}
+
+.switch label input[type=checkbox]:checked + .lever:after {
+  background-color: #0b1d7b !important;
+}

@@ -2,11 +2,41 @@
   width: 1026px;
 }
 
+.tabs {
+  margin-top: 50px !important;
+  background-color: inherit !important;
+}
+
+.tabs .tab a{
+            color: #7a7a7a !important;
+            font-size: 27pt !important;
+        }
+
+.tabs .tab a:focus, .tabs .tab a:focus.active {
+  display: none;
+}
+
+.tabs .indicator {
+    height: 0px !important;
+    background-color: black !important;
+} /*Color of underline*/
+
+.session1_li{
+  color: #7a7a7a !important
+}
+
+.session_active {
+  margin-left: 50px !important;
+  margin-right: 50px !important;
+
+}
+
 #search123 {
   display: flex !important;
   flex-direction: column !important;
   justify-content: center !important;
   align-items: center !important;
+  font-family: "Noto Sans KR" !important;
 }
 //search1
 .search_input {
@@ -41,58 +71,66 @@
   display: flex !important;
   justify-content: center !important;
   color: #7a7a7a !important;
-  font-size: 28px;
+  font-size: 28pt;
 }
 
 .search2_son {
   margin-right: 50px;
   margin-left: 50px;
 }
+
+
 //search3
 
-#search3 {
-  margin-top: 65px;
-  width: 446px !important;
-  display: flex !important;
-  flex-direction: row !important;
-  justify-content: space-between !important;
+#search_music {
+  display: flex;
+  flex-direction: column;
+  margin-top: 65px !important;
 }
 
-
-.album_img {
+#search_music_img {
   width: 80px;
   height: 80px;
-  margin-left: auto !important;
-}
-
-.threeWrite{
-  display: flex !important;
-  flex-wrap: wrap !important;
-  flex-direction: column !important;
-  width: 586px !important;
-  color: black !important;
-}
-
-.write1{
   margin-top: 5px;
-  font-size: 21px;
-  line-height: 21px;
+  margin-left: 0;
+  margin-right: 5px;
+  float: left;
 }
 
-.write2{
-  margin-top: 10px;
-  font-size: 19px;
-  line-height: 19px;
+#search_music_article {
+  display:flex;
+  flex-direction: column;
 }
 
-.write3{
-  margin-top: 10px;
-  font-size: 19px;
+.search_music_item {
+  color: black !important;
+  font-family: "Noto Sans KR" !important;
+  font-size: 19pt;
   line-height: 19px;
+  margin-top: 10px;
 }
+
+
+
+.music_item1 {
+  font-size: 21pt !important;
+  line-height: 21px !important;
+}
+
+.music_item4 {
+  font-size: 21pt !important;
+  font-weight: bold !important;
+
+}
+
 
 #search_hrTag {
   margin-top: 30px;
   border-radius: 1px;
   width: 520px;
+}
+
+
+.tabs .tab a:hover {
+  color: #0b1d7b !important;
 }

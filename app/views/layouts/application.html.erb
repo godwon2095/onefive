@@ -30,46 +30,68 @@
         <li><a href="<%= root_path %>"><i class="material-icons indigo-text text-darken-4">home</i></a></li>
         <!-- 검색기능 시작 -->
         <li><a class="modal-trigger" href="#modal1"><i class="material-icons indigo-text text-darken-4">search</i></a></li>
+
          <div id="modal1" class="modal">
-          <div class="row">
-           <div class="col s12">
-              <ul class="tabs">
-              <li class="tab col s3"><a class="active" href="#test1">음악 제목</a></li>
-              <li class="tab col s3"><a class="active" href="#test2">아티스트</a></a></li>
-              <li class="tab col s3"><a href="#test3">닉네임</a></li>
-              <li class="tab col s3 disabled"><a href="#test4">Test 4</a></li>
+          <div id="search123">
+            <div id=#search1> <!-- 첫번째 세션 -->
+              <form action='posts' method="GET">
+                <div class="search_input"> <!--아이콘과 검색바 -->
+                  <!--아이콘-->
+                  <i class="large material-icons search_icon">search</i>
+                  <!--검색-->
+                  <div class="search_input_div"><input type="text" class="search_input_div_bar" name="search" ></div>
+                </div>
+              </form>
+            </div> <!-- 첫 세션끝 -->
+           <div id="search2"> <!--두번째 세션 탭 시작 -->
+              <ul id ="search_hover" class="tabs">
+                <li class="tab session_active"><a class="active" href="#search_music">음악</a></li>
+                <li class="tab session1_li">|</li>
+                <li class="tab session_active"><a class="active" href="#search_user">사용자</a></a></li>
+                <li class="tab session1_li">|</li>
+                <li class="tab session_active"><a class="active" href="#search_article">글</a></li>
               </ul>
-           </div>
-           <div id="test1" class="col s12"><br>
-             <h4><div class="search_gamrom">무슨 음악이 궁금하느냐!</div></h4>
-             <form action='<%= posts_path %>' method="GET">
-               <label>제목을 검색해보세염ㅇㅅㅇ</label>
-               <input type="text" name="search">
-               <input type="submit">
-             </form>
-           </div>
-            <div id="test2" class="col s12"><br>
-            <h4><div class="search_gamrom">어떤 아티스트가 궁금하느냐!</div></h4>
-              <form action='<%= posts_path %>' method="GET">
-                <label>아티스트를 검색해보세염ㅇㅅㅇ</label>
-                <input type="text" name="search">
-                <input type="submit">
-              </form>
-            </div>
-            <div id="test3" class="col s12"><br>
-            <h4><div class="search_gamrom">어떤 글쟁이가 궁금하느냐!</div></h4>
-              <form action='<%= posts_path %>' method="GET">
-                <label>사용자를 검색해보세염ㅇㅅㅇ</label>
-                <input type="text" name="search_user">
-                <input type="submit">
-              </form>
-            </div>
-            <div id="test4" class="col s12">
-              Test 4
-            </div>
-           </div>
+           </div> <!-- 탭 끝 -->
+           <div id="search3"> <!-- 세번째 세션시작. 검색목록 나열 -->
+             <div id="search_music"> <!-- 음악을 눌렀을 때 -->
+               <div>
+                 <div id="search_music_img"><img  src="#" /></div>
+                 <div id="search_music_article">
+                   <div class="search_music_item music_item1">뜨거운 여름밤은 가고 남은 건 볼품없지만</div>
+                   <div class="search_music_item music-item2">잔나비</div>
+                   <div class="search_music_item music-item3">[MONKEY HOTEL]</div>
+                 </div>
+               </div>
+               <div><hr id="search_hrTag"/> <!-- 구분선 --></div>
+             </div> <!-- 음악을 눌렀을 때 끝 -->
+                 <!-- 성원형. 위에 search_music 아이디를 반복해주면 됩니다.-->
+            <div id="search_user"><br> <!-- 사용자를 눌렀을때 -->
+              <div>
+                <div id="search_music_img"><img  src="#" /></div>
+                <div id="search_music_article">
+                  <div class="search_music_item music_item1">뜨거운 여름밤은 가고 남은 건 볼품없지만</div>
+                  <div class="search_music_item music-item2">잔나비</div>
+                  <div class="search_music_item music-item3">[MONKEY HOTEL]</div>
+                </div>
+              </div>
+              <div><hr id="search_hrTag"/> <!-- 구분선 --></div>
+            </div> <!-- 사용자를 눌렀을때 끝 -->
+            <div id="search_article"><br> <!-- 글을 눌렀을때 -->
+              <div>
+                <div id="search_music_img"><img  src="#" /></div>
+                <div id="search_music_article">
+                  <div class="search_music_item music_item4">뜨거운 여름밤은 가고 남은 건 볼품없지만</div>
+                  <div class="search_music_item music-item2">잔나비</div>
+                  <div class="search_music_item music-item3">[MONKEY HOTEL]</div>
+                </div>
+              </div>
+              <div><hr id="search_hrTag"/> <!-- 구분선 --></div>
+            </div> <!-- 글을 눌럿을 때 끝 -->
+           </div> <!--세번째 세션 끝 -->
           </div>
+        </div>
           <!-- 검색기능 끝 -->
+
         <li><a href="<%= timelines_path %>"><i class="material-icons indigo-text text-darken-4">library_music</i></a></li>
         <li><a href="#" class="dropdown-trigger" data-target='dropdown1'><i class="material-icons indigo-text text-darken-4">person</i></a></li>
         <ul id='dropdown1' class='dropdown-content'>
@@ -138,9 +160,9 @@
     <% end %>
   </ul>
 
-<div class="container">
+
   <%= yield %>
-</div>
+
   <script>
       $(document).ready(function(){
       $('.sidenav').sidenav();
@@ -152,6 +174,9 @@
      $(document).ready(function(){
     $('.tabs').tabs();
   });
+
+
+
   </script>
 </body>
 </html>

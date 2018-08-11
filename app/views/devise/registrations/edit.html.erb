@@ -1,49 +1,125 @@
-<br><br>
-
 <%= form_for(resource, as: resource_name, url: user_registration_path, html: { method: :put }) do |f| %>
+  <%= devise_error_messages! %> <!-- 이거 수정해야함 -->
+  <div id="editPage">
+
+    <div>
+      <img src="#" id="profileEditImg" />
+    </div>
+    <div id="changeImage_edit">
+      사진 바꾸기
+    </div>
+  </div>
+
+  <div class="profileEditElement">
+    <div>
+      아이디
+    </div>
+    <div>
+      <div class="field all_element_editProfile">
+        <%= f.email_field :email, autofocus: true, autocomplete: "email"%>
+      </div>
+    </div>
+    <div class="nameLabel">
+      이름
+    </div>
+    <div>
+      <div class="field all_element_editProfile">
+      <%= f.text_field :identity, autofocus: false, autocomplete: "off" %>
+      </div>
+    </div>
+    <div class="oneLineLable">
+      한 줄
+    </div>
+    <div>
+      <textarea id="profileEditTextArea"></textarea>
+    </div>
+    <div id="passwordLable">
+      비밀번호
+    </div>
+    <div>
+      <%= f.password_field :password, autocomplete: "off" %>
+      <!-- 비번 유효성 -->
+      <!-- <% if @minimum_password_length %>
+        <br />
+        <em><%= @minimum_password_length %> characters minimum</em>
+      <% end %> -->
+    </div>
+    <div id="passwordConfirmLabel">
+      비밀번호 확인
+    </div>
+    <div>
+      <%= f.password_field :password_confirmation, autocomplete: "off" %>
+    </div>
+    <div id="alertLabel">
+      알림
+    </div>
+    <div id="alertElement">
+      <div class="eleAlert"  style="margin-top:25px">
+        <div class="elementOfAlert">
+          구독
+        </div>
+        <div class="switch">
+          <label>
+            Off
+            <input type="checkbox">
+            <span class="lever"></span>
+            On
+          </label>
+        </div>
+     </div>
+       <div class="eleAlert"  style="margin-top:25px">
+         <div class="elementOfAlert">
+           댓글
+         </div>
+         <div class="switch">
+           <label>
+             Off
+             <input type="checkbox">
+             <span class="lever"></span>
+             On
+           </label>
+         </div>
+      </div>
+      <div class="eleAlert"  style="margin-top:25px">
+        <div class="elementOfAlert">
+          담기
+        </div>
+        <div class="switch">
+          <label>
+            Off
+            <input type="checkbox">
+            <span class="lever"></span>
+            On
+          </label>
+        </div>
+     </div>
+     <div><hr id="EditProfile_hrTag"/></div>
+    </div>
+  </div>
+  <div id="submitEditProfile">
+    <button id="submitEditProfileButton">확인</button>
+  </div>
+
+<% end %>
+  <!-- <h2>Edit <%= resource_name.to_s.humanize %></h2>
+
+  <%= form_for(resource, as: resource_name, url: user_registration_path, html: { method: :put }) do |f| %>
     <%= devise_error_messages! %>
 
-<div class="center">
-      
-  <% if @user.thumbnail.present? %>
-    <%= image_tag(@user.thumbnail, class: "tl-size circle")  %>
-  <% else %>
-    <img src="/people.jpg" class="tl-size circle">
-  <% end %><br>
-
-
-
-  <%= f.label :thumbnail, '사진 바꾸기' %><br />
-  <%= f.file_field :thumbnail %>
-
-</div><br><br><br>
-
+    <div class="field">
+      <%= f.label :email %><br />
+      <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    </div>
 
     <div class="field">
-      <%= f.label :identity, '아이디' %><br />
-      <%= f.text_field :identity, autofocus: true, autocomplete: "off" %>
-    </div><br><br>
-
+      <%= f.label :identity, 'ID' %><br />
+      <%= f.text_field :identity, autofocus: false, autocomplete: "off" %>
+    </div>
 
     <div class="field">
       <%= f.label :name, '이름' %><br />
       <%= f.text_field :name, autofocus: false, autocomplete: "off" %>
-    </div><br><br>
-
-
-
-    <div class="field">
-      <%= f.label :email, '이메일' %><br />
-      <%= f.email_field :email, autofocus: false, autocomplete: "email" %>
-    </div><br><br>
-
-
-    <div class="field">
-      <%= f.label :information, '한 줄' %><br />
-      <%= f.text_area :information %>
-    </div><br><br>
-
-
+    </div>
 
     <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
       <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
@@ -56,13 +132,17 @@
         <br />
         <i>(<%= @minimum_password_length %>자 이상)</i>
       <% end %>
-    </div><br><br>
+    </div>
 
     <div class="field">
       <%= f.label :password_confirmation, '비밀번호 확인' %><br />
       <%= f.password_field :password_confirmation, autocomplete: "off" %>
-    </div><br><br>
+    </div>
 
+    <div class="field">
+      <%= f.label :thumbnail, '프로필 이미지' %><br />
+      <%= f.file_field :thumbnail %>
+    </div><br>
 
     <div class="field">
       <%= f.label :current_password, '현재 비밀번호' %> <i>(정보 변경을 위해 현재 비밀번호가 필요합니다.)</i><br />
@@ -81,6 +161,7 @@
           </label>
     </div>
 
+<<<<<<< HEAD
     <div class="switch">
           댓글
           <label>
@@ -89,6 +170,10 @@
             <span class="lever"></span>
             켜기
           </label>
+=======
+    <div class="actions">
+      <%= f.submit "shyw" %>
+>>>>>>> 4ae3d498fe919f6aee3590c6f69891760f84e591
     </div>
 
 
@@ -110,3 +195,13 @@
 
 
   <% end %>
+<<<<<<< HEAD
+=======
+
+  <h3>Cancel my account</h3>
+
+  <p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
+
+  <%= link_to "Back", :back %>
+</div> -->
+>>>>>>> 4ae3d498fe919f6aee3590c6f69891760f84e591
