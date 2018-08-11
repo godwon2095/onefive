@@ -5,6 +5,9 @@ Rails.application.routes.draw do
     resources :comments, only: [:create, :destroy], defaults: { format: 'js' }
   end
   resources :timelines, only: [:index] do
+    collection do
+      get :saves
+    end
     member do
       get :profile
       get :subscribe
