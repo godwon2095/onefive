@@ -76,6 +76,7 @@ GEM
       activemodel (>= 4.0.0)
       activesupport (>= 4.0.0)
       mime-types (>= 1.16)
+    clipboard-rails (1.7.1)
     codemirror-rails (5.16.0)
       railties (>= 3.0, < 6.0)
     coffee-rails (4.1.1)
@@ -300,6 +301,7 @@ DEPENDENCIES
   activeadmin
   byebug
   carrierwave (~> 1.0)
+  clipboard-rails
   coffee-rails (~> 4.1.0)
   devise
   jbuilder (~> 2.0)

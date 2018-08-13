@@ -7,6 +7,7 @@
     </div>
     <div id="changeImage_edit">
       사진 바꾸기
+      <%= f.file_field :thumbnail %>
     </div>
   </div>
 
@@ -52,7 +53,7 @@
     </div>
 
     <div id="passwordConfirmLabel">
-      현재 비밀번호
+      현재 비밀번호(정보 변경 시)
     <div>
       <%= f.password_field :current_password, autocomplete: "off" %>
     </div>

@@ -21,6 +21,22 @@
       </a>
     </div>
 
+    <ul id="slide-out" class="sidenav">
+      <li><div class="user-view">
+        <div class="background">
+          <!-- <img src="images/office.jpg"> -->
+        </div>
+        <!-- <a href="#user"><img class="circle" src="images/yuna.jpg"></a> -->
+        <a href="#name"><span class="white-text name">John Doe</span></a>
+        <a href="#email"><span class="white-text email">jdandturk@gmail.com</span></a>
+      </div></li>
+      <li><a href="#!"><i class="material-icons">cloud</i>First Link With Icon</a></li>
+      <li><a href="#!">Second Link</a></li>
+      <li><div class="divider"></div></li>
+      <li><a class="subheader">Subheader</a></li>
+      <li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
+    </ul>
+
     <!-- 네브바 시작 -->
     <div class="nav-wrapper white">
       <%= link_to '한/시/오/분', root_path, class: "brand-logo indigo-text text-darken-4" %>
@@ -94,17 +110,6 @@
 
         <li><a href="<%= timelines_path %>"><i class="material-icons indigo-text text-darken-4">library_music</i></a></li>
         <li><a href="#" class="dropdown-trigger" data-target='dropdown1'><i class="material-icons indigo-text text-darken-4">person</i></a></li>
-        <ul id='dropdown1' class='dropdown-content'>
-          <li><%= link_to '로그아웃', destroy_user_session_path, method: :delete, class: "indigo-text text-darken-4" %></li>
-          <li class="divider" tabindex="-1"></li>
-          <li><%= link_to '타임라인', profile_timeline_path(current_user), class: "indigo-text text-darken-4" %></li>
-          <li class="divider" tabindex="-1"></li>
-          <li><%= link_to '정보수정', edit_user_registration_path, class: "indigo-text text-darken-4" %></li>
-          <li class="divider" tabindex="-1"></li>
-          <li><%= link_to '알람', alarms_path, class: "indigo-text text-darken-4" %></li>
-          <li class="divider" tabindex="-1"></li>
-          <li><%= link_to '담은글', saves_timelines_path, class: "indigo-text text-darken-4" %></li>
-        </ul>
         <% else %>
         <li><%= link_to '로그인', new_user_session_path, class: "indigo-text text-darken-4" %></li>
         <li><%= link_to '회원가입', new_user_registration_path, class: "indigo-text text-darken-4" %></li>
@@ -113,8 +118,22 @@
     </div>
     </div>
   </nav>
+  <ul id='dropdown1' class='dropdown-content'>
+    <li><%= link_to '로그아웃', destroy_user_session_path, method: :delete, class: "indigo-text text-darken-4" %></li>
+    <li class="divider" tabindex="-1"></li>
+    <li><%= link_to '타임라인', profile_timeline_path(current_user), class: "indigo-text text-darken-4" %></li>
+    <li class="divider" tabindex="-1"></li>
+    <li><%= link_to '정보수정', edit_user_registration_path, class: "indigo-text text-darken-4" %></li>
+    <li class="divider" tabindex="-1"></li>
+    <li><%= link_to '알람', alarms_path, class: "indigo-text text-darken-4" %></li>
+    <li class="divider" tabindex="-1"></li>
+    <li><%= link_to '담은글', saves_timelines_path, class: "indigo-text text-darken-4" %></li>
+  </ul>
 
-  <ul class="sidenav" id="mobile-demo">
+    <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons right">menu</i></a>
+
+
+  <!-- <ul class="sidenav" id="mobile-demo">
     <% if user_signed_in? %>
     <li><div class="user-view">
       <div class="background">
@@ -158,7 +177,7 @@
       <li><%= link_to '로그인', new_user_session_path %></li>
       <li><%= link_to '회원가입', new_user_registration_path %></li>
     <% end %>
-  </ul>
+  </ul> -->
 
 
   <%= yield %>

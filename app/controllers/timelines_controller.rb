@@ -11,7 +11,7 @@ class TimelinesController < ApplicationController
 
   def subscribe
   end
-  
+
   def saves
     @posts = current_user.liked_posts.order(created_at: :desc).paginate(:page => params[:page], :per_page => 3)
   end

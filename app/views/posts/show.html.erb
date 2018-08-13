@@ -39,22 +39,9 @@
   <%= link_to '수정', edit_post_path(@post), class: "btn indigo darken-4 right between-btn" %>
 <% end %>
 <%= link_to '목록', posts_path, class: "btn indigo darken-4 right between-btn" %><br>
-<br><hr>
+<br><br><hr><br>
 
-<!-- 저장기능 -->
-<div class="icon-size">
-    <p class="right">0</p><i class="material-icons right">timeline</i>
-    <p class="right" id="comment-size"><%= @post.comments.size %></p><i class="material-icons right">sms</i>
-    <p class="right" id="like_size"><%= @post.likes.size %></p>
-    <span id='like_toggle'>
-      <% if current_user.is_like?(@post) %>
-          <%= link_to 'bookmark', post_like_path(@post), method: :post, class: "material-icons right black-text", id: "like_default", remote: true %>
-      <% else %>
-          <%= link_to 'bookmark_border', post_like_path(@post), method: :post, class: "material-icons right black-text", id: "like_default" ,remote: true%>
-      <% end %>
-    </span>
-</div>
-<br><br><br>
+<%= render partial: "buttons" %>
 
 <% if @post.comments.present? %>
     <ul class="collection">
@@ -100,3 +87,9 @@
     </a>
   </div>
 <!--//-->
+
+<script>
+$(document).ready(function(){
+  var clipboard = new Clipboard('.clipboard-btn');
+});
+</script>
