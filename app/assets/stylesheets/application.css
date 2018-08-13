@@ -99,3 +99,6 @@ hr{
 #super-right {
   text-align: right;
 }
+.toosmall {
+  font-size: 1px;
+}

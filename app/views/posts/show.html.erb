@@ -1,3 +1,4 @@
+<span id="text-<%= @post.id %>"><text id="copy-<%= @post.id %>" class="white-text toosmall">http://localhost:3000/posts/<%= @post.id %></text></span>
 <br>
 <div class="row">
     <% if @post.image.present? %>
@@ -41,7 +42,7 @@
 <%= link_to '목록', posts_path, class: "btn indigo darken-4 right between-btn" %><br>
 <br><br><hr><br>
 
-<%= render partial: "buttons" %>
+<%= render partial: "buttons" %><br><br>
 
 <% if @post.comments.present? %>
     <ul class="collection">

@@ -1,8 +1,7 @@
 <div class="icon-size">
 <!-- 링크 복사 기능 -->
     <!-- <p class="right">0</p><a href="" class="clipboard-btn" data-clipboard-action="copy" data-clipboard-target="#bar" data-remote="true"><i class="material-icons right black-text">timeline</i></a> -->
-    <p class="right">0</p><a href="#modal3" class="modal-trigger"><i class="material-icons right black-text">timeline</i></a>
-
+    <a href="<%= copyurl_path(@post) %>" class="clipboard-btn" data-clipboard-action="copy" data-clipboard-target="#copy-<%= @post.id %>" data-remote="true" onclick="M.toast({html: '링크가 복사되었습니다.'})"><i class="material-icons right black-text">timeline</i></a>
 <!-- 댓글 수 -->
     <p class="right" id="comment-size"><%= @post.comments.size %></p><i class="material-icons right">sms</i>
 
@@ -15,17 +14,4 @@
           <%= link_to 'bookmark_border', post_like_path(@post), method: :post, class: "material-icons right black-text", id: "like_default" ,remote: true%>
       <% end %>
     </span>
-
-<!-- 링크 복사 창 나오는곳 -->
-  <div id="modal3" class="modal">
-    <div class="modal-content">
-      <h4>현재 링크 복사하기</h4>
-      <textarea id="bar" rows="8" cols="80">http://localhost:3000/posts/<%= @post.id %></textarea>
-      <a class="clipboard-btn indigo-text text-darken-4" data-clipboard-action="copy" data-clipboard-target="#bar" onclick="M.toast({html: '링크가 복사되었습니다.'})">복사</a>
-    </div>
-    <div class="modal-footer">
-      <a href="#!" class="modal-close waves-effect waves-green btn-flat">닫기</a>
-    </div>
-  </div>
-</div>
-<br><br><br>
+<br>

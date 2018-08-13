@@ -29,6 +29,7 @@ Rails.application.routes.draw do
   resources :alarms, only: [:destroy], defaults: { format: 'js' }
 
   post '/tinymce_assets' => 'tinymce_assets#create'
+  get '/copyurl/:id' => 'copys#copy', defaults: { format: 'js' }, :as => '/copyurl'
 
   devise_for :users
   devise_for :admin_users, ActiveAdmin::Devise.config
