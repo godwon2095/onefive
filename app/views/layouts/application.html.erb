@@ -118,6 +118,7 @@
     </div>
     </div>
   </nav>
+  <% if user_signed_in? %>
   <ul id='dropdown1' class='dropdown-content'>
     <li><%= link_to '로그아웃', destroy_user_session_path, method: :delete, class: "indigo-text text-darken-4" %></li>
     <li class="divider" tabindex="-1"></li>
@@ -129,6 +130,7 @@
     <li class="divider" tabindex="-1"></li>
     <li><%= link_to '담은글', saves_timelines_path, class: "indigo-text text-darken-4" %></li>
   </ul>
+  <% end %>
 
     <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons right">menu</i></a>
 

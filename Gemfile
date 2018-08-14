@@ -14,6 +14,10 @@ gem 'tinymce-rails'
 gem 'tinymce-rails-imageupload', github: 'PerfectlyNormal/tinymce-rails-imageupload'
 gem 'tinymce-rails-langs'
 gem 'clipboard-rails'
+gem "nokogiri"
+gem "htmlentities"
+gem "truncate_html"
+gem 'dropzonejs-rails'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5'
 # Use sqlite3 as the database for Active Record

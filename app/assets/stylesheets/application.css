@@ -13,6 +13,7 @@
  *= require_tree .
  *= require_self
  *= stub active_admin
+ *= require dropzone/dropzone
  */
 @font-face { font-family: 'NotoSerifKR'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/NotoSerifKR.woff') format('woff'); font-weight: normal; font-style: normal; }
 @import url(//fonts.googleapis.com/earlyaccess/notosanskr.css); .notosanskr * { font-family: 'Noto Sans KR', sans-serif; }
@@ -136,7 +137,9 @@ nav {
 .loginandsignup {
   margin-right: 25px;
 }
-
+p.iframe {
+  display: none;
+}
 /* .loginandsignup>ul,li {
   display:inline;
         } */
