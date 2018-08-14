@@ -59,11 +59,11 @@
               </div> <!-- 첫 세션끝 -->
              <div id="search2"> <!--두번째 세션 탭 시작 -->
                 <ul id ="search_hover" class="tabs">
-                  <li class="tab session_active"><a class="active" href="#search_music">음악</a></li>
+                  <li class="tab session_active"><a class="active grey-text" href="#search_music" id="search-music">음악</a></li>
                   <li class="tab session1_li">|</li>
-                  <li class="tab session_active"><a class="active" href="#search_user">사용자</a></a></li>
+                  <li class="tab session_active"><a class="active grey-text" href="#search_user" id="search-user">사용자</a></a></li>
                   <li class="tab session1_li">|</li>
-                  <li class="tab session_active"><a class="active" href="#search_article">글</a></li>
+                  <li class="tab session_active"><a class="active grey-text" href="#search_article" id="search-post">글</a></li>
                 </ul>
              </div> <!-- 탭 끝 -->
              <div id="search3"> <!-- 세번째 세션시작. 검색목록 나열 -->
@@ -71,7 +71,7 @@
                  <div>
                    <div id="search_music_img"><img  src="#" /></div>
                    <div id="search_music_article">
-                     <div class="search_music_item music_item1">뜨거운 여름밤은 가고 남은 건 볼품없지만</div>
+                     <div class="search_music_item music_item1">find music</div>
                      <div class="search_music_item music-item2">잔나비</div>
                      <div class="search_music_item music-item3">[MONKEY HOTEL]</div>
                    </div>
@@ -83,8 +83,8 @@
                 <div>
                   <div id="search_music_img"><img  src="#" /></div>
                   <div id="search_music_article">
-                    <div class="search_music_item music_item1">뜨거운 여름밤은 가고 남은 건 볼품없지만</div>
-                    <div class="search_music_item music-item2">잔나비</div>
+                    <div class="search_music_item music_item1">find user</div>
+                    <div class="search_music_item music-item2">wow</div>
                     <div class="search_music_item music-item3">[MONKEY HOTEL]</div>
                   </div>
                 </div>
@@ -94,7 +94,7 @@
                 <div>
                   <div id="search_music_img"><img  src="#" /></div>
                   <div id="search_music_article">
-                    <div class="search_music_item music_item4">뜨거운 여름밤은 가고 남은 건 볼품없지만</div>
+                    <div class="search_music_item music_item4">find post</div>
                     <div class="search_music_item music-item2">잔나비</div>
                     <div class="search_music_item music-item3">[MONKEY HOTEL]</div>
                   </div>
@@ -194,6 +194,22 @@
     });
      $(document).ready(function(){
     $('.tabs').tabs();
+  });
+
+  $('#search-music').on('click', function () {
+      $(this).attr('style', 'color: #0b1d7b !important');
+      $('#search-user').attr('style', 'color: #7a7a7a !important');
+      $('#search-post').attr('style', 'color: #7a7a7a !important');
+  });
+  $('#search-user').on('click', function () {
+    $(this).attr('style', 'color: #0b1d7b !important');
+    $('#search-music').attr('style', 'color: #7a7a7a !important');
+    $('#search-post').attr('style', 'color: #7a7a7a !important');
+  });
+  $('#search-post').on('click', function () {
+    $(this).attr('style', 'color: #0b1d7b !important');
+    $('#search-music').attr('style', 'color: #7a7a7a !important');
+    $('#search-user').attr('style', 'color: #7a7a7a !important');
   });
   </script>
 </body>
