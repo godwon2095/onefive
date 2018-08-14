@@ -35,7 +35,7 @@
 <br>
 <p class="pre-line"><%= @post.content.html_safe %></p>
 <br><br>
-<% if current_user.id == @post.user.id %>
+<% if user_signed_in? && current_user.id == @post.user.id %>
   <%= link_to '삭제', post_path(@post.id), method: :delete, class: "btn indigo darken-4 right between-btn", :data => {:confirm => '정말 삭제하시겠습니까?'} %>
   <%= link_to '수정', edit_post_path(@post), class: "btn indigo darken-4 right between-btn" %>
 <% end %>
@@ -57,7 +57,7 @@
             <span class="title"><%= link_to "#{c.user.name}", profile_timeline_path(c.user) %></span>
             <span class="right"><%= time_ago_in_words c.created_at %> 전</span><br><br><br>
             <span class="pre-line"><%= c.content %></span>
-            <% if c.user.id == current_user.id %>
+            <% if user_signed_in? && c.user.id == current_user.id %>
               <%= link_to '삭제', post_comment_path(@post, c), method: :delete, class: "right", remote: true %>
             <% end %>
           </li>

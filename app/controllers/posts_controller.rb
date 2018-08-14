@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
   before_action :set_post, only: [:show, :edit, :update, :destroy]
+  before_action :check_ownership!, only: [:edit, :update, :destroy]
 
   def index
     if params[:search]
@@ -41,7 +42,7 @@ class PostsController < ApplicationController
   def search
     if params[:search_music]
       @musics = Song.search(params[:search_music])
-      @tmp = params[:search_music]
+      @check_params = params[:search_music]
     elsif params[:search_singer]
       @musics = Song.find_songs(Singer.search(params[:search_singer]))
     end

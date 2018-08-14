@@ -12,14 +12,16 @@
       <div class="card-stacked">
         <div class="card-content">
           <div class="card_top">
-            <a class="dropdown-trigger" data-target="dropdown2">
-              <i class="tiny material-icons onefive" style="float: right;">more_horiz</i>
-            </a>
-            <ul id="dropdown2" class="dropdown-content">
-              <li><a href="<%= edit_post_path(p) %>" id="onefive">수정</a></li>
-              <li class="divider" tabindex="-1"></li>
-              <li><a href="<%= post_path(p) %>" id="onefive" data-method="get">삭제</a></li>
-            </ul>
+            <% if p.user == current_user %>
+              <a class="dropdown-trigger" data-target="dropdown2">
+                <i class="tiny material-icons onefive" style="float: right;">more_horiz</i>
+              </a>
+              <ul id="dropdown2" class="dropdown-content">
+                <li><a href="<%= edit_post_path(p) %>" id="onefive">수정</a></li>
+                <li class="divider" tabindex="-1"></li>
+                <li><a href="<%= post_path(p) %>" id="onefive" data-method="delete">삭제</a></li>
+              </ul>
+            <% end %>
           </div>
             <div class="content_title">
               <%= link_to "#{p.title.truncate(14)}", post_path(p), class: "onefive" %>

@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController
     before_action :authenticate_user!
-    # before_action :check_ownership!, only: [:destroy]
+    before_action :check_ownership!, only: [:destroy]
 
     def create
         @new_comment = Comment.new(set_comment_params)
@@ -18,7 +18,6 @@ class CommentsController < ApplicationController
     end
 
     def destroy
-        @comment = Comment.find_by(id: params[:id])
         @comment.destroy
 
         respond_to do |format|

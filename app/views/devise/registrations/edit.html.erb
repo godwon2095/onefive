@@ -9,11 +9,12 @@
       <% else %>
         <img src="/people.jpg" class="circle" id="profileEditImg">
       <% end %>
+      <!-- <img id="profileEditImg" src="#" /> -->
       </span>
     </div>
     <div id="changeImage_edit fallback">
       <a class="indigo-text text-darken-4" id="change_picture">사진 바꾸기</a>
-      <%= f.file_field :thumbnail, class: "hidden_file_field" %>
+      <%= f.file_field :thumbnail, class: "hidden_file_field", accept: "image/*", onchange: "readURL(this);" %>
     </div>
   </div>
 
@@ -123,12 +124,16 @@ change_picture.on('click', function () {
   $('.hidden_file_field').trigger('click');
 });
 
-$(".hidden_file_field").on('change', function() {
-  var new_file = this.files[0]
-  $('#default-image-<%= current_user.id %>').remove();
-  $('#image-<%= current_user.id %>').text(new_file);
-  console.log(new_file);
-  console.log(this);
-});
+function readURL(input) {
+       if (input.files && input.files[0]) {
+           var reader = new FileReader();
 
+           reader.onload = function (e) {
+               $('#profileEditImg')
+                   .attr('src', e.target.result);
+           };
+
+           reader.readAsDataURL(input.files[0]);
+       }
+   }
 </script>

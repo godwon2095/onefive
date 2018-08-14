@@ -7,7 +7,7 @@
 <!-- 저장 기능 -->
     <p class="right" id="like_size"><%= @post.likes.size %></p>
     <span id='like_toggle'>
-      <% if current_user.is_like?(@post) %>
+      <% if user_signed_in? && current_user.is_like?(@post) %>
           <%= link_to 'bookmark', post_like_path(@post), method: :post, class: "material-icons right black-text", id: "like_default", remote: true %>
       <% else %>
           <%= link_to 'bookmark_border', post_like_path(@post), method: :post, class: "material-icons right black-text", id: "like_default" ,remote: true%>
