@@ -36,9 +36,8 @@
     <!-- 네브바 시작 -->
     <div class="nav-wrapper white">
       <div class="logo onefive">
-        <%= link_to '한/시/오/분', root_path, class: "brand-logo", id: :onefive %>
+        <%= link_to '한 / 시 / 오 / 분', root_path, class: "brand-logo", id: :onefive %>
       </div>
-      <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons indigo-text text-darken-4">menu</i></a>
       <ul class="right hide-on-med-and-down">
         <% if user_signed_in? %>
         <div class="p_icons">
@@ -108,29 +107,16 @@
             <!-- 검색기능 끝 -->
 
           <li><a href="<%= timelines_path %>"><i class="material-icons onefive">explore</i></a></li>
-          <li><a href="#" class="dropdown-trigger" data-target='dropdown1'><i class="material-icons onefive">person</i></a></li>
+          <li><a href="#" class="sidenav-trigger" data-target='slide-out'><i class="material-icons onefive">menu</i></a></li>
         </div>
         <% else %>
-        <li><%= link_to '로그인', new_user_session_path %></li>
-        <li><%= link_to '회원가입', new_user_registration_path %></li>
+        <li><%= link_to '로그인', new_user_session_path, class: "onefive" %></li>
+        <li><%= link_to '회원가입', new_user_registration_path, class: "onefive" %></li>
         <% end %>
       </ul>
     </div>
     </div>
   </nav>
-  <ul id='dropdown1' class='dropdown-content'>
-    <li><%= link_to '로그아웃', destroy_user_session_path, method: :delete, class: "indigo-text text-darken-4" %></li>
-    <li class="divider" tabindex="-1"></li>
-    <li><%= link_to '타임라인', profile_timeline_path(current_user), class: "indigo-text text-darken-4" %></li>
-    <li class="divider" tabindex="-1"></li>
-    <li><%= link_to '정보수정', edit_user_registration_path, class: "indigo-text text-darken-4" %></li>
-    <li class="divider" tabindex="-1"></li>
-    <li><%= link_to '알람', alarms_path, class: "indigo-text text-darken-4" %></li>
-    <li class="divider" tabindex="-1"></li>
-    <li><%= link_to '담은글', saves_timelines_path, class: "indigo-text text-darken-4" %></li>
-  </ul>
-
-    <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons right">menu</i></a>
 
 
   <!-- <ul class="sidenav" id="mobile-demo">
