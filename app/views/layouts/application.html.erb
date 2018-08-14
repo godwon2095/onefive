@@ -36,9 +36,8 @@
     <!-- 네브바 시작 -->
     <div class="nav-wrapper white">
       <div class="logo onefive">
-        <%= link_to '한/시/오/분', root_path, class: "brand-logo", id: :onefive %>
+        <%= link_to '한 / 시 / 오 / 분', root_path, class: "brand-logo", id: :onefive %>
       </div>
-      <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons indigo-text text-darken-4">menu</i></a>
       <ul class="right hide-on-med-and-down">
         <% if user_signed_in? %>
         <div class="p_icons">
@@ -109,10 +108,11 @@
 
           <li><a href="<%= timelines_path %>"><i class="material-icons onefive">explore</i></a></li>
           <li><a href="#" class="dropdown-trigger" data-target='dropdown1'><i class="material-icons onefive">person</i></a></li>
+          <li><a href="#" class="sidenav-trigger" data-target='slide-out'><i class="material-icons onefive">menu</i></a></li>
         </div>
         <% else %>
-        <li><%= link_to '로그인', new_user_session_path %></li>
-        <li><%= link_to '회원가입', new_user_registration_path %></li>
+        <li><%= link_to '로그인', new_user_session_path, class: "onefive" %></li>
+        <li><%= link_to '회원가입', new_user_registration_path, class: "onefive" %></li>
         <% end %>
       </ul>
     </div>

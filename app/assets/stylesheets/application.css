@@ -127,6 +127,8 @@ nav {
 .brand-logo{
   margin-left: 40px !important;
   color: #0b1d7b !important;
+  font-family: notoserifkr;
+  font-size: 18pt !important;
   /* margin-top: 15.5px !important; */
 }
 
@@ -134,12 +136,17 @@ nav {
   margin-right: 15px;
 }
 
-.loginandsignup {
+.loginandsignup{
   margin-right: 25px;
 }
 p.iframe {
   display: none;
 }
+
+.btn-floating{
+  background-color: #0b1d7b !important;
+}
+
 /* .loginandsignup>ul,li {
   display:inline;
         } */
