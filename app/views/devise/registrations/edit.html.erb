@@ -2,12 +2,18 @@
   <%= devise_error_messages! %> <!-- 이거 수정해야함 -->
   <div id="editPage">
 
-    <div>
-      <img src="#" id="profileEditImg" />
+    <div id="image-<%= current_user.id %>">
+      <span id="default-image-<%= current_user.id %>">
+      <% if current_user.thumbnail.present? %>
+        <%= image_tag(current_user.thumbnail, id: "profileEditImg", class: :circle) %>
+      <% else %>
+        <img src="/people.jpg" class="circle" id="profileEditImg">
+      <% end %>
+      </span>
     </div>
     <div id="changeImage_edit">
-      사진 바꾸기
-      <%= f.file_field :thumbnail %>
+      <a class="indigo-text text-darken-4" id="change_picture">사진 바꾸기</a>
+      <%= f.file_field :thumbnail, class: "hidden_file_field" %>
     </div>
   </div>
 
@@ -109,3 +115,19 @@
   </div>
 
 <% end %>
+
+<script>
+var change_picture = $("#change_picture")
+
+change_picture.on('click', function () {
+  $('.hidden_file_field').trigger('click');
+});
+
+$(".hidden_file_field").on('change', function() {
+  var new_file = this.files[0]
+  $('#default-image-<%= current_user.id %>').remove();
+  $('#image-<%= current_user.id %>').append('<img src="/people.jpg" class="circle" id="profileEditImg">');
+  console.log(new_file);
+});
+
+</script>

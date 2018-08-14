@@ -1,6 +1,5 @@
 <div class="icon-size">
 <!-- 링크 복사 기능 -->
-    <!-- <p class="right">0</p><a href="" class="clipboard-btn" data-clipboard-action="copy" data-clipboard-target="#bar" data-remote="true"><i class="material-icons right black-text">timeline</i></a> -->
     <a href="<%= copyurl_path(@post) %>" class="clipboard-btn" data-clipboard-action="copy" data-clipboard-target="#copy-<%= @post.id %>" data-remote="true" onclick="M.toast({html: '링크가 복사되었습니다.'})"><i class="material-icons right black-text">timeline</i></a>
 <!-- 댓글 수 -->
     <p class="right" id="comment-size"><%= @post.comments.size %></p><i class="material-icons right">sms</i>
