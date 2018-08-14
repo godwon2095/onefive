@@ -10,7 +10,7 @@ class PostsController < ApplicationController
     else
       @posts = Post.order(created_at: :desc).paginate(:page => params[:page], :per_page => 3)
     end
-    # 
+    #
     # @result = Wombat.crawl do
     #   # byebug
     #   # base_url "https://www.melon.com/"
@@ -41,6 +41,9 @@ class PostsController < ApplicationController
   def search
     if params[:search_music]
       @musics = Song.search(params[:search_music])
+      @tmp = params[:search_music]
+    elsif params[:search_singer]
+      @musics = Song.find_songs(Singer.search(params[:search_singer]))
     end
 
     respond_to do |format|

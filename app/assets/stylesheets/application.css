@@ -103,6 +103,9 @@ hr{
 .toosmall {
   font-size: 0.1px;
 }
+.bigfont {
+  font-size: 40px;
+}
 .hidden_file_field {
   display: none;
 }

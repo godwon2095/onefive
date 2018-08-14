@@ -1,4 +1,11 @@
+<% if @tmp.present? %>
 $('#music-lists').empty();
 $('#music-lists').append('<% @musics.each do |music| %>'+
                          '<li>' + '<%= image_tag(music.image) %> ' + '<%= link_to "#{music.title}", autoinit_post_path(music), remote: true %> ' + '| <%= music.singer.name %> ' + '| <%= music.album %>'+ '</li>' + '<br>' +
                          '<% end %>');
+<% else %>
+$('#music-lists2').empty();
+$('#music-lists2').append('<% @musics.each do |music| %>'+
+                        '<li>' + '<%= image_tag(music.image) %> ' + '<%= link_to "#{music.title}", autoinit_post_path(music), remote: true %> ' + '| <%= music.singer.name %> ' + '| <%= music.album %>'+ '</li>' + '<br>' +
+                        '<% end %>');
+<% end %>

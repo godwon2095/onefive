@@ -38,9 +38,12 @@
 <% end %>
 
 <!-- Modal Structure -->
-<div id="modal" class="modal">
+<!-- <div id="modal" class="modal">
   <div class="modal-content">
     <h4>노래 제목으로 검색하세요</h4>
+    <div class="modal-footer">
+      <a href="#!" class="modal-close waves-effect waves-green btn-flat">닫기</a>
+    </div>
     <%= form_tag(search_posts_path, method: :get, remote: true) do %>
       <input type="text" name="search_music">
       <input type="submit" class="btn right indigo darken-4" value="검색">
@@ -48,13 +51,70 @@
     <ol id="music-lists">
     </ol>
   </div>
-  <div class="modal-footer">
-    <a href="#!" class="modal-close waves-effect waves-green btn-flat">취소</a>
-  </div>
+</div> -->
+
+<div id="modal" class="modal">
+ <div id="search123">
+  <div id="search5"> <!--두번째 세션 탭 시작 -->
+     <ul id ="search_hover" class="tabs">
+       <li class="tab session_active"><a class="active grey-text" href="#search_title" id="search-title">제목</a></li>
+       <li class="tab session1_li grey-text bigfont">|</li>
+       <li class="tab session_active"><a class="active grey-text" href="#search_singer" id="search-singer">가수</a></a></li>
+     </ul>
+  </div> <!-- 탭 끝 -->
+  <div id="search3"> <!-- 세번째 세션시작. 검색목록 나열 -->
+    <div id="search_title"> <!-- 제목을 눌렀을 때 -->
+      <div id=#search4> <!-- 첫번째 세션 -->
+        <%= form_tag(search_posts_path, method: :get, remote: true) do %>
+          <div class="search_input"> <!--아이콘과 검색바 -->
+            <!--아이콘-->
+            <i class="material-icons search_icon">search</i>
+            <!--검색-->
+            <div class="search_input_div"><input type="text" name="search_music"></div>
+          </div>
+        <% end %>
+        <div><br><br>
+          <div id="search_music_article">
+            <ol id="music-lists">
+            </ol>
+          </div>
+        </div>
+      </div> <!-- 첫 세션끝 -->
+    </div> <!-- 음악을 눌렀을 때 끝 -->
+        <!-- 성원형. 위에 search_music 아이디를 반복해주면 됩니다.-->
+   <div id="search_singer"> <!-- 사용자를 눌렀을때 -->
+     <div id=#search4> <!-- 첫번째 세션 -->
+       <%= form_tag(search_posts_path, method: :get, remote: true) do %>
+         <div class="search_input"> <!--아이콘과 검색바 -->
+           <!--아이콘-->
+           <i class="material-icons search_icon">search</i>
+           <!--검색-->
+           <div class="search_input_div"><input type="text" name="search_singer"></div>
+         </div>
+       <% end %>
+       <div><br><br>
+         <div id="search_music_article">
+           <ol id="music-lists2">
+           </ol>
+         </div>
+       </div>
+     </div> <!-- 첫 세션끝 -->
+   </div> <!-- 첫 세션끝 -->
+   </div> <!-- 사용자를 눌렀을때 끝 -->
+  </div> <!--세번째 세션 끝 -->
+ </div>
 </div>
 
 <script>
   $(document).ready(function(){
     $('.modal').modal();
+  });
+  $('#search-title').on('click', function () {
+      $(this).attr('style', 'color: #0b1d7b !important');
+      $('#search-singer').attr('style', 'color: #7a7a7a !important');
+  });
+  $('#search-singer').on('click', function () {
+    $(this).attr('style', 'color: #0b1d7b !important');
+    $('#search-title').attr('style', 'color: #7a7a7a !important');
   });
 </script>
