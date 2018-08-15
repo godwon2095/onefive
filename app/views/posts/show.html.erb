@@ -56,7 +56,7 @@
             <% end %>
             <span class="title"><%= link_to "#{c.user.name}", profile_timeline_path(c.user) %></span>
             <span class="right"><%= time_ago_in_words c.created_at %> 전</span><br><br><br>
-            <span class="pre-line"><%= c.content %></span>
+            <span class="pre-line"><%= render_with_hashtags(c.content) %></span>
             <% if user_signed_in? && c.user.id == current_user.id %>
               <%= link_to '삭제', post_comment_path(@post, c), method: :delete, class: "right", remote: true %>
             <% end %>

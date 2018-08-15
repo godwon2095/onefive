@@ -16,6 +16,12 @@ class TimelinesController < ApplicationController
     @posts = current_user.liked_posts.order(created_at: :desc).paginate(:page => params[:page], :per_page => 3)
   end
 
+  def tag
+    tag = Tag.find_by(name: params[:name])
+    @user = User.find(tag.user_id)
+    @posts = Post.where(user_id: @user.id).order(created_at: :desc).paginate(:page => params[:page], :per_page => 3)
+  end
+
   private
   def set_timeline
     @user = User.find(params[:id])

@@ -30,6 +30,7 @@ Rails.application.routes.draw do
 
   post '/tinymce_assets' => 'tinymce_assets#create'
   get '/copyurl/:id' => 'copys#copy', defaults: { format: 'js' }, :as => '/copyurl'
+  get '/timelines/tag/:name' => 'timelines#tag'
 
   devise_for :users
   devise_for :admin_users, ActiveAdmin::Devise.config

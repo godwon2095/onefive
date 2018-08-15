@@ -27,4 +27,9 @@ class Post < ActiveRecord::Base
   #     end
   #   end
   # end
+  def find_song_titles
+    self.song_ids.each do |song_id|
+      return Song.where(song_id.to_i)
+    end
+  end
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180811174000) do
+ActiveRecord::Schema.define(version: 20180815074457) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace"
@@ -115,6 +115,15 @@ ActiveRecord::Schema.define(version: 20180811174000) do
   add_index "songs", ["singer_id"], name: "index_songs_on_singer_id"
   add_index "songs", ["title", "singer_id", "album", "image"], name: "index_songs_on_title_and_singer_id_and_album_and_image", unique: true
   add_index "songs", ["title"], name: "index_songs_on_title"
+
+  create_table "tags", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "tags", ["user_id"], name: "index_tags_on_user_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "name"
