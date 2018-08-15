@@ -49,6 +49,14 @@ nav{
   font-family: 'Notosanskr';
 }
 
+.content_preview{
+  font-size: 12pt;
+  color: #1f1f1f;
+  font-style: italic;
+  line-height: 14pt;
+  font-family: 'Noto Serif', serif;
+}
+
 .card-content{
   padding: 25px 60px 30px 60px !important;
 }
@@ -93,6 +101,10 @@ nav{
   margin-bottom: 5px;
   margin-top: 4px;
   padding-top: 1px;
+}
+
+.things_empty{
+  width:275px;
 }
 
 .things_text{

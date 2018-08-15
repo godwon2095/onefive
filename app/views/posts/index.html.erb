@@ -35,8 +35,8 @@
           </div>
           <div class="card-action">
             <div class="things things_flex">
-              
-            
+
+
                 <div class="things_comment">
                   <i class="tiny material-icons onefive">comment</i>
                 </div>
@@ -53,13 +53,13 @@
                 <div class="things_favoritecount">
                   <%= p.likes.size %>
                 </div>
-          
-             
+
+
                 <span class="things_text">
                   <%= time_ago_in_words p.created_at %> 전 · <a href="<%= profile_timeline_path(p.user) %>" id="card-align"><%= p.user.name %></a> 씀
                 </span>
-              
-              
+
+
             </div>
           </div>
         </div>
@@ -95,6 +95,9 @@ pageInit: function() {
   display:inline;
         }
 iframe {
+  display: none;
+}
+img {
   display: none;
 }
 </style>

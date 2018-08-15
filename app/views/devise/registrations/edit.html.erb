@@ -39,7 +39,7 @@
       한 줄
     </div>
     <div>
-      <textarea id="profileEditTextArea"></textarea>
+      <%= f.text_area :information, autofocus: false, autocomplete: "off", id: "profileEditTextArea" %>
     </div>
     <div id="passwordLable">
       비밀번호

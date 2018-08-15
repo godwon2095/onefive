@@ -1,33 +1,75 @@
-<br><br>
 <% if @posts.present? %>
   <% @posts.each do |p| %>
-    <a href="<%= post_path(p) %>">
-      <div class="row">
-          <div class="col s12 m7">
-            <div class="card">
-              <div class="card-image">
-                <% if p.image.present? %>
-                  <%= image_tag(p.image) %>
-                <% else %>
-                  <img src="/onefive.png">
+  <div class="p_content">
+    <div class="card horizontal">
+      <div class="card-stacked">
+        <div class="card-content">
+          <div class="card_top">
+            <% if p.user == current_user %>
+              <a class="dropdown-trigger" data-target="dropdown2">
+                <i class="tiny material-icons onefive" style="float: right;">more_horiz</i>
+              </a>
+              <ul id="dropdown2" class="dropdown-content">
+                <li><a href="<%= edit_post_path(p) %>" id="onefive">수정</a></li>
+                <li class="divider" tabindex="-1"></li>
+                <li><a href="<%= post_path(p) %>" id="onefive" data-method="delete">삭제</a></li>
+              </ul>
+            <% end %>
+          </div>
+            <div class="content_title">
+              <%= link_to "#{p.title.truncate(14)}", post_path(p), class: "onefive" %>
+            </div>
+            <div class="content_song">
+              <% if p.song_ids.present? %>
+                <%= Song.find(p.song_ids.first.to_i).title.truncate(18) %> - <%= Song.find(p.song_ids.first.to_i).singer.name %>
+                <% if p.song_ids.size > 2 %>
+                  외 <%= p.song_ids.size - 1 %>곡
                 <% end %>
-                <span class="card-title indigo-text text-darken-4"><%= p.title %></span>
-              </div>
-              <div class="card-content">
-                <p class="indigo-text text-darken-4"><b><%= p.subtitle %></b><br><br>
-                <%= p.content.html_safe %></p>
-              </div>
-              <div class="card-action">
-                <span class="black-text"><i class="material-icons">bookmark</i><%= p.likes.size %></span>
-                <span class="black-text"><i class="material-icons">sms</i><%= p.comments.size %></span>
-                <%= link_to "#{p.user.name}", profile_timeline_path(p.user), class: "right indigo-text text-darken-4" %>
-              </div>
+              <% end %>
+            </div>
+            <div class="content_subtitle">
+              <%= truncate(p.subtitle, :ommision => "...", :length => 50) %>
+            </div>
+            <div class="content_preview">
+              <%= truncate_html(p.content, length: 160, omission: '...') %>
             </div>
           </div>
+          <div class="card-action">
+            <div class="things things_flex">
+              <div class="things_comment">
+                <i class="tiny material-icons onefive">comment</i>
+              </div>
+              <div class="things_commentcount">
+                <%= p.comments.size %>
+              </div>
+              <div class="things_favorite">
+                <% if p.liked_users.include?(current_user) %>
+                  <i class="tiny material-icons onefive">bookmark</i>
+                <% else %>
+                  <i class="tiny material-icons onefive">bookmark_border</i>
+                <% end %>
+              </div>
+              <div class="things_favoritecount">
+                <%= p.likes.size %>
+              </div>
+                <span class="things_text">
+                  <%= time_ago_in_words p.created_at %> 전 · <a href="<%= profile_timeline_path(p.user) %>" id="card-align"><%= p.user.name %></a> 씀
+                </span>
+            </div>
+          </div>
+        </div>
       </div>
-    </a>
+    </div>
   <% end %>
-<% else %>
-  <h3 class="grey-text">아직 구독중인 사람이 없네요ㅠ..</h3>
 <% end %>
+
 <%= will_paginate @posts %>
+
+<style>
+iframe {
+  display: none;
+}
+img {
+  display: none;
+}
+</style>
