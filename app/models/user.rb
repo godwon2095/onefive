@@ -5,6 +5,15 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
          :confirmable
+         
+         
+  validate :password_complexity
+  
+  def password_complexity
+    return if password.blank? || password =~ /^(?=.*?[A-Z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,15}$/
+
+    errors.add :password, '비밀번호를 더 복잡하게 설정해주세요!(대문자, 숫자, 특수문자 하나씩 포함. 6자 이상)'
+  end
 
   #포스팅
   has_many :posts
@@ -47,4 +56,6 @@ class User < ActiveRecord::Base
   def self.find_posts
     Post.where(user_id: self.ids)
   end
+  
+  
 end
