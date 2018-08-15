@@ -1,5 +1,7 @@
 class PostsController < ApplicationController
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
   before_action :set_post, only: [:show, :edit, :update, :destroy]
+  before_action :check_ownership!, only: [:edit, :update, :destroy]
 
   def index
     if params[:search]
@@ -9,32 +11,61 @@ class PostsController < ApplicationController
     else
       @posts = Post.order(created_at: :desc).paginate(:page => params[:page], :per_page => 3)
     end
-
-    @result = Wombat.crawl do
-      # byebug
-      # base_url "https://www.melon.com/"
-      base_url "https://music.naver.com/"
-      # path "/chart/index.htm"
-      path "/artist/track.nhn?artistId=270284&sorting=popular" #아티스트
-      music_titles({ css: ".track"  }, :list)
-      #music_titles({ css: "._title > .ellipsis"  }, :list) #top100
-      music_singers({ css: ".tb_artist"  }, :list)
-      music_albums({ css: ".album"  }, :list)
-      music_images({ xpath: ".//td//a[1]//img/@src" }, :list)
-
-
-      # links do
-      #   explore xpath: '/html/body/header/div/div/nav[1]/a[4]' do |e|
-      #     e.gsub(/Explore/, "Love")
-      #   end
-
-        features css: '.nav-item-opensource'
-        business css: '.nav-item-business'
-    end
+    #
+    # @result = Wombat.crawl do
+    #   # byebug
+    #   # base_url "https://www.melon.com/"
+    #   base_url "https://music.naver.com/"
+    #   # path "/chart/index.htm"
+    #   path "/artist/track.nhn?artistId=270284&sorting=popular" #아티스트
+    #   music_titles({ css: ".track"  }, :list)
+    #   #music_titles({ css: "._title > .ellipsis"  }, :list) #top100
+    #   music_singers({ css: ".tb_artist"  }, :list)
+    #   music_albums({ css: ".album"  }, :list)
+    #   music_images({ xpath: ".//td//a[1]//img/@src" }, :list)
+    #
+    #
+    #   # links do
+    #   #   explore xpath: '/html/body/header/div/div/nav[1]/a[4]' do |e|
+    #   #     e.gsub(/Explore/, "Love")
+    #   #   end
+    #
+    #     features css: '.nav-item-opensource'
+    #     business css: '.nav-item-business'
+    # end
   end
 
   def new
     @post = Post.new
+  end
+
+  def search
+    if params[:search_music]
+      @musics = Song.search(params[:search_music])
+      @check_params = params[:search_music]
+    elsif params[:search_singer]
+      @musics = Song.find_songs(Singer.search(params[:search_singer]))
+    end
+
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def autoinit
+    @music = Song.find(params[:id])
+
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def cancel
+    @music = Song.find(params[:id])
+
+    respond_to do |format|
+      format.js
+    end
   end
 
   def create
@@ -91,7 +122,7 @@ class PostsController < ApplicationController
 
   private
   def set_params
-    params.require(:post).permit(:title, :subtitle, :content, :image, music_titles: [], music_images: [])
+    params.require(:post).permit(:title, :subtitle, :content, :image, song_ids: [], post_images: [])
   end
 
   def set_post

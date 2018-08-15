@@ -11,6 +11,9 @@ class Post < ActiveRecord::Base
   has_many :liked_users, through: :likes, source: :user
 
   mount_uploader :image, PostImageUploader
+  mount_uploaders :post_images, EditerUploader
+  serialize :post_images, JSON # if we user sqlite3
+  serialize :song_ids, Array # if we user sqlite3
 
   # Post.search([object HTMLSpanElement][object HTMLSpanElement][object HTMLSpanElement] [object HTMLSpanElement][object HTMLSpanElement])
   def self.search(query)

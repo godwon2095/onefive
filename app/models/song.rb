@@ -34,4 +34,12 @@ class Song < ActiveRecord::Base
       end
     # end
   end
+
+  def self.search(query)
+    self.where("title LIKE ?","%#{query}%")
+  end
+
+  def self.find_songs(singer)
+    self.where(singer_id: singer.ids)
+  end
 end

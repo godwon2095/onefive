@@ -1,59 +1,114 @@
-<div id="showPage1">
-  <div>
-    <img src="" id="showTitleImg" / >
-  </div>
-  <div id="titleWithoutImg">
-    <div id="showTitle">
-      도시의 여름밤이라 하면은
+<div id="showPage">
+  <div id="showPage1">
+    <div>
+      <img src="" id="showTitleImg" / >
     </div>
-    <div id="showContent">
-      맥주를 마시면서 작업하는 중인데 아으아 역시 술 없이 작업을 한다는 건 말도 안되는 소리에 가까웠다는 것을 새삼 깨닫게 된다.
-    </div>
-    <div id="showProfileAll" class="right">
-      <div>
-        <img src="" id="showUserImg" />
+    <div id="titleWithoutImg">
+      <div id="showTitle">
+        도시의 여름밤이라 하면은
       </div>
-      <div id="showProfileWithWrite">
-        <div class="showProfile">
-          <div class="showProfileContent"id="showUserName">
-            CBLTBLUEHUE
+      <div id="showContentUp">
+        맥주를 마시면서 작업하는 중인데 아으아 역시 술 없이 작업을 한다는 건 말도 안되는 소리에 가까웠다는 것을 새삼 깨닫게 된다.
+      </div>
+      <div id="showProfileAll" class="right">
+        <div>
+          <img src="" id="showUserImg" />
+        </div>
+        <div id="showProfileWithWrite">
+          <div class="showProfile">
+            <div class="showProfileContent"id="showUserName">
+              CBLTBLUEHUE
+            </div>
+            <div class="showProfileContent">
+                <% if user_signed_in? && current_user != @user %>
+                  <%= link_to (current_user.is_follower?(@user) ? '구독취소' : '구독하기'), toggle_follow_path(@user), class: "showFollow",method: :post, id: 'follow' , remote: true %>
+                <% end %>
+            </div>
           </div>
-          <div class="showProfileContent">
-              <% if user_signed_in? && current_user != @user %>
-                <%= link_to (current_user.is_follower?(@user) ? '구독취소' : '구독하기'), toggle_follow_path(@user), class: "showFollow",method: :post, id: 'follow' , remote: true %>
-              <% end %>
+          <div id="showUserOnewrite" sytle="margin-top: 10px">
+            다들 안고서 살고 있더라고.
           </div>
         </div>
-        <div id="showUserOnewrite" sytle="margin-top: 10px">
-          다들 안고서 살고 있더라고.
-        </div>
       </div>
     </div>
   </div>
-</div>
-
-<div><hr id="showLine"/></div>
 
 
-<div class="card horizontal">
-   <div class="card-stacked">
-     <div class="card-content">
-       <div id="cardFlex">
-         <div><img src="#" id="cardElement1" /></div>
-         <div id="cardElement2">Plastic Love</div>
-         <div id="cardElement3">Mariya Takeuchi</div>
+
+  <div><hr id="showLine"/></div>
+
+  <div class="card horizontal collapsible">
+     <div class="card-stacked">
+       <div class="card-content">
+         <div id="cardFlex">
+           <div><img src="#" id="cardElement1" /></div>
+           <div id="cardElement2">Plastic Love</div>
+           <div id="cardElement3">Mariya Takeuchi</div>
+         </div>
        </div>
      </div>
    </div>
- </div>
-<div id="showContent">
-  <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.Why do we use itIt is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).
- </p>
-</div>
-<div><hr id="showLine2"/></div>
 
-<div id="showIcon" class="right">
-  <i class="material-icons Icon1">turned_in_not</i>
-  <i class="material-icons Icon2">sms</i> <!-- 아이콘을 못찾았습니다 -->
-  <i class="material-icons Icon3">share</i>
-</div> <!-- 아이콘 -->
+  <div id="showContent">
+    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.Why do we use itIt is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).
+   </p>
+  </div>
+
+  <div><hr id="showLine2"/></div>
+
+  <div id="showIcon" class="right">
+    <i class="material-icons Icon1">turned_in_not</i>
+    <i class="material-icons Icon2">sms</i> <!-- 아이콘을 못찾았습니다 -->
+    <i class="material-icons Icon3">share</i>
+  </div> <!-- 아이콘 -->
+
+
+</div>
+
+<div id="secondShowPage">
+  <div id="showPage3">
+    <div id="showCommentProfile">
+      <div>
+        <img src="" id="showImageComment"/>  <!-- 댓글을 이미 남기는 사람의 프로필 사진 -->
+      </div>
+      <div id="showCommentStyle">
+        <div id="showCommentName">
+          김은식
+        </div>
+        <div id="showCommenttime">
+          8분전
+        </div>
+      </div>
+    </div>
+    <div id="showCommentContent">
+      놀랍습니다 이것은 최고. 어쩌면 시대의 역행. 당신의 잠재는 대체 맙소사 어디까지? 마치 장학생입니다.
+    </div>
+    <div><hr id="showLine3"/></div>
+    <div id="showCommentWrite">
+      <div>
+        <img src="" id="showImageComment"/>  <!-- 댓글 남기는 사람의 프로필 사진 -->
+      </div>
+      <textarea class="showCommentTextarea"></textarea>
+      </div>
+    </div>
+    </div>
+  </div>
+</div>
+
+
+<script>
+  var coll = document.getElementsByClassName("collapsible");
+  var i;
+
+  for (i = 0; i < coll.length; i++) {
+    coll[i].addEventListener("click", function() {
+      this.classList.toggle("active");
+      var content = this.nextElementSibling;
+      if (content.style.maxHeight){
+        content.style.maxHeight = null;
+      } else {
+        content.style.maxHeight = content.scrollHeight + "px";
+      }
+    });
+  }
+</script>

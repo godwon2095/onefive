@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+
+gem "letter_opener", :group => :development
 gem 'rails_db'
 gem 'activeadmin'
 gem "active_material", github: "vigetlabs/active_material"
@@ -8,6 +10,14 @@ gem 'carrierwave', '~> 1.0'
 gem "mini_magick"
 gem 'will_paginate', '~> 3.1.0'
 gem 'wombat'
+gem 'tinymce-rails'
+gem 'tinymce-rails-imageupload', github: 'PerfectlyNormal/tinymce-rails-imageupload'
+gem 'tinymce-rails-langs'
+gem 'clipboard-rails'
+gem "nokogiri"
+gem "htmlentities"
+gem "truncate_html"
+gem 'dropzonejs-rails'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5'
 # Use sqlite3 as the database for Active Record
@@ -19,7 +29,7 @@ gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.1.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
-# gem 'therubyracer', platforms: :ruby
+gem 'therubyracer', platforms: :ruby
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'

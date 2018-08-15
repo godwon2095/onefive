@@ -15,7 +15,7 @@
               </div>
               <div class="card-content">
                 <p class="indigo-text text-darken-4"><b><%= p.subtitle %></b><br><br>
-                <%= p.content %></p>
+                <%= p.content.html_safe %></p>
               </div>
               <div class="card-action">
                 <span class="black-text"><i class="material-icons">bookmark</i><%= p.likes.size %></span>

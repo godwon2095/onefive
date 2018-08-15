@@ -5,7 +5,7 @@
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => false %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
-  
+
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
   <!-- <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %> -->
@@ -14,106 +14,122 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <!--Let browser know website is optimized for mobile-->
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <%= tinymce_assets %>
 </head>
 <body>
-  <nav class="nav-extended">
-    <!-- <div class="nav-content indigo darken-4">
-      <span class="nav-title">One Five</span>
-      </a>
-    </div> -->
 
+  <ul id="slide-out" class="sidenav">
+    <li><div class="user-view">
+      <div class="background">
+        <!-- <img src="images/office.jpg"> -->
+      </div>
+      <!-- <a href="#user"><img class="circle" src="images/yuna.jpg"></a> -->
+      <a href="#name"><span class="white-text name">John Doe</span></a>
+      <a href="#email"><span class="white-text email">jdandturk@gmail.com</span></a>
+    </div></li>
+    <li><a href="#!"><i class="material-icons">cloud</i>First Link With Icon</a></li>
+    <li><a href="#!">Second Link</a></li>
+    <li><div class="divider"></div></li>
+    <li><a class="subheader">Subheader</a></li>
+    <li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
+  </ul>
+
+  <nav>
     <!-- 네브바 시작 -->
     <div class="nav-wrapper white">
-      <%= link_to '한/시/오/분', root_path, class: "brand-logo indigo-text text-darken-4" %>
-      <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons indigo-text text-darken-4">menu</i></a>
+      <div class="logo onefive">
+        <%= link_to '한 / 시 / 오 / 분', root_path, class: "brand-logo", id: :onefive %>
+      </div>
       <ul class="right hide-on-med-and-down">
         <% if user_signed_in? %>
-        <li><a href="<%= root_path %>"><i class="material-icons indigo-text text-darken-4">home</i></a></li>
-        <!-- 검색기능 시작 -->
-        <li><a class="modal-trigger" href="#modal1"><i class="material-icons indigo-text text-darken-4">search</i></a></li>
+        <div class="p_icons">
+          <li><a href="<%= root_path %>"><i class="material-icons onefive">home</i></a></li>
+          <!-- 검색기능 시작 -->
+          <li><a class="modal-trigger" href="#modal1"><i class="material-icons onefive">search</i></a></li>
 
-         <div id="modal1" class="modal">
-          <div id="search123">
-            <div id=#search1> <!-- 첫번째 세션 -->
-              <form action='posts' method="GET">
-                <div class="search_input"> <!--아이콘과 검색바 -->
-                  <!--아이콘-->
-                  <i class="large material-icons search_icon">search</i>
-                  <!--검색-->
-                  <div class="search_input_div"><input type="text" class="search_input_div_bar" name="search" ></div>
-                </div>
-              </form>
-            </div> <!-- 첫 세션끝 -->
-           <div id="search2"> <!--두번째 세션 탭 시작 -->
-              <ul id ="search_hover" class="tabs">
-                <li class="tab session_active"><a class="active" href="#search_music">음악</a></li>
-                <li class="tab session1_li">|</li>
-                <li class="tab session_active"><a class="active" href="#search_user">사용자</a></a></li>
-                <li class="tab session1_li">|</li>
-                <li class="tab session_active"><a class="active" href="#search_article">글</a></li>
-              </ul>
-           </div> <!-- 탭 끝 -->
-           <div id="search3"> <!-- 세번째 세션시작. 검색목록 나열 -->
-             <div id="search_music"> <!-- 음악을 눌렀을 때 -->
-               <div>
-                 <div id="search_music_img"><img  src="#" /></div>
-                 <div id="search_music_article">
-                   <div class="search_music_item music_item1">뜨거운 여름밤은 가고 남은 건 볼품없지만</div>
-                   <div class="search_music_item music-item2">잔나비</div>
-                   <div class="search_music_item music-item3">[MONKEY HOTEL]</div>
+           <div id="modal1" class="modal">
+            <div id="search123">
+             <div id="search2"> <!--두번째 세션 탭 시작 -->
+                <ul id ="search_hover" class="tabs">
+                  <li class="tab session_active"><a class="active grey-text" href="#search_music" id="search-music">음악</a></li>
+                  <li class="tab session1_li">|</li>
+                  <li class="tab session_active"><a class="active grey-text" href="#search_user" id="search-user">사용자</a></a></li>
+                  <li class="tab session1_li">|</li>
+                  <li class="tab session_active"><a class="active grey-text" href="#search_article" id="search-post">글</a></li>
+                </ul>
+             </div> <!-- 탭 끝 -->
+             <div id="search3"> <!-- 세번째 세션시작. 검색목록 나열 -->
+               <div id="search_music"> <!-- 음악을 눌렀을 때 -->
+                 <div>
+                   <div id="search_music_img"><img  src="#" /></div>
+                   <div id="search_music_article">
+                     <div class="search_music_item music_item1">find music</div>
+                     <div class="search_music_item music-item2">잔나비</div>
+                     <div class="search_music_item music-item3">[MONKEY HOTEL]</div>
+                   </div>
                  </div>
-               </div>
-               <div><hr id="search_hrTag"/> <!-- 구분선 --></div>
-             </div> <!-- 음악을 눌렀을 때 끝 -->
-                 <!-- 성원형. 위에 search_music 아이디를 반복해주면 됩니다.-->
-            <div id="search_user"><br> <!-- 사용자를 눌렀을때 -->
-              <div>
-                <div id="search_music_img"><img  src="#" /></div>
-                <div id="search_music_article">
-                  <div class="search_music_item music_item1">뜨거운 여름밤은 가고 남은 건 볼품없지만</div>
-                  <div class="search_music_item music-item2">잔나비</div>
-                  <div class="search_music_item music-item3">[MONKEY HOTEL]</div>
-                </div>
-              </div>
-              <div><hr id="search_hrTag"/> <!-- 구분선 --></div>
-            </div> <!-- 사용자를 눌렀을때 끝 -->
-            <div id="search_article"><br> <!-- 글을 눌렀을때 -->
-              <div>
-                <div id="search_music_img"><img  src="#" /></div>
-                <div id="search_music_article">
-                  <div class="search_music_item music_item4">뜨거운 여름밤은 가고 남은 건 볼품없지만</div>
-                  <div class="search_music_item music-item2">잔나비</div>
-                  <div class="search_music_item music-item3">[MONKEY HOTEL]</div>
-                </div>
-              </div>
-              <div><hr id="search_hrTag"/> <!-- 구분선 --></div>
-            </div> <!-- 글을 눌럿을 때 끝 -->
-           </div> <!--세번째 세션 끝 -->
-          </div>
-        </div>
-          <!-- 검색기능 끝 -->
+                 <div><hr id="search_hrTag"/> <!-- 구분선 --></div>
+               </div> <!-- 음악을 눌렀을 때 끝 -->
+                   <!-- 성원형. 위에 search_music 아이디를 반복해주면 됩니다.-->
+              <div id="search_user"><br> <!-- 사용자를 눌렀을때 -->
+                <form action='<%= posts_path %>' method="GET">
+                  <span class="search_input"> <!--아이콘과 검색바 -->
+                    <!--아이콘-->
+                    <i class="large material-icons search_icon">search</i>
+                    <!--검색-->
+                    <div class="search_input_div"><input type="text" class="search_input_div_bar" name="search_user" ></div>
+                  </span>
+                </form>
+              </div> <!-- 사용자를 눌렀을때 끝 -->
 
-        <li><a href="<%= timelines_path %>"><i class="material-icons indigo-text text-darken-4">library_music</i></a></li>
-        <li><a href="#" class="dropdown-trigger" data-target='dropdown1'><i class="material-icons indigo-text text-darken-4">person</i></a></li>
-        <ul id='dropdown1' class='dropdown-content'>
-          <li><%= link_to '로그아웃', destroy_user_session_path, method: :delete, class: "indigo-text text-darken-4" %></li>
-          <li class="divider" tabindex="-1"></li>
-          <li><%= link_to '타임라인', profile_timeline_path(current_user), class: "indigo-text text-darken-4" %></li>
-          <li class="divider" tabindex="-1"></li>
-          <li><%= link_to '정보수정', edit_user_registration_path, class: "indigo-text text-darken-4" %></li>
-          <li class="divider" tabindex="-1"></li>
-          <li><%= link_to '알람', alarms_path, class: "indigo-text text-darken-4" %></li>
-        </ul>
+
+              <div id="search_article"><br> <!-- 글을 눌렀을때 -->
+                <div id=#search1> <!-- 첫번째 세션 -->
+                  <form action='<%= posts_path %>' method="GET">
+                    <span class="search_input"> <!--아이콘과 검색바 -->
+                      <!--아이콘-->
+                      <i class="large material-icons search_icon">search</i>
+                      <!--검색-->
+                      <div class="search_input_div"><input type="text" class="search_input_div_bar" name="search" ></div>
+                    </span>
+                  </form>
+                </div> <!-- 첫 세션끝 -->
+              </div> <!-- 글을 눌럿을 때 끝 -->
+             </div> <!--세번째 세션 끝 -->
+            </div>
+          </div>
+            <!-- 검색기능 끝 -->
+
+          <li><a href="<%= timelines_path %>"><i class="material-icons onefive">explore</i></a></li>
+          <li><a href="#" class="dropdown-trigger" data-target='dropdown1'><i class="material-icons onefive">person</i></a></li>
+          <li><a href="#" class="sidenav-trigger" data-target='slide-out'><i class="material-icons onefive">menu</i></a></li>
+        </div>
         <% else %>
-        <li><%= link_to '로그인', new_user_session_path, class: "indigo-text text-darken-4" %></li>
-        <li><%= link_to '회원가입', new_user_registration_path, class: "indigo-text text-darken-4" %></li>
+        <li><%= link_to '로그인', new_user_session_path, class: "onefive" %></li>
+        <li><%= link_to '회원가입', new_user_registration_path, class: "onefive" %></li>
         <% end %>
       </ul>
     </div>
     </div>
   </nav>
+  <% if user_signed_in? %>
+  <ul id='dropdown1' class='dropdown-content'>
+    <li><%= link_to '로그아웃', destroy_user_session_path, method: :delete, class: "indigo-text text-darken-4" %></li>
+    <li class="divider" tabindex="-1"></li>
+    <li><%= link_to '타임라인', profile_timeline_path(current_user), class: "indigo-text text-darken-4" %></li>
+    <li class="divider" tabindex="-1"></li>
+    <li><%= link_to '정보수정', edit_user_registration_path, class: "indigo-text text-darken-4" %></li>
+    <li class="divider" tabindex="-1"></li>
+    <li><%= link_to '알람', alarms_path, class: "indigo-text text-darken-4" %></li>
+    <li class="divider" tabindex="-1"></li>
+    <li><%= link_to '담은글', saves_timelines_path, class: "indigo-text text-darken-4" %></li>
+  </ul>
+  <% end %>
 
-  <ul class="sidenav" id="mobile-demo">
+    <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons right">menu</i></a>
+
+
+  <!-- <ul class="sidenav" id="mobile-demo">
     <% if user_signed_in? %>
     <li><div class="user-view">
       <div class="background">
@@ -157,7 +173,7 @@
       <li><%= link_to '로그인', new_user_session_path %></li>
       <li><%= link_to '회원가입', new_user_registration_path %></li>
     <% end %>
-  </ul>
+  </ul> -->
 
 
   <%= yield %>
@@ -174,8 +190,21 @@
     $('.tabs').tabs();
   });
 
-
-
+  $('#search-music').on('click', function () {
+      $(this).attr('style', 'color: #0b1d7b !important');
+      $('#search-user').attr('style', 'color: #7a7a7a !important');
+      $('#search-post').attr('style', 'color: #7a7a7a !important');
+  });
+  $('#search-user').on('click', function () {
+    $(this).attr('style', 'color: #0b1d7b !important');
+    $('#search-music').attr('style', 'color: #7a7a7a !important');
+    $('#search-post').attr('style', 'color: #7a7a7a !important');
+  });
+  $('#search-post').on('click', function () {
+    $(this).attr('style', 'color: #0b1d7b !important');
+    $('#search-music').attr('style', 'color: #7a7a7a !important');
+    $('#search-user').attr('style', 'color: #7a7a7a !important');
+  });
   </script>
 </body>
 </html>

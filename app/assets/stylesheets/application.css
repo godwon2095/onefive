@@ -13,6 +13,7 @@
  *= require_tree .
  *= require_self
  *= stub active_admin
+ *= require dropzone/dropzone
  */
 @font-face { font-family: 'NotoSerifKR'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/NotoSerifKR.woff') format('woff'); font-weight: normal; font-style: normal; }
 @import url(//fonts.googleapis.com/earlyaccess/notosanskr.css); .notosanskr * { font-family: 'Noto Sans KR', sans-serif; }
@@ -90,3 +91,68 @@ hr{
 #small-font {
   font-size: 10px;
 }
+#medium-font {
+  font-size: 40px;
+}
+#mceu_31 {
+  display: none;
+}
+#super-right {
+  text-align: right;
+}
+.toosmall {
+  font-size: 0.1px;
+}
+.bigfont {
+  font-size: 40px;
+}
+.hidden_file_field {
+  display: none;
+}
+
+/* 현규 추가 사항 */
+nav {
+  background-color: white;
+}
+
+.onefive {
+  color: #0b1d7b;
+}
+#onefive {
+  color: #0b1d7b;
+}
+
+/* a{
+  color: #0b1d7b !important;
+  margin: 0px !important;
+} */
+
+.brand-logo{
+  margin-left: 40px !important;
+  color: #0b1d7b !important;
+  font-family: notoserifkr;
+  font-size: 18pt !important;
+  /* margin-top: 15.5px !important; */
+}
+
+.p_icons{
+  margin-right: 15px;
+}
+
+.loginandsignup{
+  margin-right: 25px;
+}
+p.iframe {
+  display: none;
+}
+
+.btn-floating{
+  background-color: #0b1d7b !important;
+}
+
+/* .loginandsignup>ul,li {
+  display:inline;
+        } */
+
+/* 로그인 시와 로그인 안했을 시 우측상단 바뀌는 것
+	 네브바 중앙에 페이지 명 박는 것 */

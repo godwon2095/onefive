@@ -3,8 +3,18 @@ Rails.application.routes.draw do
   resources :posts do
     post "/like", to:"likes#like_toggle", defaults: { format: 'js' }
     resources :comments, only: [:create, :destroy], defaults: { format: 'js' }
+    collection do
+      get :search, defaults: { format: 'js' }
+    end
+    member do
+      get :autoinit, defaults: { format: 'js' }
+      get :cancel, defaults: { format: 'js' }
+    end
   end
   resources :timelines, only: [:index] do
+    collection do
+      get :saves
+    end
     member do
       get :profile
       get :subscribe
@@ -17,6 +27,9 @@ Rails.application.routes.draw do
   end
   resources :alarms, only: [:index]
   resources :alarms, only: [:destroy], defaults: { format: 'js' }
+
+  post '/tinymce_assets' => 'tinymce_assets#create'
+  get '/copyurl/:id' => 'copys#copy', defaults: { format: 'js' }, :as => '/copyurl'
 
   devise_for :users
   devise_for :admin_users, ActiveAdmin::Devise.config

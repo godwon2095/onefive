@@ -1,8 +1,10 @@
 class User < ActiveRecord::Base
+  before_save :skip_confirmation!, if: :development?
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+         :recoverable, :rememberable, :trackable, :validatable,
+         :confirmable
 
   #포스팅
   has_many :posts
@@ -24,6 +26,10 @@ class User < ActiveRecord::Base
   has_many :followings, through: :following_relations, source: :followed
 
   mount_uploader :thumbnail, ImageUploader
+
+  def development?
+    Rails.env.development?
+  end
 
   def is_like?(post)
     Like.find_by(user_id: self.id,
