@@ -1,14 +1,6 @@
-<br><br>
 <% @posts.each do |p| %>
   <div class="p_content">
     <div class="card horizontal">
-      <div class="card-image">
-        <% if p.image.present? %>
-          <%= image_tag(p.image, class: "card_image_size") %>
-        <% else %>
-          <img src="/onefive.png" class="card_image_size">
-        <% end %>
-      </div>
       <div class="card-stacked">
         <div class="card-content">
           <div class="card_top">
@@ -42,27 +34,32 @@
             </div>
           </div>
           <div class="card-action">
-            <div class="things">
-              <div class="things_comment">
-                <i class="tiny material-icons onefive">comment</i>
-              </div>
-              <div class="things_commentcount">
-                <%= p.comments.size %>
-              </div>
-              <div class="things_favorite">
-                <% if p.liked_users.include?(current_user) %>
-                  <i class="tiny material-icons onefive">bookmark</i>
-                <% else %>
-                  <i class="tiny material-icons onefive">bookmark_border</i>
-                <% end %>
-              </div>
-              <div class="things_favoritecount">
-                <%= p.likes.size %>
-              </div>
-              <div class="things_empty"></div>
-              <span class="things_text">
-                <%= time_ago_in_words p.created_at %> 전 · <a href="<%= profile_timeline_path(p.user) %>" id="card-align"><%= p.user.name %></a> 씀
-              </span>
+            <div class="things things_flex">
+              
+            
+                <div class="things_comment">
+                  <i class="tiny material-icons onefive">comment</i>
+                </div>
+                <div class="things_commentcount">
+                  <%= p.comments.size %>
+                </div>
+                <div class="things_favorite">
+                  <% if p.liked_users.include?(current_user) %>
+                    <i class="tiny material-icons onefive">bookmark</i>
+                  <% else %>
+                    <i class="tiny material-icons onefive">bookmark_border</i>
+                  <% end %>
+                </div>
+                <div class="things_favoritecount">
+                  <%= p.likes.size %>
+                </div>
+          
+             
+                <span class="things_text">
+                  <%= time_ago_in_words p.created_at %> 전 · <a href="<%= profile_timeline_path(p.user) %>" id="card-align"><%= p.user.name %></a> 씀
+                </span>
+              
+              
             </div>
           </div>
         </div>
@@ -71,7 +68,7 @@
 <% end %>
 
 <%= will_paginate @posts %>
-<br><br><br>
+
 <!--글 쓰기 버튼-->
   <div class="fixed-action-btn">
     <a class="btn-floating btn-large" href="<%= new_post_path %>">
