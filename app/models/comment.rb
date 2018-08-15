@@ -7,26 +7,26 @@ class Comment < ActiveRecord::Base
     hashtags.uniq.map do |hashtag|
       if User.find_by(name: hashtag.delete('@')).present?
         user = User.find_by(name: hashtag.delete('@'))
-        tag = Tag.find_or_create_by(name: hashtag.delete('@'),
-                                    user_id: user.id)
-      end
-    end
-  end
-
-  before_update do
-    user.tags.clear # We delete all and add again
-    hashtags = self.content.scan(/@\w+/)
-    hashtags.uniq.map do |hashtag|
-      if User.find_by(name: hashtag.delete('@')).present?
-        user = User.find_by(name: hashtag.delete('@'))
-        tag = Tag.find_or_create_by(name: hashtag.delete('@'),
-                                    user_id: user.id)
+        tag = Tag.find_by(name: hashtag.delete('@'),
+                          user_id: user.id,
+                          comment_id: self.id)
+        if tag.nil?
+          Tag.create(name: hashtag.delete('@'),
+                     user_id: user.id,
+                     comment_id: self.id)
+        else
+          tag.update(name: hashtag.delete('@'),
+                     user_id: user.id,
+                     comment_id: self.id)
+        end
       end
     end
   end
 
   belongs_to :user
   belongs_to :post
+
+  has_many :tags
 
   def generate_alarm
     if self.post.user != self.user
