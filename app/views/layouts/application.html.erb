@@ -17,15 +17,18 @@
 <body>
   <nav>
     <!-- 네브바 시작 -->
-    <div class="nav-wrapper white">
+    <div class="nav-wrapper white navPage">
       <div class="logo onefive">
         <%= link_to '한 / 시 / 오 / 분', root_path, class: "brand-logo", id: :onefive %>
       </div>
-      
+      <!-- <div class="navCenterWrite onefive nav2">지금 이 글</div> -->
+  <!-- <div class="navCenterWrite onefive nav2">모아보기</div>
+       <div class="navCenterWrite onefive nav2">구독</div>
+       상황에 맞게 페이지 이름 뜨도록 설정해주세요  -->
+
       <ul class="right hide-on-med-and-down">
         <% if user_signed_in? %>
         <div class="p_icons">
-          <li><a href="<%= root_path %>"><i class="material-icons onefive">home</i></a></li>
           <!-- 검색기능 시작 -->
           <li><a class="modal-trigger" href="#modal1"><i class="material-icons onefive">search</i></a></li>
 
@@ -82,9 +85,6 @@
             </div>
           </div>
             <!-- 검색기능 끝 -->
-
-          <li><a href="<%= timelines_path %>"><i class="material-icons onefive">explore</i></a></li>
-          <li><a href="#" class="dropdown-trigger" data-target='dropdown1'><i class="material-icons onefive">person</i></a></li>
           <li><a href="#" id="navbarCssRight" data-target="slide-out" class="sidenav-trigger show-on-large onefive"><i class="material-icons">menu</i></a></li>
         </div>
         <% else %>
@@ -122,16 +122,18 @@
           <% end %>
         </div>
         <div class="sidenav_user_name center">
-          <%= current_user.name %>
+          <%= link_to "#{current_user.name}", profile_timeline_path(current_user), class: :onefive %>
         </div>
         <div class="sidenav_user_subscribe center">
           <a href="<%= subscribe_timeline_path(current_user) %>" class="onefive"><span id="followings-size"><%= current_user.followings.size %></span>명을 구독하고, <span id="followers-size"><%= current_user.followers.size %></span>명이 구독 중</a>
         </div>
       </div>
       <div class="sidenav_links center">
-        <div class="sidenav_links_one">모아보기</div><!-- 구독 주소 넣어주세요 -->
-        <div class="sidenav_links_one">지금 이 글</div><!-- 지금 이 글 주소 넣어주세요 -->
-        <div class="sidenav_links_one">담은 글</div><!-- 담은 글 주소 넣어주세요 -->
+        <div class="sidenav_links_one"><%= link_to '모아보기', timelines_path, class: :onefive %></div><!-- 구독 주소 넣어주세요 -->
+        <div class="sidenav_links_one"><%= link_to '지금 이 글', root_path, class: :onefive %></div><!-- 지금 이 글 주소 넣어주세요 -->
+        <div class="sidenav_links_one"><%= link_to '담은 글', saves_timelines_path, class: :onefive %></div><!-- 담은 글 주소 넣어주세요 -->
+        <div class="sidenav_links_one"><%= link_to '로그아웃', destroy_user_session_path, method: :delete, class: :onefive %></div>
+        <div class="sidenav_links_one"><%= link_to '정보수정', edit_user_registration_path, class: :onefive %></div>
       </div>
       <div class="sidenav_notice_title center">
         소식

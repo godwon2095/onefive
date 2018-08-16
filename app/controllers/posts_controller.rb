@@ -86,6 +86,13 @@ class PostsController < ApplicationController
     @post.view_count += 1
     @post.save
     @user = @post.user
+
+    if params[:page]
+      @comments = @post.comments.paginate(:page => params[:page], :per_page => 10)
+    else
+      last_page = @post.comments.paginate(:page => params[:page], :per_page => 10).total_pages
+      @comments = @post.comments.paginate(:page => last_page, :per_page => 10)
+    end
   end
 
   def edit

@@ -48,7 +48,7 @@
   <% if @post.comments.present? %>
       <ul class="collection">
         <div id="postcomment">
-          <% @post.comments.each do |c| %>
+          <% @comments.each do |c| %>
             <li class="collection-item" id="comment_<%= c.id %>">
               <% if c.user.thumbnail.present? %>
                 <%= image_tag(c.user.thumbnail, class: "thumbnail-size circle") %>
@@ -71,6 +71,7 @@
         </div>
       </ul>
     <% end %>
+    <%= will_paginate @comments %>
 
   <!-- 댓글작성기능 -->
   <%= form_for(@comment, url: post_comments_path(@post), remote: true) do |f| %>
