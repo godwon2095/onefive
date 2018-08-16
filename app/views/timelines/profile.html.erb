@@ -31,68 +31,10 @@
 <br>
 <br><br>
 
-<% if @posts.present? %>
-  <% @posts.each do |p| %>
-  <div class="p_content">
-    <div class="card horizontal">
-      <div class="card-stacked">
-        <div class="card-content">
-          <div class="card_top">
-            <% if p.user == current_user %>
-              <a class="dropdown-trigger" data-target="dropdown2">
-                <i class="tiny material-icons onefive" style="float: right;">more_horiz</i>
-              </a>
-              <ul id="dropdown2" class="dropdown-content">
-                <li><a href="<%= edit_post_path(p) %>" id="onefive">수정</a></li>
-                <li class="divider" tabindex="-1"></li>
-                <li><a href="<%= post_path(p) %>" id="onefive" data-method="delete">삭제</a></li>
-              </ul>
-            <% end %>
-          </div>
-            <div class="content_title">
-              <%= link_to "#{p.title.truncate(14)}", post_path(p), class: "onefive" %>
-            </div>
-            <div class="content_song">
-              <% if p.song_ids.present? %>
-                <%= Song.find(p.song_ids.first.to_i).title.truncate(18) %> - <%= Song.find(p.song_ids.first.to_i).singer.name %>
-                <% if p.song_ids.size > 2 %>
-                  외 <%= p.song_ids.size - 1 %>곡
-                <% end %>
-              <% end %>
-            </div>
-            <div class="content_subtitle">
-              <%= truncate(p.subtitle, :ommision => "...", :length => 50) %>
-            </div>
-            <div class="content_preview">
-              <%= truncate_html(p.content, length: 160, omission: '...') %>
-            </div>
-          </div>
-          <div class="card-action">
-            <div class="things things_flex">
-              <div class="things_comment">
-                <i class="tiny material-icons onefive">comment</i>
-              </div>
-              <div class="things_commentcount">
-                <%= p.comments.size %>
-              </div>
-              <div class="things_favorite">
-                <% if p.liked_users.include?(current_user) %>
-                  <i class="tiny material-icons onefive">bookmark</i>
-                <% else %>
-                  <i class="tiny material-icons onefive">bookmark_border</i>
-                <% end %>
-              </div>
-              <div class="things_favoritecount">
-                <%= p.likes.size %>
-              </div>
-                <span class="things_text">
-                  <%= time_ago_in_words p.created_at %> 전 · <a href="<%= profile_timeline_path(p.user) %>" id="card-align"><%= p.user.name %></a> 씀
-                </span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  <% end %>
-<% end %>
-<%= will_paginate @posts %>
+<div id="posts">
+  <%= render partial: "posts" %>
+</div>
+
+<div id="infinite-posts">
+  <%= will_paginate @posts %>
+</div>
