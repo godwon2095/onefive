@@ -1,87 +1,152 @@
-<div class="container">
-  <span id="text-<%= @post.id %>"><text id="copy-<%= @post.id %>" class="white-text toosmall">http://localhost:3000/posts/<%= @post.id %></text></span>
-  <br>
-  <div class="row">
+<span id="text-<%= @post.id %>"><text id="copy-<%= @post.id %>" class="white-text toosmall">http://localhost:3000/posts/<%= @post.id %></text></span>
+
+<div id="showPage">
+  <div id="showPage1">
+    <div>
       <% if @post.image.present? %>
-        <%= image_tag(@post.image, class: "image-size col") %>
+        <%= image_tag(@post.image, id: "showTitleImg") %>
       <% else %>
-        <img src="/onefive.png" class="image-size col">
+        <img src="/onefive.png" id="showTitleImg">
       <% end %>
-      <div class="col">
-          <h3><%= @post.title %></h3>
-          <% if user_signed_in? %>
-            <% if @post.user.thumbnail.present? %>
-              <%= image_tag(@post.user.thumbnail, class: "thumbnail-size circle") %><%= link_to "#{@post.user.name}", profile_timeline_path(@post.user) %>
-            <% else %>
-              <img src="/people.jpg" class="thumbnail-size circle"><%= link_to "#{@post.user.name}", profile_timeline_path(@post.user) %>
-            <% end %>
-          <% else %>
-            <img src="/people.jpg" class="thumbnail-size circle"><%= link_to "#{@post.user.name}", profile_timeline_path(@post.user) %>
-          <% end %>
+    </div>
+    <div id="titleWithoutImg">
+      <div id="showTitle">
+        <%= @post.title %>
       </div>
-  <!--구독 기능-->
-    <div class="right">
-      <% if user_signed_in? && current_user != @user %>
-        <%= link_to (current_user.is_follower?(@user) ? '구독 취소' : '구독 하기'), toggle_follow_path(@user), method: :post, class: "btn indigo darken-4", id: 'follow', remote: true %>
-      <% end %>
+      <div id="showContentUp">
+        <%= @post.subtitle %>
+      </div>
+      <div id="showProfileAll" class="right">
+        <div>
+          <% if user_signed_in? && @post.user.thumbnail.present? %>
+            <%= image_tag(@post.user.thumbnail, id: "showUserImg") %>
+          <% else %>
+            <img src="/people.jpg" id="showUserImg">
+          <% end %>
+        </div>
+        <div class="showProfileWithWrite">
+          <div class="showProfile">
+            <div class="showProfileContent"id="showUserName">
+              <% if user_signed_in? %>
+                <%= link_to "#{@post.user.name}", profile_timeline_path(@post.user), class: "black-text" %>
+              <% end %>
+            </div>
+            <div class="showProfileContent">
+                <% if user_signed_in? && current_user != @user %>
+                  <%= link_to (current_user.is_follower?(@user) ? '구독취소' : '구독하기'), toggle_follow_path(@user), class: "showFollow",method: :post, id: 'follow' , remote: true %>
+                <% end %>
+            </div>
+          </div>
+          <div id="showUserOnewrite" sytle="margin-top: 10px">
+            <%= @post.user.information %>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 
-  <h5 class="grey-text">"<%= @post.subtitle %>"</h5>
+  <div><hr id="showLine"/></div>
 
-  <hr><br>
-  <% @post.song_ids.each do |song| %>
-    <p><%= image_tag(Song.find(song.to_i).image) %><%= Song.find(song.to_i).title %> | <%= Song.find(song.to_i).album %></p>
-  <% end %>
-  <br>
-  <p class="pre-line"><%= @post.content.html_safe %></p>
-  <br><br>
-  <% if user_signed_in? && current_user.id == @post.user.id %>
-    <%= link_to '삭제', post_path(@post.id), method: :delete, class: "btn indigo darken-4 right between-btn", :data => {:confirm => '정말 삭제하시겠습니까?'} %>
-    <%= link_to '수정', edit_post_path(@post), class: "btn indigo darken-4 right between-btn" %>
-  <% end %>
-  <%= link_to '목록', posts_path, class: "btn indigo darken-4 right between-btn" %><br>
-  <br><br><hr><br>
+  <div class="card horizontal collapsible">
+   <div class="card-stacked">
+     <div class="card-content">
+       <div id="cardFlex">
+         <div><%= image_tag(Song.find(@post.song_ids.first.to_i).image, id: :cardElement1) %></div>
+         <div id="cardElement2">
+           <%= Song.find(@post.song_ids.first.to_i).title %>
+           <% if @post.song_ids.size > 1 %>
+            (외 <%= @post.song_ids.size - 1 %>곡)
+           <% end %>
+         </div>
+         <div id="cardElement3"><%= Song.find(@post.song_ids.first.to_i).album %> | <%= Song.find(@post.song_ids.first.to_i).singer.name %></div>
+       </div>
+     </div>
+   </div>
+ </div>
 
-  <%= render partial: "buttons" %><br><br>
+  <div id="showContent">
+    <% @post.song_ids.each do |song| %>
+      <p><%= image_tag(Song.find(song.to_i).image) %><%= Song.find(song.to_i).title %> | <%= Song.find(song.to_i).singer.name %> | <%= Song.find(song.to_i).album %></p>
+    <% end %>
+  </div>
 
-  <% if @post.comments.present? %>
-      <ul class="collection">
+  <div id="realContent">
+    <p><%= @post.content.html_safe %></p>
+  </div>
+
+  <div><hr id="showLine2"/></div>
+
+  <div id="showIcon" class="right">
+    <%= render partial: "buttons" %>
+  </div>
+
+  <!-- <div class="row">
+    <% if user_signed_in? && current_user.id == @post.user.id %>
+      <%= link_to '삭제', post_path(@post.id), method: :delete, class: "btn indigo darken-4 right between-btn col", :data => {:confirm => '정말 삭제하시겠습니까?'} %>
+      <%= link_to '수정', edit_post_path(@post), class: "btn indigo darken-4 right between-btn col" %>
+    <% end %>
+    <%= link_to '목록', posts_path, class: "btn indigo darken-4 right between-btn col" %>
+  </div> -->
+
+  <div id="secondShowPage">
+    <div id="showpage3">
+      <% if @post.comments.present? %>
         <div id="postcomment">
           <% @comments.each do |c| %>
-            <li class="collection-item" id="comment_<%= c.id %>">
-              <% if c.user.thumbnail.present? %>
-                <%= image_tag(c.user.thumbnail, class: "thumbnail-size circle") %>
-              <% else %>
-                <img src="/people.jpg" class="thumbnail-size circle">
-              <% end %>
-              <span class="title"><%= link_to "#{c.user.name}", profile_timeline_path(c.user), class: :onefive %></span>
-              <span class="right"><%= time_ago_in_words c.created_at %> 전</span><br><br><br>
-              <span class="pre-line"><%= render_with_hashtags(c.content) %></span>
-              <% if user_signed_in? && c.user.id == current_user.id %>
-                <%= link_to '삭제', post_comment_path(@post, c), method: :delete, class: "right", remote: true %>
-              <% end %>
-            </li>
+            <div id="comment_<%= c.id %>">
+              <div id="showCommentProfile">
+                <div>
+                  <% if c.user.thumbnail.present? %>
+                    <%= image_tag(c.user.thumbnail, id: "showImageComment") %>
+                  <% else %>
+                    <img src="/people.jpg" id="showImageComment">
+                  <% end %>
+                </div>
+                <div id="showCommentStyle">
+                  <div id="showCommentName">
+                    <%= c.user.name %>
+                  </div>
+                  <div id="showCommenttime">
+                    <%= time_ago_in_words c.created_at %> 전<br>
+                    <% if user_signed_in? && c.user.id == current_user.id %>
+                      <%= link_to '삭제', post_comment_path(@post, c), method: :delete, class: "onefive", id: "delete-margin", remote: true %>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+              <div id="showCommentContent">
+                <%= render_with_hashtags(c.content) %>
+              </div>
+              <div><hr id="showLine3"/></div>
+            </div>
           <% end %>
         </div>
-      </ul>
-    <% else %>
-      <ul class="collection">
+      <% else %>
         <div id="postcomment">
         </div>
-      </ul>
-    <% end %>
-    <%= will_paginate @comments %>
+      <% end %>
 
-  <!-- 댓글작성기능 -->
-  <%= form_for(@comment, url: post_comments_path(@post), remote: true) do |f| %>
-    <div class="input-field">
-      <%= f.text_area :content, class: "materialize-textarea", placeholder: "댓글쓰기...", required: true, id: "comment_content" %>
+      <div id="showCommentWrite">
+        <div>
+          <% if current_user.thumbnail.present? %>
+            <%= image_tag(current_user.thumbnail, id: "showImageComment") %>
+          <% else %>
+            <img src="/people.jpg" id="showImageComment">
+          <% end %>
+        </div>
+        <!-- 댓글작성기능 -->
+        <%= form_for(@comment, url: post_comments_path(@post), remote: true) do |f| %>
+          <div class="input-field">
+            <%= f.text_area :content, class: "showCommentTextarea", placeholder: "댓글쓰기...", required: true, id: "comment_content" %>
+          </div>
+          <div class="input-field">
+            <%= f.submit "댓글 쓰기", class: "btn indigo darken-4 right" %>
+          </div>
+        <% end %>
+      </div>
     </div>
-    <div class="input-field">
-      <%= f.submit "댓글 쓰기", class: "btn indigo darken-4 right" %>
-    </div>
-  <% end %><br><br>
+  </div>
+</div>
 
 <!--글 쓰기 버튼-->
   <div class="fixed-action-btn">
@@ -91,7 +156,6 @@
   </div>
 <!--//-->
 
-</div>
 
 <script>
 $(document).ready(function(){
@@ -108,4 +172,35 @@ $('#comment_content').keypress(function (e) {
     return false;
   }
 });
+
+var coll = document.getElementsByClassName("collapsible");
+var i;
+
+for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var content = this.nextElementSibling;
+    if (content.style.maxHeight){
+      content.style.maxHeight = null;
+    } else {
+      content.style.maxHeight = content.scrollHeight + "px";
+    }
+  });
+}
 </script>
+
+<style>
+ .card {
+   width: 690px;
+   margin-top: 80px !important;
+ }
+
+ .card-content {
+   padding-top: 7.5px !important;
+   padding-bottom: 7.5px !important;
+   padding-left:15px !important;
+   padding-right:15px !important;
+   height: 70px !important;
+   vertical-align: middle !important;
+ }
+</style>
