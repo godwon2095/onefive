@@ -15,4 +15,3 @@
 //= require_tree .
 //= require clipboard
 //= require dropzone
-//= require jquery.infinitescroll

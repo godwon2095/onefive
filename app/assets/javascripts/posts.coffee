@@ -8,4 +8,4 @@ $ ->
       if url && $(window).scrollTop() > $(document).height() - $(window).height() - 50
         $('.pagination').text("글을 불러오는 중입니다...")
         $.getScript(url)
-    $(window).scroll
+    $(window).scroll 

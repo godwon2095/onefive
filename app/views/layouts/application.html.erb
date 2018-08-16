@@ -15,29 +15,13 @@
   <%= tinymce_assets %>
 </head>
 <body>
-
-  <ul id="slide-out" class="sidenav">
-    <li><div class="user-view">
-      <div class="background">
-        <!-- <img src="images/office.jpg"> -->
-      </div>
-      <!-- <a href="#user"><img class="circle" src="images/yuna.jpg"></a> -->
-      <a href="#name"><span class="white-text name">John Doe</span></a>
-      <a href="#email"><span class="white-text email">jdandturk@gmail.com</span></a>
-    </div></li>
-    <li><a href="#!"><i class="material-icons">cloud</i>First Link With Icon</a></li>
-    <li><a href="#!">Second Link</a></li>
-    <li><div class="divider"></div></li>
-    <li><a class="subheader">Subheader</a></li>
-    <li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
-  </ul>
-
   <nav>
     <!-- 네브바 시작 -->
     <div class="nav-wrapper white">
       <div class="logo onefive">
         <%= link_to '한 / 시 / 오 / 분', root_path, class: "brand-logo", id: :onefive %>
       </div>
+      
       <ul class="right hide-on-med-and-down">
         <% if user_signed_in? %>
         <div class="p_icons">
@@ -101,7 +85,7 @@
 
           <li><a href="<%= timelines_path %>"><i class="material-icons onefive">explore</i></a></li>
           <li><a href="#" class="dropdown-trigger" data-target='dropdown1'><i class="material-icons onefive">person</i></a></li>
-          <li><a href="#" class="sidenav-trigger" data-target='slide-out'><i class="material-icons onefive">menu</i></a></li>
+          <li><a href="#" id="navbarCssRight" data-target="slide-out" class="sidenav-trigger show-on-large onefive"><i class="material-icons">menu</i></a></li>
         </div>
         <% else %>
         <li><%= link_to '로그인', new_user_session_path, class: "onefive" %></li>
@@ -125,61 +109,49 @@
   </ul>
   <% end %>
 
-    <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons right">menu</i></a>
-
-
-  <!-- <ul class="sidenav" id="mobile-demo">
-    <% if user_signed_in? %>
-    <li><div class="user-view">
-      <div class="background">
-        <img src="/download.png">
+  <!-- 오른쪽에서 나오는 navbar -->
+<% if user_signed_in? %>
+  <ul id="slide-out" class="sidenav">
+    <div class="sidenav_border"></div>
+      <div class="user-view">
+        <div class="sidenav_profileimg center">
+          <% if current_user.thumbnail.present? %>
+            <%= link_to image_tag(current_user.thumbnail, class: "z-depth-3 circle tl-size"), profile_timeline_path(current_user) %>
+          <% else %>
+            <img src="/people.jpg" class="tl-size circle">
+          <% end %>
+        </div>
+        <div class="sidenav_user_name center">
+          <%= current_user.name %>
+        </div>
+        <div class="sidenav_user_subscribe center">
+          <a href="<%= subscribe_timeline_path(current_user) %>" class="onefive"><span id="followings-size"><%= current_user.followings.size %></span>명을 구독하고, <span id="followers-size"><%= current_user.followers.size %></span>명이 구독 중</a>
+        </div>
       </div>
-      <% if current_user.thumbnail.present? %>
-        <a href="#user"><%= image_tag(current_user.thumbnail, class: :circle) %></a>
-      <% else %>
-        <a href="#user"><img class="circle" src="/people.jpg"></a>
-      <% end %>
-      <a href="#email"><span class="white-text email"><%= current_user.email %></span></a>
-    <% end %>
-    </div></li>
-    <% if user_signed_in? %>
-    <li><a href="<%= edit_user_registration_path %>"><i class="material-icons">add_alert</i>알람</a></li>
-    <li><a href="<%= profile_timeline_path(current_user) %>"><i class="material-icons">perm_identity</i>타임라인</a></li>
-    <% end %>
-    <li><div class="divider"></div></li>
-    <li><a class="subheader">한/시/오/분</a></li>
-    <li ><a href="<%= root_path %>"><i class="material-icons">home</i></a></li>
-
-
-    <% if user_signed_in? %>
-      <li><a class="modal-trigger" href="#modal2"><i class="material-icons">search</i></a></li>
-      <div id="modal2" class="modal">
-       <div class="modal-content">
-         <h4><div class="search_gamrom">검색하게따</div></h4>
-         <form action='posts' method="GET">
-           <label>제목을 검색해보세염ㅇㅅㅇ</label>
-           <input type="text" name="search">
-           <input type="submit">
-         </form>
-       </div>
-
-
-
-      <li><a href="#"><i class="material-icons">library_music</i></a></li>
-      <li><%= link_to '로그아웃', destroy_user_session_path, method: :delete %></li>
-      <li><%= link_to '정보수정', edit_user_registration_path %></li>
-    <% else %>
-      <li><%= link_to '로그인', new_user_session_path %></li>
-      <li><%= link_to '회원가입', new_user_registration_path %></li>
-    <% end %>
-  </ul> -->
-
-
+      <div class="sidenav_links center">
+        <div class="sidenav_links_one">모아보기</div><!-- 구독 주소 넣어주세요 -->
+        <div class="sidenav_links_one">지금 이 글</div><!-- 지금 이 글 주소 넣어주세요 -->
+        <div class="sidenav_links_one">담은 글</div><!-- 담은 글 주소 넣어주세요 -->
+      </div>
+      <div class="sidenav_notice_title center">
+        소식
+      </div>
+      <div class="sidenav_line">
+        <hr width="200px" align="center" color="#8b8b8b" size="1">
+      </div>
+      <div>
+        <!--소식넣어주세요(은식이가 댓글 짠 레이아웃 그대로 긁어올 예정-->
+      </div>
+  </ul>
+<% end %>
+<!-- 오른쪽에서 나오는 navbar 끝 -->
   <%= yield %>
 
   <script>
       $(document).ready(function(){
-      $('.sidenav').sidenav();
+      $('.sidenav').sidenav({
+        edge: 'right'
+      });
     });
       $('.dropdown-trigger').dropdown();
       $(document).ready(function(){

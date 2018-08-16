@@ -72,27 +72,39 @@
       </ul>
     <% end %>
 
-    <!-- 댓글작성기능 -->
-    <%= form_for(@comment, url: post_comments_path(@post), remote: true) do |f| %>
-      <div class="input-field">
-        <%= f.text_area :content, class: "materialize-textarea", placeholder: "댓글쓰기...", required: true, id: "comment" %>
-      </div>
-      <div class="input-field">
-        <%= f.button "댓글 쓰기", class: "btn indigo darken-4 right" %>
-      </div>
-    <% end %><br><br>
-
-  <!--글 쓰기 버튼-->
-    <div class="fixed-action-btn">
-      <a class="btn-floating btn-large indigo darken-4" href="<%= new_post_path %>">
-        <i class="large material-icons">mode_edit</i>
-      </a>
+  <!-- 댓글작성기능 -->
+  <%= form_for(@comment, url: post_comments_path(@post), remote: true) do |f| %>
+    <div class="input-field">
+      <%= f.text_area :content, class: "materialize-textarea", placeholder: "댓글쓰기...", required: true, id: "comment_content" %>
     </div>
-  <!--//-->
+    <div class="input-field">
+      <%= f.submit "댓글 쓰기", class: "btn indigo darken-4 right" %>
+    </div>
+  <% end %><br><br>
+
+<!--글 쓰기 버튼-->
+  <div class="fixed-action-btn">
+    <a class="btn-floating btn-large indigo darken-4" href="<%= new_post_path %>">
+      <i class="large material-icons">mode_edit</i>
+    </a>
+  </div>
+<!--//-->
+
 </div>
 
 <script>
 $(document).ready(function(){
   var clipboard = new Clipboard('.clipboard-btn');
+});
+
+$('#comment_content').keypress(function (e) {
+ var key = e.which;
+ if(key == 13 && !e.shiftKey)  // the enter key code
+  {
+    $('input').click();
+    $('#comment_content').val('');
+    e.preventDefault();
+    return false;
+  }
 });
 </script>
