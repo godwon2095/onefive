@@ -105,9 +105,27 @@
 }
 
 .card_image_size {
-  width: 273px !important;
-  height: 362px;
+  width: 300px !important;
+  height: 300px;
+  // gravity: "faces";
+  // crop: "fill";
 }
+
+.left-cropped {
+  width: 273px;
+  height: 111px;
+  // background-position: center center;
+  // background-repeat: no-repeat;
+  // overflow: hidden;
+}
+
+.center-cropped {
+  object-fit: none;
+  object-position: left;
+  height: 362px;
+  width: 273px !important;
+}
+
 #card-align {
   margin: 0px;
   color: #0b1d7b;
