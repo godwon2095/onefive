@@ -47,28 +47,30 @@
 
   <div><hr id="showLine"/></div>
 
-  <div class="card horizontal collapsible">
-   <div class="card-stacked">
-     <div class="card-content">
-       <div id="cardFlex">
-         <div><%= image_tag(Song.find(@post.song_ids.first.to_i).image, id: :cardElement1) %></div>
-         <div id="cardElement2">
-           <%= Song.find(@post.song_ids.first.to_i).title %>
-           <% if @post.song_ids.size > 1 %>
-            (외 <%= @post.song_ids.size - 1 %>곡)
-           <% end %>
+  <% if @post.song_ids.present? %>
+    <div class="card horizontal collapsible">
+     <div class="card-stacked">
+       <div class="card-content">
+         <div id="cardFlex">
+           <div><%= image_tag(Song.find(@post.song_ids.first.to_i).image, id: :cardElement1) %></div>
+           <div id="cardElement2">
+             <%= Song.find(@post.song_ids.first.to_i).title %>
+             <% if @post.song_ids.size > 1 %>
+              (외 <%= @post.song_ids.size - 1 %>곡)
+             <% end %>
+           </div>
+           <div id="cardElement3"><%= Song.find(@post.song_ids.first.to_i).album %> | <%= Song.find(@post.song_ids.first.to_i).singer.name %></div>
          </div>
-         <div id="cardElement3"><%= Song.find(@post.song_ids.first.to_i).album %> | <%= Song.find(@post.song_ids.first.to_i).singer.name %></div>
        </div>
      </div>
    </div>
- </div>
 
-  <div id="showContent">
-    <% @post.song_ids.each do |song| %>
-      <p><%= image_tag(Song.find(song.to_i).image) %><%= Song.find(song.to_i).title %> | <%= Song.find(song.to_i).singer.name %> | <%= Song.find(song.to_i).album %></p>
-    <% end %>
-  </div>
+    <div id="showContent">
+      <% @post.song_ids.each do |song| %>
+        <p><%= image_tag(Song.find(song.to_i).image) %><%= Song.find(song.to_i).title %> | <%= Song.find(song.to_i).singer.name %> | <%= Song.find(song.to_i).album %></p>
+      <% end %>
+    </div>
+  <% end %>
 
   <div id="realContent">
     <p><%= @post.content.html_safe %></p>
@@ -146,6 +148,7 @@
       </div>
     </div>
   </div>
+  <br><br><%= will_paginate @comments %><br><br><br>
 </div>
 
 <!--글 쓰기 버튼-->
