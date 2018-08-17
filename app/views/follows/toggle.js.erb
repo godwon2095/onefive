@@ -3,8 +3,5 @@
 <% else %>
   $('#follow').text("구독하기");
 <% end %>
-console.log("ehd");
-$('#followings-size').text("sdfdsfs");
-console.log("fsdfdsfds");
-$('#followers-size').text("sdfdsf");
-console.log("what the");
+$('#followings-length').text("<%= @user.followings.size %>");
+$('#followers-length').text("<%= @user.followers.size %>");
