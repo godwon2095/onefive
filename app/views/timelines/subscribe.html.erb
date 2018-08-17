@@ -11,15 +11,18 @@
 </div>
 
 <div class="user_subscribe">
-  <a href="<%= subscribe_timeline_path(@user) %>" class="onefive"><span id="followings-size"><%= @user.followings.size %></span>명을 구독하고, <span id="followers-size"><%= @user.followers.size %></span>명이 구독 중</a><br>
+  <a href="<%= subscribe_timeline_path(@user) %>" class="onefive">
+    <span id="followings-size">
+      <%= @user.followings.size %>
+    </span>명을 구독하고,
+    <span id="followers-size">
+      <%= @user.followers.size %>
+    </span>명이 구독 중
+  </a><br>
 </div>
 
 <div class="user_status">
   <%= @user.information %>
-</div>
-
-<div class="line">
-  <hr width="40.625em" align="center" color="#0b1d7b" size="1">
 </div>
 
 <div class="center">
@@ -28,7 +31,11 @@
   <% end %>
 </div>
 
-<br>
+<div class="line">
+  <hr width="40.625em" align="center" color="#0b1d7b" size="1">
+</div>
+
+<br><br>
 <br>
 
 <div class="center">

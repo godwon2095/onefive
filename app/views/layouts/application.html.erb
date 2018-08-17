@@ -21,10 +21,14 @@
       <div class="logo onefive">
         <%= link_to '한 / 시 / 오 / 분', root_path, class: "brand-logo", id: :onefive %>
       </div>
-      <!-- <div class="navCenterWrite onefive nav2">지금 이 글</div> -->
-  <!-- <div class="navCenterWrite onefive nav2">모아보기</div>
-       <div class="navCenterWrite onefive nav2">구독</div>
-       상황에 맞게 페이지 이름 뜨도록 설정해주세요  -->
+      <% if controller.controller_name == "posts" && controller.action_name == "index" %>
+        <div class="navCenterWrite onefive nav2">지금 이 글</div>
+      <% elsif controller.controller_name == "timelines" && controller.action_name == "index" %>
+        <div class="navCenterWrite onefive nav2">모아보기</div>
+      <% elsif controller.controller_name == "timelines" && controller.action_name == "saves" %>
+        <div class="navCenterWrite onefive nav2">담은 글</div>
+      <% end %>
+       <!-- 상황에 맞게 페이지 이름 뜨도록 설정해주세요  -->
 
       <ul class="right hide-on-med-and-down">
         <% if user_signed_in? %>
@@ -95,19 +99,6 @@
     </div>
     </div>
   </nav>
-  <% if user_signed_in? %>
-  <ul id='dropdown1' class='dropdown-content'>
-    <li><%= link_to '로그아웃', destroy_user_session_path, method: :delete, class: "indigo-text text-darken-4" %></li>
-    <li class="divider" tabindex="-1"></li>
-    <li><%= link_to '타임라인', profile_timeline_path(current_user), class: "indigo-text text-darken-4" %></li>
-    <li class="divider" tabindex="-1"></li>
-    <li><%= link_to '정보수정', edit_user_registration_path, class: "indigo-text text-darken-4" %></li>
-    <li class="divider" tabindex="-1"></li>
-    <li><%= link_to '알람', alarms_path, class: "indigo-text text-darken-4" %></li>
-    <li class="divider" tabindex="-1"></li>
-    <li><%= link_to '담은글', saves_timelines_path, class: "indigo-text text-darken-4" %></li>
-  </ul>
-  <% end %>
 
   <!-- 오른쪽에서 나오는 navbar -->
 <% if user_signed_in? %>
@@ -136,12 +127,25 @@
         <div class="sidenav_links_one"><%= link_to '정보수정', edit_user_registration_path, class: :onefive %></div>
       </div>
       <div class="sidenav_notice_title center">
-        소식
+        <%= link_to '소식', alarms_path, class: :onefive %>(<%= current_user.alarms.size %>)
       </div>
       <div class="sidenav_line">
         <hr width="200px" align="center" color="#8b8b8b" size="1">
       </div>
       <div>
+        <% if current_user.alarms.present? %>
+          <% current_user.alarms.each do |alarm| %>
+            <% if alarm.like? %>
+              <a class="onefive" href="<%= post_path(alarm.findable_id) %>">소식 : [ <%= alarm.content %> ] 님이 회원님의 글을 저장 하셨습니다.</a> | <%= link_to '삭제', alarm_path(alarm), method: :delete, remote: true %><br><hr>
+            <% elsif alarm.comment? %>
+              <a class="onefive" href="<%= post_path(alarm.findable_id) %>">소식 : [ <%= alarm.content %> ] 님이 회원님의 글에 댓글을 다셨습니다.</a> | <%= link_to '삭제', alarm_path(alarm), method: :delete, remote: true %><br><hr>
+            <% elsif alarm.tag? %>
+              <a class="onefive" href="<%= post_path(alarm.findable_id) %>">소식 : [ <%= alarm.content %> ] 님이 회원님을 태그하셨습니다.</a> | <%= link_to '삭제', alarm_path(alarm), method: :delete, remote: true %><br><hr>
+            <% else %>
+              <a class="onefive" href="<%= profile_timeline_path(alarm.findable_id) %>">소식 : [ <%= alarm.content %> ] 님의 글을 담았습니다.</a> | <%= link_to '삭제', alarm_path(alarm), method: :delete, remote: true %><br><hr>
+            <% end %>
+          <% end %>
+        <% end %>
         <!--소식넣어주세요(은식이가 댓글 짠 레이아웃 그대로 긁어올 예정-->
       </div>
   </ul>

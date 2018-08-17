@@ -1,3 +1,4 @@
+<!-- 아래 코드 건드리지 말 것 -->
 <span id="text-<%= @post.id %>"><text id="copy-<%= @post.id %>" class="white-text toosmall">http://localhost:3000/posts/<%= @post.id %></text></span>
 
 <div id="showPage">
@@ -94,33 +95,8 @@
     <div id="showpage3">
       <% if @post.comments.present? %>
         <div id="postcomment">
-          <% @comments.each do |c| %>
-            <div id="comment_<%= c.id %>">
-              <div id="showCommentProfile">
-                <div>
-                  <% if c.user.thumbnail.present? %>
-                    <%= image_tag(c.user.thumbnail, id: "showImageComment") %>
-                  <% else %>
-                    <img src="/people.jpg" id="showImageComment">
-                  <% end %>
-                </div>
-                <div id="showCommentStyle">
-                  <div id="showCommentName">
-                    <%= c.user.name %>
-                  </div>
-                  <div id="showCommenttime">
-                    <%= time_ago_in_words c.created_at %> 전<br>
-                    <% if user_signed_in? && c.user.id == current_user.id %>
-                      <%= link_to '삭제', post_comment_path(@post, c), method: :delete, class: "onefive", id: "delete-margin", remote: true %>
-                    <% end %>
-                  </div>
-                </div>
-              </div>
-              <div id="showCommentContent">
-                <%= render_with_hashtags(c.content) %>
-              </div>
-              <div><hr id="showLine3"/></div>
-            </div>
+          <% @comments.each do |comment| %>
+            <%= render comment %>
           <% end %>
         </div>
       <% else %>
@@ -171,7 +147,7 @@ $('#comment_content').keypress(function (e) {
   {
     $('input').click();
     $('#comment_content').val('');
-    e.preventDefault();
+    // e.preventDefault();
     return false;
   }
 });

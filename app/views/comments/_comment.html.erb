@@ -1,0 +1,26 @@
+<div id="comment_<%= comment.id %>">
+  <div id="showCommentProfile">
+    <div>
+      <% if comment.user.thumbnail.present? %>
+        <%= image_tag(comment.user.thumbnail, id: "showImageComment") %>
+      <% else %>
+        <img src="/people.jpg" id="showImageComment">
+      <% end %>
+    </div>
+    <div id="showCommentStyle">
+      <div id="showCommentName">
+        <%= link_to "#{comment.user.name}", profile_timeline_path(comment.user), class: "black-text" %>
+      </div>
+      <div id="showCommenttime">
+        <%= time_ago_in_words comment.created_at %> 전<br>
+        <% if user_signed_in? && comment.user.id == current_user.id %>
+          <%= link_to '삭제', post_comment_path(@post, comment), method: :delete, class: "onefive", id: "delete-margin", remote: true %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div id="showCommentContent" class="pre-line">
+    <%= render_with_hashtags(comment.content) %>
+  </div>
+  <div><hr id="showLine3"/></div>
+</div>
