@@ -1,0 +1,98 @@
+<div class="profileimage center">
+    <% if @user.thumbnail.present? %>
+      <%= link_to image_tag(@user.thumbnail, class: "z-depth-3 circle tl-size"), profile_timeline_path(@user.id) %>
+    <% else %>
+      <img src="/people.jpg" class="tl-size circle">
+    <% end %>
+</div>
+
+<div class="user_name">
+  <%= @user.name %>
+</div>
+
+<div class="user_subscribe">
+  <a href="<%= subscribe_timeline_path(@user) %>" class="onefive"><span id="followings-size"><%= @user.followings.size %></span>명을 구독하고, <span id="followers-size"><%= @user.followers.size %></span>명이 구독 중</a><br>
+</div>
+
+<div class="user_status">
+  <%= @user.information %>
+</div>
+
+<div class="center">
+  <% if user_signed_in? && current_user != @user %>
+    <%= link_to (current_user.is_follower?(@user) ? '구독 취소' : '구독 하기'), toggle_follow_path(@user), method: :post, class: "btn indigo darken-4", id: 'follow', remote: true %>
+  <% end %>
+</div>
+
+<div class="line">
+  <hr width="40.625em" align="center" color="#0b1d7b" size="1">
+</div>
+
+<br>
+<br><br>
+
+<% if @posts.present? %>
+  <% @posts.each do |p| %>
+  <div class="p_content">
+    <div class="card horizontal">
+      <div class="card-stacked">
+        <div class="card-content">
+          <div class="card_top">
+            <% if p.user == current_user %>
+              <a class="dropdown-trigger" data-target="dropdown2">
+                <i class="tiny material-icons onefive" style="float: right;">more_horiz</i>
+              </a>
+              <ul id="dropdown2" class="dropdown-content">
+                <li><a href="<%= edit_post_path(p) %>" id="onefive">수정</a></li>
+                <li class="divider" tabindex="-1"></li>
+                <li><a href="<%= post_path(p) %>" id="onefive" data-method="delete">삭제</a></li>
+              </ul>
+            <% end %>
+          </div>
+            <div class="content_title">
+              <%= link_to "#{p.title.truncate(14)}", post_path(p), class: "onefive" %>
+            </div>
+            <div class="content_song">
+              <% if p.song_ids.present? %>
+                <%= Song.find(p.song_ids.first.to_i).title.truncate(18) %> - <%= Song.find(p.song_ids.first.to_i).singer.name %>
+                <% if p.song_ids.size > 2 %>
+                  외 <%= p.song_ids.size - 1 %>곡
+                <% end %>
+              <% end %>
+            </div>
+            <div class="content_subtitle">
+              <%= truncate(p.subtitle, :ommision => "...", :length => 50) %>
+            </div>
+            <div class="content_preview">
+              <%= truncate_html(p.content, length: 160, omission: '...') %>
+            </div>
+          </div>
+          <div class="card-action">
+            <div class="things things_flex">
+              <div class="things_comment">
+                <i class="tiny material-icons onefive">comment</i>
+              </div>
+              <div class="things_commentcount">
+                <%= p.comments.size %>
+              </div>
+              <div class="things_favorite">
+                <% if p.liked_users.include?(current_user) %>
+                  <i class="tiny material-icons onefive">bookmark</i>
+                <% else %>
+                  <i class="tiny material-icons onefive">bookmark_border</i>
+                <% end %>
+              </div>
+              <div class="things_favoritecount">
+                <%= p.likes.size %>
+              </div>
+                <span class="things_text">
+                  <%= time_ago_in_words p.created_at %> 전 · <a href="<%= profile_timeline_path(p.user) %>" id="card-align"><%= p.user.name %></a> 씀
+                </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+<% end %>
+<%= will_paginate @posts %>

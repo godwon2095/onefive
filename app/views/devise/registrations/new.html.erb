@@ -12,6 +12,9 @@
     <div class="field">
       <%= f.label :identity, '아이디' %><br />
       <%= f.text_field :identity, autofocus: false, autocomplete: "off" %>
+      <%= link_to  do %>
+        <button>중복체크</button>
+      <% end %>
     </div>
 
     <div class="field">
