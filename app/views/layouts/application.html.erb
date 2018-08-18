@@ -15,33 +15,24 @@
   <%= tinymce_assets %>
 </head>
 <body>
-
-  <ul id="slide-out" class="sidenav">
-    <li><div class="user-view">
-      <div class="background">
-        <!-- <img src="images/office.jpg"> -->
-      </div>
-      <!-- <a href="#user"><img class="circle" src="images/yuna.jpg"></a> -->
-      <a href="#name"><span class="white-text name">John Doe</span></a>
-      <a href="#email"><span class="white-text email">jdandturk@gmail.com</span></a>
-    </div></li>
-    <li><a href="#!"><i class="material-icons">cloud</i>First Link With Icon</a></li>
-    <li><a href="#!">Second Link</a></li>
-    <li><div class="divider"></div></li>
-    <li><a class="subheader">Subheader</a></li>
-    <li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
-  </ul>
-
   <nav>
     <!-- 네브바 시작 -->
-    <div class="nav-wrapper white">
+    <div class="nav-wrapper white navPage">
       <div class="logo onefive">
         <%= link_to '한 / 시 / 오 / 분', root_path, class: "brand-logo", id: :onefive %>
       </div>
+      <% if controller.controller_name == "posts" && controller.action_name == "index" %>
+        <div class="navCenterWrite onefive nav2">지금 이 글</div>
+      <% elsif controller.controller_name == "timelines" && controller.action_name == "index" %>
+        <div class="navCenterWrite onefive nav2">모아보기</div>
+      <% elsif controller.controller_name == "timelines" && controller.action_name == "saves" %>
+        <div class="navCenterWrite onefive nav2">담은 글</div>
+      <% end %>
+       <!-- 상황에 맞게 페이지 이름 뜨도록 설정해주세요  -->
+
       <ul class="right hide-on-med-and-down">
         <% if user_signed_in? %>
         <div class="p_icons">
-          <li><a href="<%= root_path %>"><i class="material-icons onefive">home</i></a></li>
           <!-- 검색기능 시작 -->
           <li><a class="modal-trigger" href="#modal1"><i class="material-icons onefive">search</i></a></li>
 
@@ -57,24 +48,17 @@
                 </ul>
              </div> <!-- 탭 끝 -->
              <div id="search3"> <!-- 세번째 세션시작. 검색목록 나열 -->
-               <div id="search_music"> <!-- 음악을 눌렀을 때 -->
-               <form action='<%= posts_path %>' method="GET">
-                  <span class="search_input"> <!--아이콘과 검색바 -->
-                    <!--아이콘-->
-                    <i class="large material-icons search_icon">search</i>
-                    <!--검색-->
-                    <div class="search_input_div"><input type="text" class="search_input_div_bar" name="search_music" ></div>
-                  </span>
-                </form>
-                 <div>
-                   <div id="search_music_img"><img  src="#" /></div>
-                   <div id="search_music_article">
-                     <div class="search_music_item music_item1">find music</div>
-                     <div class="search_music_item music-item2">잔나비</div>
-                     <div class="search_music_item music-item3">[MONKEY HOTEL]</div>
-                   </div>
+               <div id="search_music"><br> <!-- 음악을 눌렀을 때 -->
+                 <%= form_tag(search_post_posts_path, method: :get, remote: true) do %>
+                   <span class="search_input"> <!--아이콘과 검색바 -->
+                     <!--아이콘-->
+                     <i class="large material-icons search_icon">search</i>
+                     <!--검색-->
+                     <div class="search_input_div"><input type="text" class="search_input_div_bar" name="search_music" ></div>
+                   </span>
+                 <% end %>
+                 <div id="music-lists3">
                  </div>
-                 <div><hr id="search_hrTag"/> <!-- 구분선 --></div>
                </div> <!-- 음악을 눌렀을 때 끝 -->
                    <!-- 성원형. 위에 search_music 아이디를 반복해주면 됩니다.-->
               <div id="search_user"><br> <!-- 사용자를 눌렀을때 -->
@@ -105,10 +89,7 @@
             </div>
           </div>
             <!-- 검색기능 끝 -->
-
-          <li><a href="<%= timelines_path %>"><i class="material-icons onefive">explore</i></a></li>
-          <li><a href="#" class="dropdown-trigger" data-target='dropdown1'><i class="material-icons onefive">person</i></a></li>
-          <li><a href="#" class="sidenav-trigger" data-target='slide-out'><i class="material-icons onefive">menu</i></a></li>
+          <li><a href="#" id="navbarCssRight" data-target="slide-out" class="sidenav-trigger show-on-large onefive"><i class="material-icons">menu</i></a></li>
         </div>
         <% else %>
         <li><%= link_to '로그인', new_user_session_path, class: "onefive" %></li>
@@ -118,75 +99,65 @@
     </div>
     </div>
   </nav>
-  <% if user_signed_in? %>
-  <ul id='dropdown1' class='dropdown-content'>
-    <li><%= link_to '로그아웃', destroy_user_session_path, method: :delete, class: "indigo-text text-darken-4" %></li>
-    <li class="divider" tabindex="-1"></li>
-    <li><%= link_to '타임라인', profile_timeline_path(current_user), class: "indigo-text text-darken-4" %></li>
-    <li class="divider" tabindex="-1"></li>
-    <li><%= link_to '정보수정', edit_user_registration_path, class: "indigo-text text-darken-4" %></li>
-    <li class="divider" tabindex="-1"></li>
-    <li><%= link_to '알람', alarms_path, class: "indigo-text text-darken-4" %></li>
-    <li class="divider" tabindex="-1"></li>
-    <li><%= link_to '담은글', saves_timelines_path, class: "indigo-text text-darken-4" %></li>
-  </ul>
-  <% end %>
 
-    <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons right">menu</i></a>
-
-
-  <!-- <ul class="sidenav" id="mobile-demo">
-    <% if user_signed_in? %>
-    <li><div class="user-view">
-      <div class="background">
-        <img src="/download.png">
+  <!-- 오른쪽에서 나오는 navbar -->
+<% if user_signed_in? %>
+  <ul id="slide-out" class="sidenav">
+    <div class="sidenav_border"></div>
+      <div class="user-view">
+        <div class="sidenav_profileimg center">
+          <% if current_user.thumbnail.present? %>
+            <%= link_to image_tag(current_user.thumbnail, class: "z-depth-3 circle tl-size"), profile_timeline_path(current_user) %>
+          <% else %>
+            <img src="/people.jpg" class="tl-size circle">
+          <% end %>
+        </div>
+        <div class="sidenav_user_name center">
+          <%= link_to "#{current_user.name}", profile_timeline_path(current_user), class: :onefive %>
+        </div>
+        <div class="sidenav_user_subscribe center">
+          <a href="<%= subscribe_timeline_path(current_user) %>" class="onefive"><span id="followings-size"><%= current_user.followings.size %></span>명을 구독하고, <span id="followers-size"><%= current_user.followers.size %></span>명이 구독 중</a>
+        </div>
       </div>
-      <% if current_user.thumbnail.present? %>
-        <a href="#user"><%= image_tag(current_user.thumbnail, class: :circle) %></a>
-      <% else %>
-        <a href="#user"><img class="circle" src="/people.jpg"></a>
-      <% end %>
-      <a href="#email"><span class="white-text email"><%= current_user.email %></span></a>
-    <% end %>
-    </div></li>
-    <% if user_signed_in? %>
-    <li><a href="<%= edit_user_registration_path %>"><i class="material-icons">add_alert</i>알람</a></li>
-    <li><a href="<%= profile_timeline_path(current_user) %>"><i class="material-icons">perm_identity</i>타임라인</a></li>
-    <% end %>
-    <li><div class="divider"></div></li>
-    <li><a class="subheader">한/시/오/분</a></li>
-    <li ><a href="<%= root_path %>"><i class="material-icons">home</i></a></li>
-
-
-    <% if user_signed_in? %>
-      <li><a class="modal-trigger" href="#modal2"><i class="material-icons">search</i></a></li>
-      <div id="modal2" class="modal">
-       <div class="modal-content">
-         <h4><div class="search_gamrom">검색하게따</div></h4>
-         <form action='posts' method="GET">
-           <label>제목을 검색해보세염ㅇㅅㅇ</label>
-           <input type="text" name="search">
-           <input type="submit">
-         </form>
-       </div>
-
-
-
-      <li><a href="#"><i class="material-icons">library_music</i></a></li>
-      <li><%= link_to '로그아웃', destroy_user_session_path, method: :delete %></li>
-      <li><%= link_to '정보수정', edit_user_registration_path %></li>
-    <% else %>
-      <li><%= link_to '로그인', new_user_session_path %></li>
-      <li><%= link_to '회원가입', new_user_registration_path %></li>
-    <% end %>
-  </ul> -->
-
-
+      <div class="sidenav_links center">
+        <div class="sidenav_links_one"><%= link_to '모아보기', timelines_path, class: :onefive %></div><!-- 구독 주소 넣어주세요 -->
+        <div class="sidenav_links_one"><%= link_to '지금 이 글', root_path, class: :onefive %></div><!-- 지금 이 글 주소 넣어주세요 -->
+        <div class="sidenav_links_one"><%= link_to '담은 글', saves_timelines_path, class: :onefive %></div><!-- 담은 글 주소 넣어주세요 -->
+        <div class="sidenav_links_one"><%= link_to '로그아웃', destroy_user_session_path, method: :delete, class: :onefive %></div>
+        <div class="sidenav_links_one"><%= link_to '정보수정', edit_user_registration_path, class: :onefive %></div>
+      </div>
+      <div class="sidenav_notice_title center">
+        <%= link_to '소식', alarms_path, class: :onefive %>(<%= current_user.alarms.size %>)
+      </div>
+      <div class="sidenav_line">
+        <hr width="200px" align="center" color="#8b8b8b" size="1">
+      </div>
+      <div>
+        <% if current_user.alarms.present? %>
+          <% current_user.alarms.each do |alarm| %>
+            <% if alarm.like? %>
+              <a class="onefive" href="<%= post_path(alarm.findable_id) %>">소식 : [ <%= alarm.content %> ] 님이 회원님의 글을 저장 하셨습니다.</a> | <%= link_to '삭제', alarm_path(alarm), method: :delete, remote: true %><br><hr>
+            <% elsif alarm.comment? %>
+              <a class="onefive" href="<%= post_path(alarm.findable_id) %>">소식 : [ <%= alarm.content %> ] 님이 회원님의 글에 댓글을 다셨습니다.</a> | <%= link_to '삭제', alarm_path(alarm), method: :delete, remote: true %><br><hr>
+            <% elsif alarm.tag? %>
+              <a class="onefive" href="<%= post_path(alarm.findable_id) %>">소식 : [ <%= alarm.content %> ] 님이 회원님을 태그하셨습니다.</a> | <%= link_to '삭제', alarm_path(alarm), method: :delete, remote: true %><br><hr>
+            <% else %>
+              <a class="onefive" href="<%= profile_timeline_path(alarm.findable_id) %>">소식 : [ <%= alarm.content %> ] 님의 글을 담았습니다.</a> | <%= link_to '삭제', alarm_path(alarm), method: :delete, remote: true %><br><hr>
+            <% end %>
+          <% end %>
+        <% end %>
+        <!--소식넣어주세요(은식이가 댓글 짠 레이아웃 그대로 긁어올 예정-->
+      </div>
+  </ul>
+<% end %>
+<!-- 오른쪽에서 나오는 navbar 끝 -->
   <%= yield %>
 
   <script>
       $(document).ready(function(){
-      $('.sidenav').sidenav();
+      $('.sidenav').sidenav({
+        edge: 'right'
+      });
     });
       $('.dropdown-trigger').dropdown();
       $(document).ready(function(){

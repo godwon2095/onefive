@@ -5,10 +5,12 @@ Rails.application.routes.draw do
     resources :comments, only: [:create, :destroy], defaults: { format: 'js' }
     collection do
       get :search, defaults: { format: 'js' }
+      get :search_post, defaults: { format: 'js' }
     end
     member do
       get :autoinit, defaults: { format: 'js' }
       get :cancel, defaults: { format: 'js' }
+      get :by_song
     end
   end
   resources :timelines, only: [:index] do
@@ -30,6 +32,7 @@ Rails.application.routes.draw do
 
   post '/tinymce_assets' => 'tinymce_assets#create'
   get '/copyurl/:id' => 'copys#copy', defaults: { format: 'js' }, :as => '/copyurl'
+  get '/timelines/tag/:name' => 'timelines#tag'
 
   devise_for :users
   devise_for :admin_users, ActiveAdmin::Devise.config

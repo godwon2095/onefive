@@ -1,0 +1,290 @@
+//showPage의 css
+#showPage {
+  display:flex;
+  flex-direction: column;
+  margin-top: 70px;
+  margin-left: auto;
+  margin-right: auto;
+  justify-content: center;
+  align-items: center;
+}
+
+//showPage1의 CSS
+#showPage1 {
+  display:flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+  width: 826px;
+}
+
+#showTitleImg {
+  width: 320px;
+  height: 320px;
+}
+
+#showTitle {
+  font-family: 'NotoSerifKR';
+  color: black;
+  font-size: 44pt;
+  font-weight: Bold;
+}
+
+
+#showContentUp {
+  font-family: 'Noto Sans KR';
+  color: #565656;
+  font-size: 19pt;
+  font-weight: lighter;
+  margin-top:20px;
+}
+
+#showUserImg {
+  width: 62px;
+  height: 62px;
+}
+
+#showUserName {
+  font-size: 16pt;
+  font-family: 'NotoSerifKR';
+  color: black;
+}
+
+#showUseroneWrite {
+  font-size: 12pt;
+  font-family: 'Noto Sans KR';
+  color: black;
+}
+
+.showFollow {
+  color: black !important;
+  font-size: 12pt !important;
+  text-decoration: none !important;
+  border-radius: 8px;
+  border: 1px solid #7a7a7a;
+}
+
+.showProfileContent {
+  display: inline-block;
+}
+
+.showProfile {
+  display: flex;
+  flex-direction: row;
+  line-height: 16px;
+  align-items: flex-end;
+}
+
+#showProfileWithWrite {
+  height: 38px;
+  margin-left: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+#showProfileAll {
+  width: 500px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  margin-top: 10px;
+}
+
+#titleWithoutImg {
+  width: 500px;
+  display: flex;
+  flex-direction: column;
+
+}
+
+//showLine의 코드
+#showLine {
+  width: 650px;
+  margin-top: 70px;
+  height: 1px;
+  border: none;
+  background-color: #0b1d7b;
+}
+
+#showLine2 {
+  width: 650px;
+  margin-top: 40px;
+  height: 1px;
+  border: none;
+  background-color: #0b1d7b;
+}
+
+#showLine3 {
+  width: 530px;
+  margin-top: 20px;
+  height: 1px;
+  border: none;
+  background-color: #8b8b8b;
+}
+
+//showPage2의 코드
+
+// .card {
+//   width: 690px;
+//   margin-top: 80px !important;
+// }
+//
+// .card-content {
+//   padding-top: 7.5px !important;
+//   padding-bottom: 7.5px !important;
+//   padding-left:15px !important;
+//   padding-right:15px !important;
+//   height: 70px !important;
+//   vertical-align: middle !important;
+// }
+
+#cardElement1 {
+  width: 50px;
+  height: 50px;
+  margin-left:15px;
+}
+
+#cardElement2 {
+  margin-left: 40px;
+  color: #0b1d7b;
+  font-family: 'Noto Sans KR';
+  font-size: 20pt;
+  font-weight: bold;
+}
+
+#cardElement3 {
+  margin-left: auto;
+  color: #0b1d7b;
+}
+
+#cardFlex {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+#showContent {
+  padding: 0 18px;
+  background-color: white;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+  width: 690px;
+  margin-top: 70px;
+  color: black;
+  font-family: 'NotoSerifKR';
+  font-size: 21pt;
+}
+
+#showIcon {
+  width: 650px;
+  margin-top: 20px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.Icon1 {
+
+}
+
+.Icon2 {
+
+}
+
+.Icon3 {
+  margin-right: 30px;
+  margin-bottom: 30px;
+}
+
+//showPage3에 대한 css\
+#secondShowPage{
+  background-color: #fbfbfb;
+  margin-right: 13px;
+}
+
+#showPage3 {
+  display: flex;
+  flex-direction: column;
+  margin-left: auto;
+  margin-right: auto;
+  align-items: center;
+}
+
+
+#showImageComment {
+  width: 50px;
+  height: 50px;
+}
+
+#showCommentName {
+  font-size: 16pt;
+  color: black;
+  font-family: 'Noto Sans KR';
+  line-height: 16pt;
+}
+
+#showCommenttime {
+  font-size: 10pt;
+  color: #585858;
+  font-family: 'Noto Sans KR';
+  font-weight: lighter;
+  line-height: 10pt;
+}
+
+#showCommentProfile {
+  display: flex;
+  flex-direction: row;
+  width: 650px;
+}
+
+#showCommentContent {
+  margin-top: 15px;
+  font-size: 16pt;
+  color: black;
+  font-family: 'Noto Sans KR';
+  line-height: 16pt;
+  font-weight: lighter;
+  width: 480px;
+}
+
+#showCommentWrite {
+  display: flex;
+  width: 650px;
+  flex-direction: row;
+}
+
+#showCommentStyle {
+  margin-left: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.showCommentTextarea {
+  margin-left: 20px;
+  margin-top: 1rem;
+  resize: none;
+  border: 1px solid #7a7a7a;
+  padding: 10px 20px 10px 20px;
+  width: 493px !important;
+  height: 100px !important;
+  outline: none;
+
+}
+
+#realContent {
+  padding: 0 18px;
+  width: 690px;
+  margin-top: 70px;
+  color: black;
+  font-family: 'NotoSerifKR';
+  font-size: 21pt;
+}
+
+#delete-margin {
+  margin-left: 520px;
+}

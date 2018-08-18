@@ -1,7 +1,7 @@
 <% if current_user.is_follower?(@user) %>
-  $('#follow').text("구독 취소");
+  $('#follow').text("구독취소");
 <% else %>
-  $('#follow').text("구독 하기");
+  $('#follow').text("구독하기");
 <% end %>
-  $('#followers-size').text("<%= @user.followers.size %>");
-  $('#followings-size').text("<%= @user.followings.size %>");
+$('#followings-length').text("<%= @user.followings.size %>");
+$('#followers-length').text("<%= @user.followers.size %>");

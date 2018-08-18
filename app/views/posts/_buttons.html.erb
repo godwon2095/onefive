@@ -1,11 +1,4 @@
-<div class="icon-size">
-<!-- 링크 복사 기능 -->
-    <a href="<%= copyurl_path(@post) %>" class="clipboard-btn" data-clipboard-action="copy" data-clipboard-target="#copy-<%= @post.id %>" data-remote="true" onclick="M.toast({html: '링크가 복사되었습니다.'})"><i class="material-icons right black-text">timeline</i></a>
-<!-- 댓글 수 -->
-    <p class="right" id="comment-size"><%= @post.comments.size %></p><i class="material-icons right">sms</i>
-
 <!-- 저장 기능 -->
-    <p class="right" id="like_size"><%= @post.likes.size %></p>
     <span id='like_toggle'>
       <% if user_signed_in? && current_user.is_like?(@post) %>
           <%= link_to 'bookmark', post_like_path(@post), method: :post, class: "material-icons right black-text", id: "like_default", remote: true %>
@@ -13,4 +6,8 @@
           <%= link_to 'bookmark_border', post_like_path(@post), method: :post, class: "material-icons right black-text", id: "like_default" ,remote: true%>
       <% end %>
     </span>
-<br>
+    <p id="like_size"><%= @post.likes.size %></p>
+<!-- 댓글 수 -->
+    <i class="material-icons right">sms</i><p id="comment-size"><%= @post.comments.size %></p>
+<!-- 링크 복사 기능 -->
+    <a href="<%= copyurl_path(@post) %>" class="clipboard-btn" data-clipboard-action="copy" data-clipboard-target="#copy-<%= @post.id %>" data-remote="true" onclick="M.toast({html: '링크가 복사되었습니다.'})"><i class="material-icons right black-text">share</i></a>

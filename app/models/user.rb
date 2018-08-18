@@ -25,6 +25,9 @@ class User < ActiveRecord::Base
   has_many :following_relations, foreign_key: "follower_id", class_name: "Follow"
   has_many :followings, through: :following_relations, source: :followed
 
+  #태그
+  has_one :tag
+
   mount_uploader :thumbnail, ImageUploader
 
   def development?
