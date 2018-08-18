@@ -12,10 +12,10 @@ ActiveAdmin.register Post do
   end
   column :title
   column :user
-  column :created_at
-  column :updated_at
+  column '좋아요 수' do |post|
+    post.likes.size
 
-  actions
+  end
   end
 
   end
@@ -31,4 +31,3 @@ ActiveAdmin.register Post do
 #   permitted = [:permitted, :attributes]
 #   permitted << :other if params[:action] == 'create' && current_user.admin?
 #   permitted
-# end

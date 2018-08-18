@@ -11,8 +11,11 @@ ActiveAdmin.register User do
     end
     column :email
     column :name
-    column :created_at
-    column :updated_at
+    column :sign_in_count
+    column '게시물 수' do |user|
+      user.posts.size
+    end
+
 
     actions
   end
