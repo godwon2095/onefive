@@ -8,4 +8,18 @@ module PostsHelper
 
     content.gsub(/@\w+/){|word| link_to word, "/timelines/tag/#{word.delete('@')}", class: "chip"}.html_safe
   end
+
+
+  
+  # def hashtag(content)
+  #   content_ary = content.split("@").split(" ")
+  #
+  #   content_ary.each do |content|
+  #     if Tag.find_by_name(content)
+  #       link_to(content, "/timelines/tag/#{word.delete('@')}", class: "chip").html_safe
+  #     else
+  #
+  #     end
+  #   end
+  # end
 end

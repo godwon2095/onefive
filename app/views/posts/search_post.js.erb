@@ -1,4 +1,3 @@
-console.log("hello");
 $('#music-lists3').empty();
 $('#music-lists3').append('<% @musics.each do |m| %>'+
                           '<div id="search_music_img">'+'<%= image_tag(m.image, height: '50', width: '50') %>'+'</div>'+
@@ -9,3 +8,10 @@ $('#music-lists3').append('<% @musics.each do |m| %>'+
                           '</div>'+
                           '<div><hr id="search_hrTag"/> <!-- 구분선 --></div>'+
                          '<% end %>');
+
+// $('#music-lists3').append('<%= j render partial: "musics" %>');
+// <% if @posts.next_page %>
+//  $('.pagination').replaceWith('<%= j will_paginate(@posts) %>');
+// <% else %>
+//  $('.pagination').remove();
+// <% end %>
