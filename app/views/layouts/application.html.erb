@@ -58,6 +58,14 @@
              </div> <!-- 탭 끝 -->
              <div id="search3"> <!-- 세번째 세션시작. 검색목록 나열 -->
                <div id="search_music"> <!-- 음악을 눌렀을 때 -->
+               <form action='<%= posts_path %>' method="GET">
+                  <span class="search_input"> <!--아이콘과 검색바 -->
+                    <!--아이콘-->
+                    <i class="large material-icons search_icon">search</i>
+                    <!--검색-->
+                    <div class="search_input_div"><input type="text" class="search_input_div_bar" name="search_music" ></div>
+                  </span>
+                </form>
                  <div>
                    <div id="search_music_img"><img  src="#" /></div>
                    <div id="search_music_article">
