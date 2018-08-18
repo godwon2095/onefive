@@ -19,10 +19,10 @@ class PostsController < ApplicationController
 
   def search
     if params[:search_music]
-      @musics = Song.search(params[:search_music])
+      @musics = Song.search(params[:search_music]).paginate(:page => params[:page], :per_page => 100)
       @check_params = params[:search_music]
     elsif params[:search_singer]
-      @musics = Song.find_songs(Singer.search(params[:search_singer]))
+      @musics = Song.find_songs(Singer.search(params[:search_singer])).paginate(:page => params[:page], :per_page => 100)
     end
 
     respond_to do |format|
