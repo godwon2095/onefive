@@ -10,5 +10,5 @@
 # end
 # 50.times do Post.create(user_id: 1, title: "hello", subtitle: "hello2", content: "wawafsdfdsfdsfs")
 # # end
-# Singer.generate_singers
-# Song.generate_songs
+Singer.generate_singers
+Song.generate_songs

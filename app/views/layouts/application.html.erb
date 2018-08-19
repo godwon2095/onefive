@@ -15,6 +15,7 @@
   <%= tinymce_assets %>
 </head>
 <body>
+
   <nav>
     <!-- 네브바 시작 -->
     <div class="nav-wrapper white navPage">
@@ -99,6 +100,14 @@
     </div>
     </div>
   </nav>
+
+  <% flash.each do |message_type, message| %>
+    <script type="text/javascript">
+      var toastHTML= "<%= message %>"
+      M.toast({html: toastHTML});
+    </script>
+    <!-- <%= message %> -->
+  <% end %>
 
   <!-- 오른쪽에서 나오는 navbar -->
 <% if user_signed_in? %>
