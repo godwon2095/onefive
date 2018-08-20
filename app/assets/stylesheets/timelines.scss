@@ -1,3 +1,133 @@
 // Place all the styles related to the timelines controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.profileimage>img{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.profileimage{
+	margin-top: 120px;
+	margin-bottom: 30px;
+}
+
+.user_name{
+  font-size: 32pt;
+  color: #0b1d7b;
+	text-align: center;
+	font-weight: bold;
+	margin-bottom: 5px;
+}
+
+.user_subscribe{
+	font-size: 14pt;
+	color: #0b1d7b;
+	text-align: center;
+	font-weight: lighter;
+}
+
+.user_status{
+	font-size: 16pt;
+	font-style: italic;
+	color: #0b1d7b;
+	text-align: center;
+	margin-top: 15px;
+	margin-bottom: 40px;
+}
+
+.line{
+	margin-bottom: 40px;
+}
+
+.p_content{
+  width: 866px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 128px;
+}
+
+.card_top{
+  height: 25px;
+  margin-top: 10px;
+  margin-bottom: 5px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.content_title{
+  font-size: 33pt;
+  font-weight: bold;
+  color: #0b1d7b;
+  margin-bottom: 6px;
+  font-family: 'Noto Sans', sans-serif;
+}
+
+.content_song{
+  font-size: 18pt;
+  font-style: italic;
+  color: #0b1d7b;
+  margin-top: 9px;
+  margin-bottom: 10px;
+  font-family: 'Noto Sans', sans-serif;
+}
+
+.content_subtitle{
+  font-size: 15pt;
+  color: #0b1d7b;
+  margin-top: 13px;
+  margin-bottom: 13px;
+  line-height: 18pt;
+  font-weight: lighter;
+  font-family: 'Noto Sans', sans-serif;
+}
+
+.content_preview{
+  font-size: 12pt;
+  color: #1f1f1f;
+  font-style: italic;
+  line-height: 14pt;
+  font-family: 'Noto Serif', serif;
+}
+
+.card-content{
+  padding:0px 30px 15px 30px !important;
+}
+
+.card-action{
+  background-color: #f3f3f3 !important;
+  color: #0b1d7b !important;
+  height: 40px;
+  padding: 0px !important;
+  border: 0px !important;
+}
+
+.things{
+  padding: 12px 30px 8px 30px;
+  display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	align-items: flex-start;
+}
+
+.things_commentcount{
+  margin-left: 10px;
+  margin-right: 20px;
+  font-size: 12pt;
+  margin-top: 2px;
+}
+
+.things_favoritecount{
+  margin-left: 10px;
+  font-size: 12pt;
+  margin-top: 2px;
+}
+
+.things_empty{
+  width:275px;
+}
+
+.things_text{
+  font-size: 10pt !important;
+  margin-top: 3px;
+}

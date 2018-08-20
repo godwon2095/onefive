@@ -1,6 +1,4 @@
 class Post < ActiveRecord::Base
-  # after_create :generate_alarms
-
   belongs_to :user
 
   #댓글
@@ -15,16 +13,17 @@ class Post < ActiveRecord::Base
   serialize :post_images, JSON # if we user sqlite3
   serialize :song_ids, Array # if we user sqlite3
 
-  # Post.search([object HTMLSpanElement][object HTMLSpanElement][object HTMLSpanElement] [object HTMLSpanElement][object HTMLSpanElement])
   def self.search(query)
       self.where("title || content LIKE ?","%#{query}%")
   end
-  #
-  # def generate_alarms
-  #   if self.user.followers.present?
-  #     self.user.followers.each do |follower|
-  #       Alarm.create(user_id: follower.id, content: self.user.name, findable_id: self.id, is_read: false, alarm_type: "post")
-  #     end
-  #   end
-  # end
+
+  def include_song?(params)
+    self.song_ids.map do |song_id|
+      if song_id == params
+        return true
+      end
+    end
+    
+    return false
+  end
 end
