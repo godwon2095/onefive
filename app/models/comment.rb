@@ -4,26 +4,7 @@ class Comment < ActiveRecord::Base
 
   #유저 태그 기능
   after_create do
-    # hashtags = self.content.scan(/@\w+/)
-    # hashtags.uniq.map do |hashtag|
-    #   if User.find_by(name: hashtag.delete('@')).present?
-    #     user = User.find_by(name: hashtag.delete('@'))
-    #     tag = Tag.find_by(name: hashtag.delete('@'),
-    #                       user_id: user.id,
-    #                       comment_id: self.id)
-    #     if tag.nil?
-    #       Tag.create(name: hashtag.delete('@'),
-    #                  user_id: user.id,
-    #                  comment_id: self.id)
-    #     else
-    #       tag.update(name: hashtag.delete('@'),
-    #                  user_id: user.id,
-    #                  comment_id: self.id)
-    #     end
-    #   end
-    # end
-
-    hashtags = content.scan(/@\w+/)
+    hashtags = self.content.scan(/@\w+/)
     hashtags.uniq.map do |hashtag|
       if User.find_by(name: hashtag.delete('@')).present?
         user = User.find_by(name: hashtag.delete('@'))
@@ -41,17 +22,6 @@ class Comment < ActiveRecord::Base
         end
       end
     end
-    result_ary = []
-    text_arys = content.split(" ")
-    text_arys.each do |text|
-      if hashtags.include? text
-        result_ary << {tag: text}
-      else
-        result_ary << {text: text}
-      end
-    end
-    self.update_attributes(content: result_ary)
-
   end
 
   belongs_to :user
@@ -59,38 +29,6 @@ class Comment < ActiveRecord::Base
 
   has_many :tags
   has_many :subcomments, dependent: :destroy
-
-
-  def auto_hash
-    hashtags = content.scan(/@\w+/)
-    hashtags.uniq.map do |hashtag|
-      if User.find_by(name: hashtag.delete('@')).present?
-        user = User.find_by(name: hashtag.delete('@'))
-        tag = Tag.find_by(name: hashtag.delete('@'),
-                          user_id: user.id,
-                          comment_id: self.id)
-        if tag.nil?
-          Tag.create(name: hashtag.delete('@'),
-                     user_id: user.id,
-                     comment_id: self.id)
-        else
-          tag.update(name: hashtag.delete('@'),
-                     user_id: user.id,
-                     comment_id: self.id)
-        end
-      end
-    end
-    result_ary = []
-    text_arys = content.split(" ")
-    text_arys.each do |text|
-      if hashtags.include? text
-        result_ary << {tag: text}
-      else
-        result_ary << {text: text}
-      end
-    end
-    self.update_column(content: result_ary)
-  end
 
   def generate_alarm
     if self.post.user != self.user

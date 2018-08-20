@@ -21,13 +21,7 @@
     </div>
   </div>
   <div id="showCommentContent" class="pre-line">
-    <% comment.content.each do |hash| %>
-      <% if hash.key? "tag" %>
-        <%= link_to hash["tag"].strip, "/timelines/tag/#{hash["tag"]}", class: "chip" %>
-      <% else %>
-        <%= hash["text"] %>
-      <% end %>
-    <% end %>
+    <%= render_with_hashtags(comment.content) %>
   </div>
   <div><hr id="showLine3"/></div>
 
