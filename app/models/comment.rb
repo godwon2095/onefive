@@ -58,6 +58,7 @@ class Comment < ActiveRecord::Base
   belongs_to :post
 
   has_many :tags
+  has_many :subcomments, dependent: :destroy
 
 
   def auto_hash

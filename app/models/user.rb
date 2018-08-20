@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   before_save :skip_confirmation!, if: :development?
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -11,6 +12,9 @@ class User < ActiveRecord::Base
 
   #댓글
   has_many :comments
+
+  #대댓글
+  has_many :subcomments
 
   #알람
   has_many :alarms
@@ -49,5 +53,9 @@ class User < ActiveRecord::Base
 
   def self.find_posts
     Post.where(user_id: self.ids)
+  end
+
+  def make_toast
+
   end
 end

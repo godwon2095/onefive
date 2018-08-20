@@ -4,6 +4,7 @@ class Tag < ActiveRecord::Base
 
   belongs_to :user
   belongs_to :comment
+  belongs_to :subcomment
 
   def generate_alarm
     if self.user.tag_on == true

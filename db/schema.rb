@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180815102459) do
+ActiveRecord::Schema.define(version: 20180820154707) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace"
@@ -64,8 +64,9 @@ ActiveRecord::Schema.define(version: 20180815102459) do
     t.integer  "post_id"
     t.text     "content"
     t.string   "image"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.boolean  "is_first?",  default: true
   end
 
   create_table "follows", force: :cascade do |t|
@@ -116,19 +117,33 @@ ActiveRecord::Schema.define(version: 20180815102459) do
   add_index "songs", ["title", "singer_id", "album", "image"], name: "index_songs_on_title_and_singer_id_and_album_and_image", unique: true
   add_index "songs", ["title"], name: "index_songs_on_title"
 
+  create_table "subcomments", force: :cascade do |t|
+    t.text     "content"
+    t.integer  "user_id"
+    t.integer  "post_id"
+    t.integer  "comment_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "subcomments", ["comment_id"], name: "index_subcomments_on_comment_id"
+  add_index "subcomments", ["post_id"], name: "index_subcomments_on_post_id"
+  add_index "subcomments", ["user_id"], name: "index_subcomments_on_user_id"
+
   create_table "tags", force: :cascade do |t|
     t.string   "name"
     t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
     t.integer  "comment_id"
+    t.integer  "subcomment_id"
   end
 
   add_index "tags", ["comment_id"], name: "index_tags_on_comment_id"
+  add_index "tags", ["subcomment_id"], name: "index_tags_on_subcomment_id"
   add_index "tags", ["user_id"], name: "index_tags_on_user_id"
 
   create_table "users", force: :cascade do |t|
-    t.string   "name"
     t.string   "thumbnail"
     t.text     "information"
     t.string   "phonenumber"
@@ -151,15 +166,18 @@ ActiveRecord::Schema.define(version: 20180815102459) do
     t.datetime "locked_at"
     t.datetime "created_at",                            null: false
     t.datetime "updated_at",                            null: false
-    t.string   "identity"
     t.boolean  "comment_on",             default: true
     t.boolean  "follow_on",              default: true
     t.boolean  "like_on",                default: true
     t.boolean  "tag_on",                 default: true
+    t.string   "identity"
+    t.string   "name"
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
   add_index "users", ["email"], name: "index_users_on_email", unique: true
+  add_index "users", ["identity"], name: "index_users_on_identity", unique: true
+  add_index "users", ["name"], name: "index_users_on_name", unique: true
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
 
 end

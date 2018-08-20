@@ -15,6 +15,7 @@
         <%= time_ago_in_words comment.created_at %> 전<br>
         <% if user_signed_in? && comment.user.id == current_user.id %>
           <%= link_to '삭제', post_comment_path(@post, comment), method: :delete, class: "onefive", id: "delete-margin", remote: true %>
+          <%= link_to "대댓글(#{comment.subcomments.size})", "#", class: "onefive", id: "#{comment.id}-subcomment-gen1", remote: true %>
         <% end %>
       </div>
     </div>
@@ -29,4 +30,99 @@
     <% end %>
   </div>
   <div><hr id="showLine3"/></div>
+
+  <% if comment.subcomments.present? %>
+    <div id="<%= comment.id %>-subcomments" style=display:none;>
+      <div id="postsubcomments-<%= comment.id %>">
+        <% comment.subcomments.each do |subcomment| %>
+          <%= render subcomment %>
+        <% end %>
+      </div>
+
+      <div id="showCommentWrite">
+        <div>
+          <% if current_user.thumbnail.present? %>
+            <i class="material-icons grey-text">subdirectory_arrow_right</i><%= image_tag(current_user.thumbnail, id: "subcommentImage") %>
+          <% else %>
+            <i class="material-icons grey-text">subdirectory_arrow_right</i><img src="/people.jpg" id="subcommentImage">
+          <% end %>
+        </div>
+        <!--  대댓글작성기능 -->
+        <%= form_for(@subcomment, url: subcomments_path, remote: true) do |f| %>
+          <div class="input-field">
+            <%= f.text_area :content, class: "SubommentTextarea #{comment.id}-sub", placeholder: "대댓글쓰기...", required: true, id: "subcomment-content-#{comment.id}" %>
+            <%= f.hidden_field :post_id, value: "#{comment.post.id}" %>
+            <%= f.hidden_field :comment_id, value: "#{comment.id}" %>
+          </div>
+          <div class="input-field">
+            <%= f.submit "대댓글 쓰기", class: "btn indigo darken-4 right" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  <% elsif comment.subcomments.empty? == true && comment.is_first? == false %>
+    <div id="<%= comment.id %>-subcomments" style=display:none;>
+      <div id="postsubcomments-<%= comment.id %>">
+      </div>
+      <!--  대댓글작성기능 -->
+      <div id="showCommentWrite">
+        <div>
+          <% if current_user.thumbnail.present? %>
+            <i class="material-icons grey-text">subdirectory_arrow_right</i><%= image_tag(current_user.thumbnail, id: "subcommentImage") %>
+          <% else %>
+            <i class="material-icons grey-text">subdirectory_arrow_right</i><img src="/people.jpg" id="subcommentImage">
+          <% end %>
+        </div>
+        <%= form_for(@subcomment, url: subcomments_path, remote: true) do |f| %>
+          <div class="input-field">
+            <%= f.text_area :content, class: "SubommentTextarea #{comment.id}-sub", placeholder: "대댓글쓰기...", required: true, id: "subcomment-content-#{comment.id}" %>
+            <%= f.hidden_field :post_id, value: "#{comment.post.id}" %>
+            <%= f.hidden_field :comment_id, value: "#{comment.id}" %>
+          </div>
+          <div class="input-field">
+            <%= f.submit "대댓글 쓰기", class: "btn indigo darken-4 right" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
 </div>
+
+<script>
+$("#<%= comment.id %>-subcomment-gen1").on("click", function(){
+  $("#<%= comment.id %>-subcomments").toggle();
+});
+
+$(document).ready(function(){
+  var clipboard = new Clipboard('.clipboard-btn');
+});
+
+$('.SubommentTextarea.<%= comment.id %>-sub').keypress(function (e) {
+ var key = e.which;
+ if(key == 13 && !e.shiftKey)  // the enter key code
+  {
+    $('input').click();
+    $('#comment_content').val('');
+    // e.preventDefault();
+    return false;
+  }
+});
+</script>
+
+<style>
+#subcommentImage {
+  width: 40px;
+  height: 40px;
+}
+
+.SubommentTextarea {
+  margin-left: 20px;
+  margin-top: 1rem;
+  resize: none;
+  border: 1px solid #7a7a7a;
+  padding: 10px 20px 10px 20px;
+  width: 493px !important;
+  height: 70px !important;
+  outline: none;
+}
+</style>
