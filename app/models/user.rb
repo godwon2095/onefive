@@ -13,6 +13,9 @@ class User < ActiveRecord::Base
   #댓글
   has_many :comments
 
+  #대댓글
+  has_many :subcomments
+
   #알람
   has_many :alarms
 

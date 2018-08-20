@@ -1,4 +1,3 @@
-console.log("seongwon");
 $('#comment_content').val("");
-$('#comment-size').text("<%= @post.comments.size %>");
+$('#comment-size').text("<%= @post.comments.size + @post.subcomments.size %>");
 $('#postcomment').append("<%= j(render(@new_comment)) %>")

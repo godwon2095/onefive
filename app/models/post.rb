@@ -4,6 +4,9 @@ class Post < ActiveRecord::Base
   #댓글
   has_many :comments
 
+  #대댓글
+  has_many :subcomments
+
   #좋아요
   has_many :likes
   has_many :liked_users, through: :likes, source: :user
@@ -23,7 +26,7 @@ class Post < ActiveRecord::Base
         return true
       end
     end
-    
+
     return false
   end
 end

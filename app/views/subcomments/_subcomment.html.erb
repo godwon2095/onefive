@@ -1,0 +1,73 @@
+<div class="<%= subcomment.id %>-subcomment-all">
+  <div id="subcommentProfile">
+    <div>
+      <% if subcomment.user.thumbnail.present? %>
+        <i class="material-icons grey-text">subdirectory_arrow_right</i><%= image_tag(subcomment.user.thumbnail, id: "subcommentImage") %>
+      <% else %>
+        <i class="material-icons grey-text"><img src="/people.jpg" id="showImageComment">
+      <% end %>
+    </div>
+    <div id="showSubcomment">
+      <div id="SubcommentName">
+        <%= link_to "#{subcomment.user.name}", profile_timeline_path(subcomment.user), class: "black-text" %>
+      </div>
+      <div id="showCommenttime">
+        <%= time_ago_in_words subcomment.created_at %> 전<br>
+        <% if user_signed_in? && subcomment.user.id == current_user.id %>
+          <%= link_to '삭제', subcomment_path(subcomment), method: :delete, class: "onefive delete-margin", id: "sub-delete-#{subcomment.id}", remote: true %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div id="SubcommentContent" class="pre-line">
+    <%= render_with_hashtags(subcomment.content) %>
+  </div>
+  <div><hr id="showLine3"/></div>
+</div>
+
+<style>
+  #subcommentProfile {
+    display: flex;
+    flex-direction: row;
+    width: 650px;
+  }
+
+  #subcommentImage {
+    width: 40px;
+    height: 40px;
+  }
+
+  #showSubcomment {
+    margin-left: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+  }
+
+  #SubcommentName {
+    font-size: 14pt;
+    color: grey;
+    font-family: 'Noto Sans KR';
+    line-height: 16pt;
+  }
+
+  #sub-delete {
+    margin-left: 505px;
+  }
+
+  #SubcommentContent {
+    margin-top: 15px;
+    margin-left: 20px;
+    font-size: 13pt;
+    color: black;
+    font-family: 'Noto Sans KR';
+    line-height: 16pt;
+    font-weight: lighter;
+    width: 480px;
+  }
+
+  .delete-margin {
+    margin-left: 520px;
+  }
+</style>

@@ -83,6 +83,7 @@ class PostsController < ApplicationController
 
   def show
     @comment = Comment.new
+    @subcomment = Subcomment.new
     @post.view_count += 1
     @post.save
     @user = @post.user

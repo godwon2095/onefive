@@ -1,0 +1,4 @@
+$('#subcomment-content-<%= @comment.id %>').val("");
+$('#comment-size').text("<%= @post.comments.size + @post.subcomments.size %>");
+$('#<%= @comment.id %>-subcomment-gen1').text("대댓글(<%= @comment.subcomments.size %>)");
+$('#postsubcomments-<%= @comment.id %>').append("<%= j(render(@subcomment)) %>")
