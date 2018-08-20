@@ -10,6 +10,8 @@ class CommentsController < ApplicationController
             if @new_comment.save
                 @post = @new_comment.post
                 format.js
+                length2 = Comment.last.id
+                Comment.find(length2).update(is_first?: false)
             else
                 format.html{ redirect_to :back,
                              notice: "오류가 발생했습니다." }

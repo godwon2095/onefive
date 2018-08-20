@@ -54,8 +54,7 @@
         <% end %>
       </div>
     </div>
-  <% else %>
-
+  <% elsif comment.subcomments.empty? == true && comment.is_first? == false %>
     <div id="<%= comment.id %>-subcomments" style=display:none;>
       <div id="postsubcomments-<%= comment.id %>">
       </div>
@@ -78,11 +77,9 @@
             <%= f.submit "대댓글 쓰기", class: "btn indigo darken-4 right" %>
           </div>
         <% end %>
+      </div>
     </div>
   <% end %>
-
-<!-- 여기까지 -->
-
 </div>
 
 <script>

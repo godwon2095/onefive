@@ -27,7 +27,7 @@ class Comment < ActiveRecord::Base
   belongs_to :post
 
   has_many :tags
-  has_many :subcomments
+  has_many :subcomments, dependent: :destroy
 
   def generate_alarm
     if self.post.user != self.user

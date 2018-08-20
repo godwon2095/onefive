@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180819141146) do
+ActiveRecord::Schema.define(version: 20180820154707) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace"
@@ -64,8 +64,9 @@ ActiveRecord::Schema.define(version: 20180819141146) do
     t.integer  "post_id"
     t.text     "content"
     t.string   "image"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.boolean  "is_first?",  default: true
   end
 
   create_table "follows", force: :cascade do |t|
