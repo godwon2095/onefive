@@ -9,7 +9,9 @@ class Subcomment < ActiveRecord::Base
 
   def generate_alarm
     if self.comment.user.subcomment_on == true
-      Alarm.create(content: self.user.name, user_id: self.comment.user, findable_id: self.post.id, is_read: false, alarm_type: "subcomment")
+      if self.user != self.comment.user
+        Alarm.create(content: self.user.name, user_id: self.comment.user.id, findable_id: self.post.id, is_read: false, alarm_type: "subcomment")
+      end
     end
   end
 end
