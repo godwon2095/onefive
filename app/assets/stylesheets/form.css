@@ -1,0 +1,39 @@
+.side_empty{
+    width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+label{
+    color: #0b1d7b!important;
+}
+
+.mce-tinymce{
+  border-width: 0px!important;
+}
+
+.form_subtitle>input::placeholder{
+    font-size: 18pt!important;
+}
+
+.form_title>input::placeholder{
+    font-size: 32pt;
+    font-family: 'NotoSerifKR'!important;
+}
+
+.form_title>input{
+    height: 10rem!important;
+    font-size: 32pt;
+    font-family: 'NotoSerifKR'!important;
+}
+
+.form_songtitle{
+    font-weight: bold;
+    font-family: 'Notosanskr';
+    float: right;
+    margin-bottom: 10px;
+}
+
+.hiphop{
+    margin-top: 50px;
+}

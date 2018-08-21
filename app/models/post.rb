@@ -13,6 +13,10 @@ class Post < ActiveRecord::Base
 
   mount_uploader :image, PostImageUploader
   mount_uploaders :post_images, EditerUploader
+
+  attr_accessor :crop_x, :crop_y, :crop_w, :crop_h
+  after_update :crop_image
+
   serialize :post_images, JSON # if we user sqlite3
   serialize :song_ids, Array # if we user sqlite3
 
@@ -28,5 +32,9 @@ class Post < ActiveRecord::Base
     end
 
     return false
+  end
+
+  def crop_image
+    image.recreate_versions! if crop_x.present?
   end
 end

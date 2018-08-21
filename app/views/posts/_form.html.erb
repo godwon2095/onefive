@@ -1,39 +1,29 @@
 <%= form_for @post do |f| %>
-
-  <h2>음악을 적다</h2>
-
-  <div class="field">
-    <%= f.label :title, '제목' %>
-    <%= f.text_field :title, :required => true %>
-  </div><br>
-
-  <div class="field">
-    <%= f.label :image, '대표사진' %>
-    <%= f.file_field :imgae, :required => true %>
-  </div>
-
-  <div class="field">
-    <%= f.label :music_titles, '음악 불러오기' %><br><br>
-    <a href="#modal" class="modal-trigger"><i class="material-icons black-text" id="medium-font">library_music</i></a>
-    <div id="music-result">
+<link rel="stylesheet" type="text/css" href="form.css">
+  <div class="side_empty">
+    <div class="field form_title">
+      <%= f.text_field :title, placeholder: "제목을 입력하세요.", autocomplete: "off"%>
     </div>
-  </div><br><br>
 
-  <div class="field">
-    <%= f.label :subtitle, '부제목' %>
-    <%= f.text_area :subtitle, :required => true %>
-  </div><br>
+    <div class="field form_subtitle">
+      <%= f.text_field :subtitle, placeholder: "부제를 입력하세요.", autocomplete: "off" %>
+    </div>
 
-  <div class="field">
-    <%= f.label :content, '내용' %>
-    <%= f.text_area :content, class: "tinymce", :required => true %>
-    <%= tinymce %>
-  </div><br>
+    <div class="field form_songtitle">
+      <a href="#modal" class="modal-trigger"><%= f.label :music_titles, '음악 불러오기', class: "btn white" %></a>
+      <div id="music-result">
+      </div>
+    </div>
 
-  <div class="input-field">
-    <%= f.submit '작성', class: "btn indigo darken-4" %>
-    <%= link_to '목록', posts_path, class: "btn indigo darken-4" %>
-  </div>
+    <div class="field hiphop">
+      <%= f.text_area :content, class: "tinymce" %>
+      <%= tinymce %>
+    </div>
+
+    <div class="input-field">
+      <%= f.submit '작성', class: "btn indigo darken-4" %>
+      <%= link_to '그만 쓸래요', posts_path, class: "btn indigo darken-4" %>
+    </div>
 
 <% end %>
 
@@ -118,6 +108,52 @@
     $(this).attr('style', 'color: #0b1d7b !important');
     $('#search-title').attr('style', 'color: #7a7a7a !important');
   });
+
+// var AvatarCrop,
+// bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
+//
+// $(function() {
+//   return new AvatarCrop();
+// });
+//
+// AvatarCrop = (function() {
+//   function AvatarCrop() {
+//     this.updatePreview = bind(this.updatePreview, this);
+//     this.update = bind(this.update, this);
+//     var height, width;
+//     width = parseInt($('#cropbox').width());
+//     height = parseInt($('#cropbox').height());
+//     $('#cropbox').Jcrop({
+//       aspectRatio: 1,
+//       setSelect: [0, 0, width, height],
+//       onSelect: this.update,
+//       onChange: this.update
+//     });
+//   }
+//
+//   AvatarCrop.prototype.update = function(coords) {
+//     $('#user_crop_x').val(coords.x);
+//     $('#user_crop_y').val(coords.y);
+//     $('#user_crop_w').val(coords.w);
+//     $('#user_crop_h').val(coords.h);
+//     return this.updatePreview(coords);
+//   };
+//
+//   AvatarCrop.prototype.updatePreview = function(coords) {
+//     var rx, ry;
+//     rx = 100 / coords.w;
+//     ry = 100 / coords.h;
+//     return $('#preview').css({
+//       width: Math.round(rx * $('#cropbox').width()) + 'px',
+//       height: Math.round(ry * $('#cropbox').height()) + 'px',
+//       marginLeft: '-' + Math.round(rx * coords.x) + 'px',
+//       marginTop: '-' + Math.round(ry * coords.y) + 'px'
+//     });
+//   };
+//
+//   return AvatarCrop;
+//
+// })();
 </script>
 
 <style>

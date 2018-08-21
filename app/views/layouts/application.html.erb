@@ -108,7 +108,7 @@
     </script>
     <!-- <%= message %> -->
   <% end %>
-  
+
   <!-- 오른쪽에서 나오는 navbar -->
 <% if user_signed_in? %>
   <ul id="slide-out" class="sidenav">
@@ -123,6 +123,7 @@
         </div>
         <div class="sidenav_user_name center">
           <%= link_to "#{current_user.name}", profile_timeline_path(current_user), class: :onefive %>
+          <%= link_to 'settings', edit_user_registration_path, class: "onefive tiny material-icons" %>
         </div>
         <div class="sidenav_user_subscribe center">
           <a href="<%= subscribe_timeline_path(current_user) %>" class="onefive"><span id="followings-size"><%= current_user.followings.size %></span>명을 구독하고, <span id="followers-size"><%= current_user.followers.size %></span>명이 구독 중</a>
@@ -142,19 +143,37 @@
         <hr width="200px" align="center" color="#8b8b8b" size="1">
       </div>
       <div>
-        <% if current_user.alarms.present? %>
-          <% current_user.alarms.each do |alarm| %>
-            <% if alarm.like? %>
-              <a class="onefive" href="<%= post_path(alarm.findable_id) %>">소식 : [ <%= alarm.content %> ] 님이 회원님의 글을 저장 하셨습니다.</a> | <%= link_to '삭제', alarm_path(alarm), method: :delete, remote: true %><br><hr>
-            <% elsif alarm.comment? %>
-              <a class="onefive" href="<%= post_path(alarm.findable_id) %>">소식 : [ <%= alarm.content %> ] 님이 회원님의 글에 댓글을 다셨습니다.</a> | <%= link_to '삭제', alarm_path(alarm), method: :delete, remote: true %><br><hr>
-            <% elsif alarm.tag? %>
-              <a class="onefive" href="<%= post_path(alarm.findable_id) %>">소식 : [ <%= alarm.content %> ] 님이 회원님을 태그하셨습니다.</a> | <%= link_to '삭제', alarm_path(alarm), method: :delete, remote: true %><br><hr>
+        <div class="sidenav_notice">
+          <% if current_user.alarms.present? %>
+          <div class="sidenav_notice_profileimg">
+            <% if current_user.thumbnail.present? %>
+              <%= link_to image_tag(current_user.thumbnail, class: "circle sidenav_notice_profileimg_size"), profile_timeline_path(current_user) %>
             <% else %>
-              <a class="onefive" href="<%= profile_timeline_path(alarm.findable_id) %>">소식 : [ <%= alarm.content %> ] 님의 글을 담았습니다.</a> | <%= link_to '삭제', alarm_path(alarm), method: :delete, remote: true %><br><hr>
+              <img src="/people.jpg" class="tl-size circle">
             <% end %>
-          <% end %>
-        <% end %>
+          </div>
+          <div class="sidenav_notice_text">
+                <% current_user.alarms.each do |alarm| %>
+                  <% if alarm.like? %>
+                    <div class="sidenav_notice_text_about">
+                      <a class="onefive" href="<%= post_path(alarm.findable_id) %>">[ <%= alarm.content %> ] 님이 회원님의 글을 저장 하셨습니다.</a>
+                    </div>
+                    <div class="sidenav_notice_text_ago">
+                      <%= time_ago_in_words alarm.created_at %> 전
+                    </div>
+                    <div class="sidenav_notice_delete">
+                        <%= link_to 'close', alarm_path(alarm), method: :delete, class: "material-icons tiny black-text", remote: true %>
+                    </div>
+                  <!-- <% elsif alarm.comment? %>
+                    <a class="onefive" href="<%= post_path(alarm.findable_id) %>">소식 : [ <%= alarm.content %> ] 님이 회원님의 글에 댓글을 다셨습니다.</a> | <br>
+                  <% elsif alarm.tag? %>
+                    <a class="onefive" href="<%= post_path(alarm.findable_id) %>">소식 : [ <%= alarm.content %> ] 님이 회원님을 태그하셨습니다.</a> | <%= link_to '삭제', alarm_path(alarm), method: :delete, remote: true %><br><hr>
+                  <% else %>
+                    <a class="onefive" href="<%= profile_timeline_path(alarm.findable_id) %>">소식 : [ <%= alarm.content %> ] 님의 글을 담았습니다.</a> | <%= link_to '삭제', alarm_path(alarm), method: :delete, remote: true %><br><hr> -->
+                  <% end %>
+                <% end %>
+            <% end %>
+          </div>
         <!--소식넣어주세요(은식이가 댓글 짠 레이아웃 그대로 긁어올 예정-->
       </div>
   </ul>

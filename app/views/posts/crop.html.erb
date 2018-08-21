@@ -1,0 +1,38 @@
+<div class='row'>
+  <div class='col-xs-8'>
+
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h3 class="panel-title">Crop Image</h3>
+      </div>
+      <div class="panel-body">
+        <%= image_tag @post.image_url(:large), id: "cropbox" %>
+        <br>
+        <%= form_for(@post) do |f| %>
+          <% %w[x y w h].each do |attribute| %>
+            <%= f.text_field "crop_#{attribute}", as: :hidden %>
+          <% end %>
+
+          <div class="form-actions">
+            <%= f.button :submit %>
+          </div>
+        <% end %>
+
+      </div>
+    </div>
+  </div>
+
+  <div class='col-xs-4'>
+
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h3 class="panel-title">Preview</h3>
+      </div>
+      <div class="panel-body">
+        <div style="width:100px; height:100px; overflow:hidden">
+          <%= image_tag @post.image.url(:large), id: "preview" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

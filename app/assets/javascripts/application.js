@@ -15,3 +15,4 @@
 //= require_tree .
 //= require clipboard
 //= require dropzone
+//= require jcrop
