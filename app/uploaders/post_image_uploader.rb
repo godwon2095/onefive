@@ -3,12 +3,12 @@ class PostImageUploader < CarrierWave::Uploader::Base
   # include CarrierWave::RMagick
   include CarrierWave::MiniMagick
 
-  version :image do
+  version :thumb do
     process :crop
     resize_to_fill(100, 100)
   end
 
-  version :tiny, from_version: :image do
+  version :tiny, from_version: :thumb do
     process resize_to_fill: [20, 20]
   end
 
