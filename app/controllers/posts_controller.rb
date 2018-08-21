@@ -114,7 +114,7 @@ class PostsController < ApplicationController
           render :crop
         else
           format.html{redirect_to post_path(@post),
-                      notice: "게시물이 성공적으로 수정되었습니다."}
+                      notice: "게시물이 성공적으로 저장되었습니다."}
         end
       else
         format.html{render :edit,

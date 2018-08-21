@@ -2,11 +2,7 @@
   <div class="signup_title center">한시오분 시작하기</div><br>
 
   <%= form_for(resource, as: resource_name, url: user_registration_path) do |f| %>
-
-  <script>
-    var toastHTML= devise_error_messages!
-    M.toast({html: toastHTML.html_safe});
-  </script>
+    <%= devise_error_messages! %>
 
     <div class="field">
       <%= f.label :email, '이메일 주소' %><br />
