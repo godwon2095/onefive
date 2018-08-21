@@ -134,7 +134,6 @@
         <div class="sidenav_links_one"><%= link_to '지금 이 글', root_path, class: :onefive %></div><!-- 지금 이 글 주소 넣어주세요 -->
         <div class="sidenav_links_one"><%= link_to '담은 글', saves_timelines_path, class: :onefive %></div><!-- 담은 글 주소 넣어주세요 -->
         <div class="sidenav_links_one"><%= link_to '로그아웃', destroy_user_session_path, method: :delete, class: :onefive %></div>
-        <div class="sidenav_links_one"><%= link_to '정보수정', edit_user_registration_path, class: :onefive %></div>
       </div>
       <div class="sidenav_notice_title center">
         <%= link_to '소식', alarms_path, class: :onefive %>(<%= current_user.alarms.size %>)
