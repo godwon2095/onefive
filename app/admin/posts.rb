@@ -5,17 +5,22 @@ ActiveAdmin.register Post do
   scope :all
 
   index do
-  selectable_column
-  id_column
-  column :image do |obj|
-    image_tag obj.image.url, class: "thumbnail-size" if obj.image?
-  end
-  column :title
-  column :user
-  column :created_at
-  column :updated_at
-
-  actions
+    selectable_column
+    id_column
+    column :image do |obj|
+      image_tag obj.image.url, class: "thumbnail-size" if obj.image?
+    end
+    column :title
+    column '글쓴이' do |post|
+      post.user.name
+    end
+    column '인기도' do |post|
+      post.likes.size
+    end
+    
+    column '댓글 수' do |post|
+      post.comments.size
+    end
   end
 
   end
@@ -31,4 +36,3 @@ ActiveAdmin.register Post do
 #   permitted = [:permitted, :attributes]
 #   permitted << :other if params[:action] == 'create' && current_user.admin?
 #   permitted
-# end
