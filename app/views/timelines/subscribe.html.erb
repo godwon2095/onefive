@@ -35,56 +35,64 @@
   <hr width="40.625em" align="center" color="#0b1d7b" size="1">
 </div>
 
-<br><br>
-<br>
 
-<div class="center">
-  <h4 class="indigo-text text-darken-4"><%= @user.name %> 님이 구독하는</h4>
-  <% if @user.followings.present? %>
-    <% @user.followings.each do |following| %>
-      <div class="row">
-        <span class="col">
-          <% if following.thumbnail.present? %>
-            <%= link_to image_tag(following.thumbnail, class: "thumbnail-size circle"), profile_timeline_path(following) %>
-          <% else %>
-            <a href="<%= profile_timeline_path(following) %>"><img src="/people.jpg" class="thumbnail-size circle"></a>
-          <% end %>
-        </span>
-        <span class="col">
-          <%= following.name %><br>
-          <% if following.information.present? %>
-            <p>"<%= following.information %>"</p>
-          <% else %>
-            <p class="grey-text">"한 줄 없음"</p>
-          <% end %>
-        </span>
-      </div>
+
+<div id="whoSubscribe">
+  <div>
+    <div class="letSubscribe onefive"><%= @user.name %>님이 구독하는</div>
+    <% if @user.followings.present? %>
+      <% @user.followings.each do |following| %>
+        <div class="subscribeImgWrite">
+          <span class="subscribeImgMargin"> <!-- 이미지 -->
+            <% if following.thumbnail.present? %>
+              <%= link_to image_tag(following.thumbnail, class: "subscribeProfileImg circle"), profile_timeline_path(following) %>
+            <% else %>
+              <a href="<%= profile_timeline_path(following) %>"><img src="/people.jpg" class="subscribeProfileImg circle"></a>
+            <% end %>
+          </span>
+          <div>
+            <span class="subscribeProfileWrite">
+              <div class="subscribeUser onefive"><%= following.name %></div><!-- 사람이름 -->
+              <% if following.information.present? %>
+                <div class="subscribeWrite">"<%= following.information %>"</div> <!-- 한줄 -->
+              <% else %>
+                <div class="grey-text" >"한 줄 없음"</div>
+              <% end %>
+            </span>
+          </div>
+      <% end %>
+    <% else %>
+      <p class="grey-text">"사람이 아직 없네요..."</p>
     <% end %>
-  <% else %>
-    <p class="grey-text">"사람이 아직 없네요..."</p>
-  <% end %>
-  <h4 class="indigo-text text-darken-4"><%= @user.name %> 님을 구독하는</h4>
-  <% if @user.followers.present? %>
-    <% @user.followers.each do |follower| %>
-      <div class="row">
-        <span class="col">
-          <% if follower.thumbnail.present? %>
-            <%= link_to image_tag(follower.thumbnail, class: "thumbnail-size circle"), profile_timeline_path(follower) %>
-          <% else %>
-            <a href="<%= profile_timeline_path(follower) %>"><img src="/people.jpg" class="thumbnail-size circle"></a>
-          <% end %>
-        </span>
-        <span class="col">
-          <%= follower.name %><br>
-          <% if follower.information.present? %>
-            <p>"<%= follower.information %>"</p>
-          <% else %>
-            <p class="grey-text">"한 줄 없음"</p>
-          <% end %>
-        </span>
       </div>
+  </div>
+
+  <div id="whomSubscribe">
+    <div class="letSubscribe onefive"><%= @user.name %>님을 구독하는</div>
+    <% if @user.followers.present? %>
+      <% @user.followers.each do |follower| %>
+        <div class="subscribeImgWrite">
+          <span class="col">
+            <% if follower.thumbnail.present? %>
+              <%= link_to image_tag(follower.thumbnail, class: "subscribeProfileImg circle"), profile_timeline_path(follower) %>
+            <% else %>
+              <a href="<%= profile_timeline_path(follower) %>"><img src="/people.jpg" class="subscribeProfileImg circle"></a>
+            <% end %>
+          </span>
+          <span class="subscribeProfileWrite">
+            <div class="subscribeUser onefive"><%= follower.name %></div>
+            <% if follower.information.present? %>
+              <div class="subscribeWrite">"<%= follower.information %>"</div>
+            <% else %>
+              <div class="grey-text">"한 줄 없음"</div>
+            <% end %>
+          </span>
+        </div>
+      <% end %>
+    <% else %>
+      <p class="grey-text">"사람이 아직 없네요..."</p>
     <% end %>
-  <% else %>
-    <p class="grey-text">"사람이 아직 없네요..."</p>
-  <% end %>
+    </div>
+
+
 </div>
