@@ -11,8 +11,9 @@ ActiveAdmin.register User do
     end
     column :email
     column :name
-    column :created_at
-    column :updated_at
+    column '팔로잉 수'do |user|
+      user.followers.size
+    end
 
     actions
   end
