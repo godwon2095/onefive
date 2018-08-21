@@ -22,9 +22,10 @@ label{
 }
 
 .form_title>input{
-    height: 10rem!important;
+    /* height: 10rem!important; */
     font-size: 32pt;
     font-family: 'NotoSerifKR'!important;
+    margin-bottom: 0 !important;
 }
 
 .form_songtitle{
@@ -37,3 +38,21 @@ label{
 .hiphop{
     margin-top: 50px;
 }
+
+.titleNewForm {
+    height: 100px !important;
+}
+
+#post_title {
+  height: 50pt !important;
+  border: 0 !important;
+  font-family: 'NotoSerifKR'!important;
+  font-size: 32pt !important;
+
+
+}
+
+.input-field input[type=text]:focus {
+     border-bottom: 1px solid #000;
+     box-shadow: 0 1px 0 0 #000;
+   }

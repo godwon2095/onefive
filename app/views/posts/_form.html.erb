@@ -1,37 +1,39 @@
-<div class="side_empty">
-  <%= form_for @post do |f| %>
+<div style="margin-top: 80px;">
+  <div class="side_empty">
+    <%= form_for @post do |f| %>
 
-    <div class="field form_title">
-      <%= f.text_field :title, placeholder: "제목을 입력하세요.", autocomplete: "off" %>
-    </div>
-
-    <div class="field form_subtitle">
-      <%= f.text_area :subtitle, placeholder: "부제를 입력하세요.", autocomplete: "off" %>
-    </div><br>
-
-    <div class="field">
-      <%= f.label :image, '대표사진' %>
-      <%= f.file_field :imgae, :required => true %>
-    </div>
-
-    <div class="field form_songtitle">
-      <a href="#modal" class="modal-trigger btn white indigo-text text-darken-4">음악 불러오기</a>
-      <div id="music-result">
+      <div class="field form_title">
+        <%= f.text_field :title, placeholder: "제목을 입력하세요.", class: "input-xlarge newPostForm", autocomplete: "off" %>
       </div>
-    </div>
 
-    <div class="field hiphop">
-      <%= f.text_area :content, class: "tinymce" %>
-      <%= tinymce %>
-    </div><br>
+      <div class="field form_subtitle">
+        <%= f.text_area :subtitle, placeholder: "부제를 입력하세요.", autocomplete: "off" %>
+      </div><br>
 
-    <div class="input-field">
-      <%= f.submit '작성', class: "btn indigo darken-4" %>
-      <%= link_to '그만 쓸래요', posts_path, class: "btn indigo darken-4" %>
-    </div>
+      <div class="field">
+        <%= f.label :image, '대표사진' %>
+        <%= f.file_field :imgae, :required => true %>
+      </div>
 
-  <% end %>
+      <div class="field form_songtitle">
+        <a href="#modal" class="modal-trigger btn white indigo-text text-darken-4">음악 불러오기</a>
+        <div id="music-result">
+        </div>
+      </div>
 
+      <div class="field hiphop">
+        <%= f.text_area :content, class: "tinymce" %>
+        <%= tinymce %>
+      </div><br>
+
+      <div class="input-field">
+        <%= f.submit '작성', class: "btn indigo darken-4" %>
+        <%= link_to '그만 쓸래요', posts_path, class: "btn indigo darken-4" %>
+      </div>
+
+    <% end %>
+
+  </div>
 </div>
 
 <!-- Modal Structure -->
@@ -115,6 +117,8 @@
     $(this).attr('style', 'color: #0b1d7b !important');
     $('#search-title').attr('style', 'color: #7a7a7a !important');
   });
+
+  $('div').removeClass('container');
 
 // var AvatarCrop,
 // bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
