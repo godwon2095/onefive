@@ -69,18 +69,26 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = Post.new(set_params)
-    @post.user_id = current_user.id
-    respond_to do |format|
-      if @post.save
-        if params[:post][:image].present?
-          format.html{ render :crop }
+    if params[:post][:title] == ""
+      redirect_to :back, notice: "제목은 필수 입력 항목입니다."
+    elsif params[:post][:subtitle] == ""
+      redirect_to :back, notice: "부제목은 필수 입력 항목입니다."
+    elsif params[:post][:content] == ""
+      redirect_to :back, notice: "내용은 필수 입력 항목입니다."
+    else
+      @post = Post.new(set_params)
+      @post.user_id = current_user.id
+      respond_to do |format|
+        if @post.save
+          if params[:post][:image].present?
+            format.html{ render :crop }
+          end
+        format.html{ redirect_to post_path(@post),
+                    notice: "게시물이 성공적으로 작성되었습니다."}
+        else
+          format.html{ render :new,
+                      notice: "오류가 발생했습니다."}
         end
-      format.html{ redirect_to post_path(@post),
-                  notice: "게시물이 성공적으로 작성되었습니다."}
-      else
-        format.html{ render :new,
-                    notice: "오류가 발생했습니다."}
       end
     end
   end

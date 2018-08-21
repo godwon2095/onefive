@@ -14,8 +14,10 @@
 
       <% if devise_mapping.rememberable? -%>
         <div class="field">
-          <%= f.check_box :remember_me %>
-          <%= f.label :remember_me %>
+          <label>
+            <input type="checkbox"  name="remember_me" class="filled-in" checked="checked" />
+            <span>로그인 정보 기억하기</span>
+          </label>
         </div>
       <% end -%>
 

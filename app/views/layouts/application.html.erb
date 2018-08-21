@@ -17,7 +17,7 @@
 <body>
 
   <nav>
-    <!-- 네브바 시작 -->
+  <!-- 네브바 시작 -->
     <div class="nav-wrapper white navPage">
       <div class="logo onefive">
         <%= link_to '한 / 시 / 오 / 분', root_path, class: "brand-logo", id: :onefive %>
@@ -29,14 +29,13 @@
       <% elsif controller.controller_name == "timelines" && controller.action_name == "saves" %>
         <div class="navCenterWrite onefive nav2">담은 글</div>
       <% end %>
-       <!-- 상황에 맞게 페이지 이름 뜨도록 설정해주세요  -->
+     <!-- 상황에 맞게 페이지 이름 뜨도록 설정해주세요  -->
 
       <ul class="right hide-on-med-and-down">
         <% if user_signed_in? %>
         <div class="p_icons">
           <!-- 검색기능 시작 -->
           <li><a class="modal-trigger" href="#modal1"><i class="material-icons onefive">search</i></a></li>
-
            <div id="modal1" class="modal">
             <div id="search123">
              <div id="search2"> <!--두번째 세션 탭 시작 -->

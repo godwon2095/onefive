@@ -12,12 +12,12 @@
 
     <div class="field">
       <%= f.label :identity, '아이디' %><br />
-      <%= f.text_field :identity, autofocus: false, autocomplete: "off" %>
+      <%= f.text_field :identity, autofocus: false, autocomplete: "off", :required => true %>
     </div>
 
     <div class="field">
       <%= f.label :name, '이름' %><br />
-      <%= f.text_field :name, autofocus: false, autocomplete: "off" %>
+      <%= f.text_field :name, autofocus: false, autocomplete: "off", :required => true %>
     </div>
 
     <div class="field">
@@ -35,7 +35,9 @@
 
     <div class="field">
       <%= f.label :thumbnail, '프로필 이미지' %><br>
-      <%= f.file_field :thumbnail %>
+      <%= f.file_field :thumbnail, class: "hidden_file_field" %>
+      <i class="material-icons" id="thumb-generater">image</i>
+      <span id="file-result"></span>
     </div><br>
 
     <div class="field">
@@ -53,4 +55,14 @@
 
 <script>
   $('body').addClass("signup-body");
+
+  $('i#thumb-generater').on('click', function(){
+    $('.hidden_file_field').trigger('click');
+  });
+
+  $('#user_thumbnail').change(function () {
+    var url = $(this).val();
+    $('#file-result').empty();
+    $('#file-result').append(url);
+  });
 </script>
