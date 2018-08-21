@@ -14,6 +14,7 @@ ActiveAdmin.register User do
     column :sign_in_count
     column '게시물 수' do |user|
       user.posts.size
+
     end
 
 

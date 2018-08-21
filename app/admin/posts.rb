@@ -5,17 +5,22 @@ ActiveAdmin.register Post do
   scope :all
 
   index do
-  selectable_column
-  id_column
-  column :image do |obj|
-    image_tag obj.image.url, class: "thumbnail-size" if obj.image?
-  end
-  column :title
-  column :user
-  column '좋아요 수' do |post|
-    post.likes.size
-
-  end
+    selectable_column
+    id_column
+    column :image do |obj|
+      image_tag obj.image.url, class: "thumbnail-size" if obj.image?
+    end
+    column :title
+    column '글쓴이' do |post|
+      post.user.name
+    end
+    column '인기도' do |post|
+      post.likes.size
+    end
+    
+    column '댓글 수' do |post|
+      post.comments.size
+    end
   end
 
   end
