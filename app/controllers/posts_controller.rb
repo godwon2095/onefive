@@ -75,10 +75,9 @@ class PostsController < ApplicationController
       if @post.save
         if params[:post][:image].present?
           format.html{ render :crop }
-        else
-          format.html{ redirect_to post_path(@post),
-                      notice: "게시물이 성공적으로 작성되었습니다."}
         end
+      format.html{ redirect_to post_path(@post),
+                  notice: "게시물이 성공적으로 작성되었습니다."}
       else
         format.html{ render :new,
                     notice: "오류가 발생했습니다."}
@@ -87,7 +86,7 @@ class PostsController < ApplicationController
   end
 
   def crop
-    @post = Post.find(params[:id])
+    @post = Post.new
   end
 
   def show
