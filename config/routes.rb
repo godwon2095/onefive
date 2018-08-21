@@ -29,6 +29,7 @@ Rails.application.routes.draw do
   end
   resources :alarms, only: [:index]
   resources :alarms, only: [:destroy], defaults: { format: 'js' }
+  resources :subcomments, only: [:create, :destroy], defaults: { format: 'js' }
 
   post '/tinymce_assets' => 'tinymce_assets#create'
   get '/copyurl/:id' => 'copys#copy', defaults: { format: 'js' }, :as => '/copyurl'

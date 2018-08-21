@@ -4,12 +4,15 @@ class CommentsController < ApplicationController
 
     def create
         @new_comment = Comment.new(set_comment_params)
+        @new_comment.content
         @new_comment.user_id = current_user.id
         @new_comment.post_id = params[:post_id]
         respond_to do |format|
             if @new_comment.save
                 @post = @new_comment.post
                 format.js
+                length2 = Comment.last.id
+                Comment.find(length2).update(is_first?: false)
             else
                 format.html{ redirect_to :back,
                              notice: "오류가 발생했습니다." }
@@ -32,6 +35,6 @@ class CommentsController < ApplicationController
     end
 
     def set_comment_params
-        params.require(:comment).permit(:content, :image)
+        params.require(:comment).permit(:content,:image)
     end
 end

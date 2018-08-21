@@ -1,5 +1,6 @@
 class Comment < ActiveRecord::Base
   after_create :generate_alarm
+  serialize :content, JSON
 
   #유저 태그 기능
   after_create do
@@ -27,6 +28,7 @@ class Comment < ActiveRecord::Base
   belongs_to :post
 
   has_many :tags
+  has_many :subcomments, dependent: :destroy
 
   def generate_alarm
     if self.post.user != self.user

@@ -1,0 +1,3 @@
+$('.<%= @subcomment.id %>-subcomment-all').remove();
+$('#<%= @subcomment.comment.id %>-subcomment-gen1').text("대댓글(<%= @subcomment.comment.subcomments.size %>)");
+$('#comment-size').text("<%= @subcomment.post.comments.size + @subcomment.post.subcomments.size %>");
