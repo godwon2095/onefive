@@ -12,6 +12,7 @@
  *
  *= require_tree .
  *= require_self
+ *= require jcrop
  *= stub active_admin
  *= require dropzone/dropzone
  */
@@ -220,4 +221,56 @@ nav {
  margin-bottom: 20px;
  margin-top: 20px;
 }
+
+.sidenav_notice{
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	align-items: flex-start;
+}
+
+.sidenav_notice_profileimg_size{
+    width: 40px;
+    height: 40px;
+}
+
 /*사이드 네브 끝*/
+
+/* post 관련 */
+
+blockquote{
+    padding-left: 1rem!important;
+    border-left: 5px solid #0b1d7b!important;
+}
+/*사이드 네브 끝*/
+
+.signup_title{
+    font-family: 'NotoSerifKR';
+    color: #282828;
+    font-size: 24pt!important;
+    margin-bottom: 16px;
+    margin-top: 8px!important;
+}
+
+.signup_things{
+    width: 400px;
+    margin-left: auto!important;
+    margin-right: auto!important;
+    margin-top: 80px!important;
+    vertical-align: middle!important;
+    border-radius: 10px!important;
+}
+
+body.signup-body{
+    background-image: url('loginbackground.jpg');
+    background-size: cover;
+}
+
+.loginbutton{
+    background-color: #0b1d7b!important;
+}
+
+.actions {
+    margin-top: 8px;
+    margin-bottom: 8px;
+}

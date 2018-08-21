@@ -1,41 +1,38 @@
-<%= form_for @post do |f| %>
+<div class="side_empty">
+  <%= form_for @post do |f| %>
 
-  <h2>음악을 적다</h2>
-
-  <div class="field">
-    <%= f.label :title, '제목' %>
-    <%= f.text_field :title %>
-  </div><br>
-
-  <div class="field">
-    <%= f.label :image, '대표사진' %>
-    <%= f.file_field :image %>
-  </div>
-
-  <div class="field">
-    <%= f.label :music_titles, '음악 불러오기' %><br><br>
-    <a href="#modal" class="modal-trigger"><i class="material-icons black-text" id="medium-font">library_music</i></a>
-    <div id="music-result">
+    <div class="field form_title">
+      <%= f.text_field :title, placeholder: "제목을 입력하세요.", autocomplete: "off" %>
     </div>
-  </div><br><br>
 
-  <div class="field">
-    <%= f.label :subtitle, '부제목' %>
-    <%= f.text_area :subtitle %>
-  </div><br>
+    <div class="field form_subtitle">
+      <%= f.text_area :subtitle, placeholder: "부제를 입력하세요.", autocomplete: "off" %>
+    </div><br>
 
-  <div class="field">
-    <%= f.label :content, '내용' %>
-    <%= f.text_area :content, class: "tinymce" %>
-    <%= tinymce %>
-  </div><br>
+    <div class="field">
+      <%= f.label :image, '대표사진' %>
+      <%= f.file_field :image %>
+    </div>
 
-  <div class="input-field">
-    <%= f.submit '작성', class: "btn indigo darken-4" %>
-    <%= link_to '목록', posts_path, class: "btn indigo darken-4" %>
-  </div>
+    <div class="field form_songtitle">
+      <a href="#modal" class="modal-trigger btn white indigo-text text-darken-4">음악 불러오기</a>
+      <div id="music-result">
+      </div>
+    </div>
 
-<% end %>
+    <div class="field hiphop">
+      <%= f.text_area :content, class: "tinymce" %>
+      <%= tinymce %>
+    </div><br>
+
+    <div class="input-field">
+      <%= f.submit '작성', class: "btn indigo darken-4" %>
+      <%= link_to '그만 쓸래요', posts_path, class: "btn indigo darken-4" %>
+    </div>
+
+  <% end %>
+
+</div>
 
 <!-- Modal Structure -->
 <!-- <div id="modal" class="modal">

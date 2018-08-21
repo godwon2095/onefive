@@ -73,13 +73,20 @@ class PostsController < ApplicationController
     @post.user_id = current_user.id
     respond_to do |format|
       if @post.save
-        format.html{ redirect_to post_path(@post),
-                    notice: "게시물이 성공적으로 작성되었습니다."}
+        if params[:post][:image].present?
+          format.html{ render :crop }
+        end
+      format.html{ redirect_to post_path(@post),
+                  notice: "게시물이 성공적으로 작성되었습니다."}
       else
         format.html{ render :new,
                     notice: "오류가 발생했습니다."}
       end
     end
+  end
+
+  def crop
+    @post = Post.new
   end
 
   def show
@@ -103,8 +110,12 @@ class PostsController < ApplicationController
   def update
     respond_to do |format|
       if @post.update(set_params)
-        format.html{redirect_to post_path(@post),
-                    notice: "게시물이 성공적으로 수정되었습니다."}
+        if params[:post][:image].present?
+          render :crop
+        else
+          format.html{redirect_to post_path(@post),
+                      notice: "게시물이 성공적으로 수정되었습니다."}
+        end
       else
         format.html{render :edit,
                     notice: "오류가 발생했습니다."}
@@ -121,7 +132,7 @@ class PostsController < ApplicationController
 
   private
   def set_params
-    params.require(:post).permit(:title, :subtitle, :content, :image, song_ids: [], post_images: [])
+    params.require(:post).permit(:title, :subtitle, :content, :image, :crop_x, :crop_y, :crop_w, :crop_h, song_ids: [], post_images: [])
   end
 
   def set_post

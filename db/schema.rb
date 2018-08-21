@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180820154707) do
+ActiveRecord::Schema.define(version: 20180821131156) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace"
@@ -172,6 +172,7 @@ ActiveRecord::Schema.define(version: 20180820154707) do
     t.boolean  "tag_on",                 default: true
     t.string   "identity"
     t.string   "name"
+    t.boolean  "subcomment_on",          default: true
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true

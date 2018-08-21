@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     collection do
       get :search, defaults: { format: 'js' }
       get :search_post, defaults: { format: 'js' }
+      get :crop
     end
     member do
       get :autoinit, defaults: { format: 'js' }

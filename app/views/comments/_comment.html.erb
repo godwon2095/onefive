@@ -15,8 +15,8 @@
         <%= time_ago_in_words comment.created_at %> 전<br>
         <% if user_signed_in? && comment.user.id == current_user.id %>
           <%= link_to '삭제', post_comment_path(@post, comment), method: :delete, class: "onefive", id: "delete-margin", remote: true %>
-          <%= link_to "대댓글(#{comment.subcomments.size})", "#", class: "onefive", id: "#{comment.id}-subcomment-gen1", remote: true %>
         <% end %>
+          <%= link_to "대댓글(#{comment.subcomments.size})", "#", class: "onefive add-margin", id: "#{comment.id}-subcomment-gen1", remote: true %>
       </div>
     </div>
   </div>
@@ -118,5 +118,9 @@ $('.SubommentTextarea.<%= comment.id %>-sub').keypress(function (e) {
   width: 493px !important;
   height: 70px !important;
   outline: none;
+}
+
+.add-margin {
+  margin-left: 480px;
 }
 </style>

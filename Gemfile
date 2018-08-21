@@ -8,6 +8,7 @@ gem "active_material", github: "vigetlabs/active_material"
 gem 'devise'
 gem 'carrierwave', '~> 1.0'
 gem "mini_magick"
+gem 'rails-assets-jcrop', source: 'https://rails-assets.org'
 gem 'will_paginate', '~> 3.1.0'
 gem 'wombat'
 gem 'tinymce-rails'
@@ -20,7 +21,6 @@ gem "truncate_html"
 gem 'dropzonejs-rails'
 gem 'rails-i18n'
 gem 'devise-i18n'
-# gem 'rails_cropit'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5'
 # Use sqlite3 as the database for Active Record
