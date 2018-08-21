@@ -28,6 +28,14 @@ class User < ActiveRecord::Base
   has_many :followers, through: :follower_relations, source: :follower
   has_many :following_relations, foreign_key: "follower_id", class_name: "Follow"
   has_many :followings, through: :following_relations, source: :followed
+  
+  validate :password_complexity
+  
+  def password_complexity
+    return if password.blank? || password =~ /^(?=.*?[A-Z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,15}$/
+
+    errors.add :password, '비밀번호를 더 복잡하게 설정해주세요!(대문자, 숫자, 특수문자 하나씩 포함. 6자 이상)'
+  end
 
   #태그
   has_one :tag

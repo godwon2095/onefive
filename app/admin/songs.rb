@@ -1,23 +1,26 @@
-ActiveAdmin.register User do
-  menu parent: "사용자 관리"
+ActiveAdmin.register Song do
+    menu parent: "음악 관리"
+    filter :title
 
     scope :all
 
     index do
     selectable_column
     id_column
-    column :thumbnail do |obj|
-      image_tag obj.thumbnail.url, class: "thumbnail-size" if obj.thumbnail?
+    column :image do |obj|
+      image_tag obj.image
     end
-    column :email
-    column :name
-    column '팔로잉 수'do |user|
-      user.followers.size
-    end
-    
+    column :title
+    column :singer
+    column :album
+    column :created_at
+    column :updated_at
+
     actions
   end
-
+    
+    
+    
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #
