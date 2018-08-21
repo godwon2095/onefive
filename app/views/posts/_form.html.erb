@@ -36,22 +36,6 @@
   </div>
 </div>
 
-<!-- Modal Structure -->
-<!-- <div id="modal" class="modal">
-  <div class="modal-content">
-    <h4>노래 제목으로 검색하세요</h4>
-    <div class="modal-footer">
-      <a href="#!" class="modal-close waves-effect waves-green btn-flat">닫기</a>
-    </div>
-    <%= form_tag(search_posts_path, method: :get, remote: true) do %>
-      <input type="text" name="search_music">
-      <input type="submit" class="btn right indigo darken-4" value="검색">
-    <% end %>
-    <ol id="music-lists">
-    </ol>
-  </div>
-</div> -->
-
 <div id="modal" class="modal">
  <div id="search123">
   <div id="search5"> <!--두번째 세션 탭 시작 -->
@@ -129,3 +113,33 @@
     cursor: move;
   }
 </style>
+<script>
+$(document).ready(function(){
+  $('.sidenav').sidenav({
+    edge: 'right'
+  });
+});
+$('.dropdown-trigger').dropdown();
+$(document).ready(function(){
+  $('.modal').modal();
+});
+$(document).ready(function(){
+  $('.tabs').tabs();
+});
+
+$('#search-music').on('click', function () {
+  $(this).attr('style', 'color: #0b1d7b !important');
+  $('#search-user').attr('style', 'color: #7a7a7a !important');
+  $('#search-post').attr('style', 'color: #7a7a7a !important');
+});
+$('#search-user').on('click', function () {
+  $(this).attr('style', 'color: #0b1d7b !important');
+  $('#search-music').attr('style', 'color: #7a7a7a !important');
+  $('#search-post').attr('style', 'color: #7a7a7a !important');
+});
+$('#search-post').on('click', function () {
+  $(this).attr('style', 'color: #0b1d7b !important');
+  $('#search-music').attr('style', 'color: #7a7a7a !important');
+  $('#search-user').attr('style', 'color: #7a7a7a !important');
+});
+</script>

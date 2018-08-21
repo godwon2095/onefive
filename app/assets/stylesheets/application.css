@@ -170,3 +170,9 @@ blockquote{
     border-left: 5px solid #0b1d7b!important;
 }
 /*사이드 네브 끝*/
+
+
+.musicSearchCenterNew {
+  display: flex;
+  align-items: center;
+}

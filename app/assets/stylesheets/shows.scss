@@ -186,23 +186,32 @@
   justify-content: flex-end;
 }
 
-.Icon1 {
 
-}
-
-.Icon2 {
-
-}
 
 .Icon3 {
   margin-right: 30px;
   margin-bottom: 30px;
 }
 
+.postIconFix {
+  font-size: 10pt;
+  font-family: 'NotoSerifKR';
+  line-height: 21px !important;
+}
+
+.postIconFix3 {
+  font-size: 10pt;
+  font-family: 'NotoSerifKR';
+  line-height: 21px !important;
+  margin-right:auto;
+}
+
+
 //showPage3에 대한 css\
 #secondShowPage{
   background-color: #fbfbfb;
   margin-right: 13px;
+
 }
 
 #showPage3 {
@@ -286,4 +295,9 @@
 
 #delete-margin {
   margin-left: 480px;
+}
+
+.more_horiz_fixIcon {
+  margin-left: auto;
+  margin-right: 20px;
 }
