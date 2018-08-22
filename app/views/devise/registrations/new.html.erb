@@ -1,4 +1,4 @@
-<div class="card-panel white signup_things z-depth-5">
+<div class="card-panel white signup_things z-depth-5" id="other">
   <div class="signup_title center">한시오분 시작하기</div><br>
 
   <%= form_for(resource, as: resource_name, url: user_registration_path) do |f| %>
@@ -11,19 +11,25 @@
 
 
     <div class="field">
-      <%= f.label :identity, "아이디" %><span id="identity-check"></span><br />
+      <%= f.label :identity, "아이디" %>
+      <span id="identity-check" class="result-class indigo-text">
+      </span>
+      <br />
       <%= f.text_field :identity, autofocus: false, autocomplete: "off", :required => true %>
     </div>
 
     <div class="field">
-      <%= f.label :name, '이름' %><br />
+      <%= f.label :name, '이름' %>
+      <span id="name-check" class="result-class indigo-text">
+      </span>
+      <br />
       <%= f.text_field :name, autofocus: false, autocomplete: "off", :required => true %>
     </div>
 
     <div class="field">
       <%= f.label :password %>
       <% if @minimum_password_length %>
-      <em>(<%= @minimum_password_length %> characters minimum)</em>
+      <span class="result-class indigo-text"> (특수문자, 숫자, 대문자 포함 <%= @minimum_password_length %>자이상)</span>
       <% end %><br />
       <%= f.password_field :password, autocomplete: "off" %>
     </div>
@@ -73,8 +79,26 @@
     }, "json");
   }
 
-  $('input#user_identity').keydown(function(event){
-    var val = $(this).val();
-    check_identity(val);
+  function check_name(name){
+    $.get("/check_name/" + name, function(data){
+      $('span#name-check').empty();
+      $('span#name-check').append(data.result);
+    })
+  }
+
+  $(document).ready(function(){
+    $('input#user_identity').on('keyup', function(){
+      var val = this.value;
+      check_identity(val);
+    });
   });
+
+  $('input#user_name').keyup(function(event){
+    var val = $(this).val();
+    check_name(val);
+  });
+
+  // $( "#other" ).click(function() {
+  //   $( "input#user_identity" ).keydown();
+  // });
 </script>

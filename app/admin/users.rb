@@ -10,13 +10,18 @@ ActiveAdmin.register User do
       image_tag obj.thumbnail.url, class: "thumbnail-size" if obj.thumbnail?
     end
     column :email
+    column :identity
     column :name
     column :sign_in_count
     column '게시물 수' do |user|
       user.posts.size
-
     end
-
+    column '팔로잉'do |user|
+      user.followings.size
+    end
+    column '팔로워'do |user|
+      user.followers.size
+    end
 
     actions
   end

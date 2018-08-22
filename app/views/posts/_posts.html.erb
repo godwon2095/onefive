@@ -29,7 +29,8 @@
               </div>
               <div class="content_song">
                 <% if p.song_ids.present? %>
-                  <%= Song.find(p.song_ids.first.to_i).title.truncate(18) %> - <%= Song.find(p.song_ids.first.to_i).singer.name %>
+                <div class="content_song_icon"><i class="material-icons">album</i></div>
+                    <%= Song.find(p.song_ids.first.to_i).title.truncate(18) %> - <%= Song.find(p.song_ids.first.to_i).singer.name %>
                   <% if p.song_ids.size > 2 %>
                     외 <%= p.song_ids.size - 1 %>곡
                   <% end %>
