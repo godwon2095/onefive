@@ -5,10 +5,10 @@ ActiveAdmin.register_page "Dashboard" do
   result = 0
   User.pluck('sign_in_count').map do |count|
      result += count
-  end    
+  end
 
    tabs do
-     tab :whatthe do
+     tab :site_info do
        table_for 2, class: 'index_table index container row' do
          column "총 유저 수" do
            User.all.size
@@ -25,8 +25,8 @@ ActiveAdmin.register_page "Dashboard" do
        end
      end
 
-     tab :fuck do
-       
+     tab :visit_info do
+
        table_for 4, class: 'index_table index' do
          column "전체 방문 횟수" do
            User.all.size

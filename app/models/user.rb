@@ -7,7 +7,8 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable,
          :confirmable
 
-  # validate :password_complexity
+  validate :password_complexity
+  validates :password, length: { minimum: 8 }, unless: "password.nil?"
 
   #포스팅
   has_many :posts
@@ -57,8 +58,8 @@ class User < ActiveRecord::Base
     Post.where(user_id: self.ids)
   end
 
-  # def password_complexity
-  #   return if password.blank? || password =~ /^(?=.*?[A-Z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,15}$/
-  #    errors.add :password, '비밀번호를 더 복잡하게 설정해주세요!(대문자, 숫자, 특수문자 하나씩 포함. 6자 이상)'
-  # end
+  def password_complexity
+    return if password.blank? || password =~ /^(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,15}$/
+     errors.add :password, '비밀번호를 더 복잡하게 설정해주세요!(숫자, 특수문자 포함. 8자 이상)'
+  end
 end

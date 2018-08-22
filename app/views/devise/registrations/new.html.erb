@@ -9,7 +9,6 @@
       <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
     </div>
 
-
     <div class="field">
       <%= f.label :identity, "아이디" %>
       <span id="identity-check" class="result-class indigo-text">
@@ -29,7 +28,7 @@
     <div class="field">
       <%= f.label :password %>
       <% if @minimum_password_length %>
-      <span class="result-class indigo-text"> (특수문자, 숫자, 대문자 포함 <%= @minimum_password_length %>자이상)</span>
+      <span class="result-class indigo-text"> (특수문자, 숫자 포함 <%= @minimum_password_length %>자이상)</span>
       <% end %><br />
       <%= f.password_field :password, autocomplete: "off" %>
     </div>
