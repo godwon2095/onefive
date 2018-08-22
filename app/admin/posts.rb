@@ -1,6 +1,5 @@
 ActiveAdmin.register Post do
   menu parent: "게시글 관리"
-  permit_params :image, :title, :password, :password_confirmation, :identity, :phonenumber, :information, :thumbnail
 
   scope :all
 
@@ -17,7 +16,7 @@ ActiveAdmin.register Post do
     column '인기도' do |post|
       post.likes.size
     end
-    
+
     column '댓글 수' do |post|
       post.comments.size
     end
