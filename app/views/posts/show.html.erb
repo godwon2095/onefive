@@ -79,17 +79,18 @@
 
   <div><hr id="showLine2"/></div>
 
+  <!-- 수정 삭제 -->
+  <% if user_signed_in? && current_user == @post.user %>
+    <div class="edit-delete row">
+      <%= link_to '수정', edit_post_path(@post), class: "onefive col editedit" %>
+      <div class="onefive col thingthing">|</div>
+      <%= link_to '삭제', post_path(@post), method: :delete, class: "onefive col deletedelte" %>
+    </div>
+  <% end %>
+
   <div id="showIcon">
     <%= render partial: "buttons" %>
   </div>
-
-  <!-- <div class="row">
-    <% if user_signed_in? && current_user.id == @post.user.id %>
-      <%= link_to '삭제', post_path(@post.id), method: :delete, class: "btn indigo darken-4 right between-btn col", :data => {:confirm => '정말 삭제하시겠습니까?'} %>
-      <%= link_to '수정', edit_post_path(@post), class: "btn indigo darken-4 right between-btn col" %>
-    <% end %>
-    <%= link_to '목록', posts_path, class: "btn indigo darken-4 right between-btn col" %>
-  </div> -->
 
   <div id="secondShowPage">
     <div id="showpage3">

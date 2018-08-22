@@ -48,3 +48,7 @@ button:focus {
 .switch label input[type=checkbox]:checked + .lever:after {
   background-color: #0b1d7b !important;
 }
+
+a#sidenav_setting.material-icons {
+  font-size: 15px;
+}

@@ -3,7 +3,6 @@ $('.sidenav').sidenav({
   edge: 'right'
 });
 });
-$('.dropdown-trigger').dropdown();
 $(document).ready(function(){
 $('.modal').modal();
 });
