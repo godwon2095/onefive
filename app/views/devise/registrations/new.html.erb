@@ -11,7 +11,7 @@
 
 
     <div class="field">
-      <%= f.label :identity, '아이디' %><br />
+      <%= f.label :identity, "아이디" %><span id="identity-check"></span><br />
       <%= f.text_field :identity, autofocus: false, autocomplete: "off", :required => true %>
     </div>
 
@@ -64,5 +64,17 @@
     var url = $(this).val();
     $('#file-result').empty();
     $('#file-result').append(url);
+  });
+
+  function check_identity(identity){
+    $.get("/check_identity/" + identity, function(data){
+      $('span#identity-check').empty();
+      $('span#identity-check').append(data.result);
+    }, "json");
+  }
+
+  $('input#user_identity').keydown(function(event){
+    var val = $(this).val();
+    check_identity(val);
   });
 </script>
