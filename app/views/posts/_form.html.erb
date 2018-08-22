@@ -1,54 +1,40 @@
-<div class="side_empty">
-  <%= form_for @post do |f| %>
+<div style="margin-top: 80px;">
+  <div class="side_empty">
+    <%= form_for @post do |f| %>
 
-    <div class="field form_title">
-      <%= f.text_field :title, placeholder: "제목을 입력하세요.", autocomplete: "off" %>
-    </div>
+      <div class="field form_title">
+        <%= f.text_field :title, placeholder: "제목을 입력하세요.", class: "input-xlarge newPostForm", autocomplete: "off" %>
+      </div>
 
-    <div class="field form_subtitle">
-      <%= f.text_area :subtitle, placeholder: "부제를 입력하세요.", autocomplete: "off" %>
-    </div><br>
+      <div class="field form_subtitle">
+        <%= f.text_area :subtitle, placeholder: "부제를 입력하세요.", autocomplete: "off" %>
+      </div><br>
 
     <div class="field">
       <%= f.label :image, '대표사진' %>
       <%= f.file_field :image %>
     </div>
 
-    <div class="field form_songtitle">
-      <a href="#modal" class="modal-trigger btn white indigo-text text-darken-4">음악 불러오기</a>
-      <div id="music-result">
+      <div class="field form_songtitle">
+        <a href="#modal" class="modal-trigger btn white indigo-text text-darken-4">음악 불러오기</a>
+        <div id="music-result">
+        </div>
       </div>
-    </div>
 
-    <div class="field hiphop">
-      <%= f.text_area :content, class: "tinymce" %>
-      <%= tinymce %>
-    </div><br>
+      <div class="field hiphop">
+        <%= f.text_area :content, class: "tinymce" %>
+        <%= tinymce %>
+      </div><br>
 
-    <div class="input-field">
-      <%= f.submit '작성', class: "btn indigo darken-4" %>
-      <%= link_to '그만 쓸래요', posts_path, class: "btn indigo darken-4" %>
-    </div>
+      <div class="input-field">
+        <%= f.submit '작성', class: "btn indigo darken-4" %>
+        <%= link_to '그만 쓸래요', posts_path, class: "btn indigo darken-4" %>
+      </div>
 
-  <% end %>
-
-</div>
-
-<!-- Modal Structure -->
-<!-- <div id="modal" class="modal">
-  <div class="modal-content">
-    <h4>노래 제목으로 검색하세요</h4>
-    <div class="modal-footer">
-      <a href="#!" class="modal-close waves-effect waves-green btn-flat">닫기</a>
-    </div>
-    <%= form_tag(search_posts_path, method: :get, remote: true) do %>
-      <input type="text" name="search_music">
-      <input type="submit" class="btn right indigo darken-4" value="검색">
     <% end %>
-    <ol id="music-lists">
-    </ol>
+
   </div>
-</div> -->
+</div>
 
 <div id="modal" class="modal">
  <div id="search123">
@@ -127,3 +113,33 @@
     cursor: move;
   }
 </style>
+<script>
+$(document).ready(function(){
+  $('.sidenav').sidenav({
+    edge: 'right'
+  });
+});
+$('.dropdown-trigger').dropdown();
+$(document).ready(function(){
+  $('.modal').modal();
+});
+$(document).ready(function(){
+  $('.tabs').tabs();
+});
+
+$('#search-music').on('click', function () {
+  $(this).attr('style', 'color: #0b1d7b !important');
+  $('#search-user').attr('style', 'color: #7a7a7a !important');
+  $('#search-post').attr('style', 'color: #7a7a7a !important');
+});
+$('#search-user').on('click', function () {
+  $(this).attr('style', 'color: #0b1d7b !important');
+  $('#search-music').attr('style', 'color: #7a7a7a !important');
+  $('#search-post').attr('style', 'color: #7a7a7a !important');
+});
+$('#search-post').on('click', function () {
+  $(this).attr('style', 'color: #0b1d7b !important');
+  $('#search-music').attr('style', 'color: #7a7a7a !important');
+  $('#search-user').attr('style', 'color: #7a7a7a !important');
+});
+</script>

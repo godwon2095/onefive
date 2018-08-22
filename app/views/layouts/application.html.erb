@@ -109,9 +109,10 @@
   <% end %>
 
   <!-- 오른쪽에서 나오는 navbar -->
-<% if user_signed_in? %>
+  <% if user_signed_in? %>
   <ul id="slide-out" class="sidenav">
-    <div class="sidenav_border"></div>
+    <div class="sidenav_flex">
+      <div class="sidenav_border"></div>
       <div class="user-view">
         <div class="sidenav_profileimg center">
           <% if current_user.thumbnail.present? %>
@@ -140,74 +141,51 @@
       <div class="sidenav_line">
         <hr width="200px" align="center" color="#8b8b8b" size="1">
       </div>
-      <div>
-        <div class="sidenav_notice">
-          <% if current_user.alarms.present? %>
-          <div class="sidenav_notice_profileimg">
-            <% if current_user.thumbnail.present? %>
-              <%= link_to image_tag(current_user.thumbnail, class: "circle sidenav_notice_profileimg_size"), profile_timeline_path(current_user) %>
-            <% else %>
-              <img src="/people.jpg" class="tl-size circle">
-            <% end %>
-          </div>
-          <div class="sidenav_notice_text">
-                <% current_user.alarms.each do |alarm| %>
-                  <% if alarm.like? %>
-                    <div class="sidenav_notice_text_about">
-                      <a class="onefive" href="<%= post_path(alarm.findable_id) %>">[ <%= alarm.content %> ] 님이 회원님의 글을 저장 하셨습니다.</a>
-                    </div>
-                    <div class="sidenav_notice_text_ago">
-                      <%= time_ago_in_words alarm.created_at %> 전
-                    </div>
-                    <div class="sidenav_notice_delete">
-                        <%= link_to 'close', alarm_path(alarm), method: :delete, class: "material-icons tiny black-text", remote: true %>
-                    </div>
-                  <% elsif alarm.subcomment? %>
-                    <a class="onefive" href="<%= post_path(alarm.findable_id) %>">소식 : [ <%= alarm.content %> ] 님이 회원님의 댓글에 대댓글을 다셨습니다.</a> | <br>
-                  <!-- <% elsif alarm.tag? %>
-                    <a class="onefive" href="<%= post_path(alarm.findable_id) %>">소식 : [ <%= alarm.content %> ] 님이 회원님을 태그하셨습니다.</a> | <%= link_to '삭제', alarm_path(alarm), method: :delete, remote: true %><br><hr>
-                  <% else %>
-                    <a class="onefive" href="<%= profile_timeline_path(alarm.findable_id) %>">소식 : [ <%= alarm.content %> ] 님의 글을 담았습니다.</a> | <%= link_to '삭제', alarm_path(alarm), method: :delete, remote: true %><br><hr> -->
-                  <% end %>
-                <% end %>
-            <% end %>
-          </div>
-        <!--소식넣어주세요(은식이가 댓글 짠 레이아웃 그대로 긁어올 예정-->
-      </div>
+       <!-- 사이드네브에서 알림뜨는거임 -->
+     <div class="sidenav_notice">
+       <% if current_user.alarms.present? %>
+         <div class="sidenav_notice_profileimg"> <!-- 프로필 이미지 -->
+           <% if current_user.thumbnail.present? %>
+             <%= link_to image_tag(current_user.thumbnail, class: "circle sidenav_notice_profileimg_size"), profile_timeline_path(current_user) %>
+           <% else %>
+             <img src="/people.jpg" class="tl-size circle sidenav_notice_profileimg_size">
+           <% end %>
+         </div>
+         <div class="sidenav_notice_text">
+               <% current_user.alarms.each do |alarm| %>
+                 <% if alarm.like? %>
+                 <div id="navSmallRightExceptImg">
+                   <div id="navSmallRight">
+                     <div class="sidenav_notice_text_about">
+                       <a class="onefive" href="<%= post_path(alarm.findable_id) %>">[ <%= alarm.content %> ] 님이 회원님의 글을 저장 하셨습니다.</a>
+                     </div>
+                     <div class="sidenav_notice_text_ago">
+                       <%= time_ago_in_words alarm.created_at %> 전
+                     </div>
+                   </div>
+                   <div class="sidenav_notice_delete">
+                       <%= link_to 'close', alarm_path(alarm), method: :delete, class: "material-icons tiny black-text", remote: true %>
+                   </div>
+                 </div>
+                 <!-- <% elsif alarm.comment? %>
+                   <a class="onefive" href="<%= post_path(alarm.findable_id) %>">소식 : [ <%= alarm.content %> ] 님이 회원님의 글에 댓글을 다셨습니다.</a> | <br>
+                 <% elsif alarm.tag? %>
+                   <a class="onefive" href="<%= post_path(alarm.findable_id) %>">소식 : [ <%= alarm.content %> ] 님이 회원님을 태그하셨습니다.</a> | <%= link_to '삭제', alarm_path(alarm), method: :delete, remote: true %><br><hr>
+                 <% else %>
+                   <a class="onefive" href="<%= profile_timeline_path(alarm.findable_id) %>">소식 : [ <%= alarm.content %> ] 님의 글을 담았습니다.</a> | <%= link_to '삭제', alarm_path(alarm), method: :delete, remote: true %><br><hr> -->
+                 <% end %>
+               <% end %>
+         </div>
+         <!--소식넣어주세요(은식이가 댓글 짠 레이아웃 그대로 긁어올 예정-->
+       <% end %>
+     </div>
+    </div>
   </ul>
-<% end %>
-<!-- 오른쪽에서 나오는 navbar 끝 -->
+  <% end %>
+  <!-- 오른쪽에서 나오는 navbar 끝 -->
+
   <%= yield %>
 
-  <script>
-      $(document).ready(function(){
-      $('.sidenav').sidenav({
-        edge: 'right'
-      });
-    });
-      $('.dropdown-trigger').dropdown();
-      $(document).ready(function(){
-      $('.modal').modal();
-    });
-     $(document).ready(function(){
-    $('.tabs').tabs();
-  });
 
-  $('#search-music').on('click', function () {
-      $(this).attr('style', 'color: #0b1d7b !important');
-      $('#search-user').attr('style', 'color: #7a7a7a !important');
-      $('#search-post').attr('style', 'color: #7a7a7a !important');
-  });
-  $('#search-user').on('click', function () {
-    $(this).attr('style', 'color: #0b1d7b !important');
-    $('#search-music').attr('style', 'color: #7a7a7a !important');
-    $('#search-post').attr('style', 'color: #7a7a7a !important');
-  });
-  $('#search-post').on('click', function () {
-    $(this).attr('style', 'color: #0b1d7b !important');
-    $('#search-music').attr('style', 'color: #7a7a7a !important');
-    $('#search-user').attr('style', 'color: #7a7a7a !important');
-  });
-  </script>
 </body>
 </html>

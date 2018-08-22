@@ -1,2 +1,2 @@
-$('#music-result').append('<p id="music-<%= @music.id %>">'+'<%= image_tag(@music.image) %>' + '<%= @music.title %>' +' | '+ '<%= @music.album %>' + ' | ' + '<%= link_to "취소", cancel_post_path(@music), remote: true, class: :onefive %>' + '<br>' +
+$('#music-result').append('<p class="musicSearchCenterNew" id="music-<%= @music.id %>">'+'<%= image_tag(@music.image) %>' + '<%= @music.title %>' +' | '+ '<%= @music.album %>' + ' | ' + '<%= link_to "취소", cancel_post_path(@music), remote: true, class: :onefive %>' + '<br>' +
                           '<input type="hidden" name="post[song_ids][]" value="<%= @music.id %>"/>' + '</p>');
