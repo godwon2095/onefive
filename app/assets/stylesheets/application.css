@@ -205,3 +205,8 @@ body.signup-body{
   display: flex;
   align-items: center;
 }
+
+.post_card_image {
+  width: 150px;
+  height: 150px;
+}
