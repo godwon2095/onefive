@@ -22,6 +22,11 @@ gem 'dropzonejs-rails'
 gem 'rails-i18n'
 gem 'devise-i18n'
 gem 'ruby-racer'
+gem 'figaro'
+
+group :production do
+  gem 'mysql2'
+end
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5'
 # Use sqlite3 as the database for Active Record
