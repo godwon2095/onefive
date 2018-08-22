@@ -2,10 +2,13 @@ ActiveAdmin.register_page "Dashboard" do
   menu priority: 1
 
   content title: proc { I18n.t("active_admin.dashboard") } do
+  result = 0
+  User.pluck('sign_in_count').map do |count|
+     result += count
+  end    
 
-
-   columns do
-     column do
+   tabs do
+     tab :whatthe do
        table_for 2, class: 'index_table index container row' do
          column "총 유저 수" do
            User.all.size
@@ -22,11 +25,8 @@ ActiveAdmin.register_page "Dashboard" do
        end
      end
 
-     column do
-       result = 0
-       User.pluck('sign_in_count').map do |count|
-         result += count
-       end
+     tab :fuck do
+       
        table_for 4, class: 'index_table index' do
          column "전체 방문 횟수" do
            User.all.size
