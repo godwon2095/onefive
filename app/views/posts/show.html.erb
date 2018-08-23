@@ -105,8 +105,8 @@
         </div>
       <% end %>
 
-      <div id="showCommentWrite">
-        <% if user_signed_in? %>
+      <% if user_signed_in? %>
+        <div id="showCommentWrite">
           <div>
             <% if current_user.thumbnail.present? %>
               <%= image_tag(current_user.thumbnail, id: "showImageComment") %>
@@ -123,12 +123,12 @@
               <%= f.submit "댓글 쓰기", class: "btn indigo darken-4 right", id: "mceu_31" %>
             </div>
           <% end %>
-        <% end %>
+        </div>
       </div>
     </div>
+    <br><br><%= js_will_paginate @comments %><br><br><br>
+    <% end %>
   </div>
-  <br><br><%= js_will_paginate @comments %><br><br><br>
-</div>
 
 <!--글 쓰기 버튼-->
   <div class="fixed-action-btn">
