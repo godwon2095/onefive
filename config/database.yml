@@ -4,11 +4,11 @@
 #   Ensure the SQLite 3 gem is defined in your Gemfile
 #   gem 'sqlite3'
 #
-production:
-  <<: *default
-  database: summerfold_production
-  username: root
-  password: <%= ENV['SUMMERFOLD_DATABASE_PASSWORD'] %>
+# production:
+#   <<: *default
+#   database: summerfold_production
+#   username: root
+#   password: <%= ENV['SUMMERFOLD_DATABASE_PASSWORD'] %>
 
 default: &default
   adapter: sqlite3

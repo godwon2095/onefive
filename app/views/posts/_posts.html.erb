@@ -51,7 +51,7 @@
                 <i class="tiny material-icons onefive">comment</i>
               </div>
               <div class="things_commentcount">
-                <%= p.comments.size %>
+                <%= p.comments.size + p.subcomments.size %>
               </div>
               <div class="things_favorite">
                 <% if p.liked_users.include?(current_user) %>

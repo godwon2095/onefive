@@ -11,12 +11,17 @@ ko:
     post: '게시글'
     song: '노래'
     admin_users: '어드민유저'
+    view_count: '조회수'
 
 
 
 
   activerecord:
     attributes:
+      post:
+        image: "대표사진"
+        title: "제목"
+        
       song:
         image: "앨범이미지"
         title: "노래제목"
