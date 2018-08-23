@@ -23,6 +23,7 @@ gem 'rails-i18n'
 gem 'devise-i18n'
 gem 'figaro'
 gem 'therubyracer', platforms: :ruby
+gem 'whenever', require: false
 
 # group :production do
 #   gem 'mysql2'

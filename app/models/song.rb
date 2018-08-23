@@ -3,8 +3,8 @@ class Song < ActiveRecord::Base
 
   def self.generate_songs
     (400000..500000).each do |i|
+      begin
       result = Wombat.crawl do
-
         base_url "https://music.naver.com/"
         path "/artist/track.nhn?artistId=" + "#{i}" + "&sorting=popular" #아티스트별
         music_titles({ css: ".track"  }, :list)
@@ -33,6 +33,9 @@ class Song < ActiveRecord::Base
             end
         end
       end
+    rescue
+      puts "stop #{i}"
+      next
     end
   end
 
