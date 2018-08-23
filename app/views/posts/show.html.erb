@@ -19,7 +19,7 @@
       </div>
       <div id="showProfileAll" class="right">
         <div>
-          <% if user_signed_in? && @post.user.thumbnail.present? %>
+          <% if @post.user.thumbnail.present? %>
             <%= image_tag(@post.user.thumbnail, id: "showUserImg") %>
           <% else %>
             <img src="/people.jpg" id="showUserImg">
@@ -110,7 +110,7 @@
           <% if user_signed_in? && current_user.thumbnail.present? %>
             <%= image_tag(current_user.thumbnail, id: "showImageComment") %>
           <% else %>
-            <img src="/people.png" id="showImageComment">
+            <img src="/people.jpg" id="showImageComment">
           <% end %>
         </div>
         <!-- 댓글작성기능 -->
