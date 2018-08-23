@@ -67,8 +67,10 @@
    </div>
 
     <div id="showContent">
-      <% @post.song_ids.each do |song| %>
-        <p><%= image_tag(Song.find(song.to_i).image) %><%= Song.find(song.to_i).title %> | <%= Song.find(song.to_i).singer.name %> | <%= Song.find(song.to_i).album %></p>
+      <% if @post.song_ids.present? %>
+        <% @post.song_ids.each do |song| %>
+          <p><%= image_tag(Song.find(song.to_i).image) %><%= Song.find(song.to_i).title %> | <%= Song.find(song.to_i).singer.name %> | <%= Song.find(song.to_i).album %></p>
+        <% end %>
       <% end %>
     </div>
   <% end %>
@@ -124,11 +126,11 @@
             </div>
           <% end %>
         </div>
-      </div>
+      <% end %>
     </div>
-    <br><br><%= js_will_paginate @comments %><br><br><br>
-    <% end %>
   </div>
+  <br><br><%= js_will_paginate @comments %><br><br><br>
+</div>
 
 <!--글 쓰기 버튼-->
   <div class="fixed-action-btn">
