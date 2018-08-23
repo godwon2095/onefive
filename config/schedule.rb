@@ -16,5 +16,4 @@ set :output, "log/singer.log"
 every 5.minute do
    runner "Singer.generate_singers"
 end
-c
 # Learn more: http://github.com/javan/whenever
