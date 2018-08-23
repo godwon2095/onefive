@@ -4,38 +4,38 @@ class Song < ActiveRecord::Base
   def self.generate_songs
     (400000..500000).each do |i|
       begin
-      result = Wombat.crawl do
-        base_url "https://music.naver.com/"
-        path "/artist/track.nhn?artistId=" + "#{i}" + "&sorting=popular" #아티스트별
-        music_titles({ css: ".track"  }, :list)
-        music_images({ xpath: ".//td//a[1]//img/@src" }, :list)
-        music_singers({ css: ".tb_artist"  }, :list)
-        music_albums({ css: ".album"  }, :list)
+        result = Wombat.crawl do
+          base_url "https://music.naver.com/"
+          path "/artist/track.nhn?artistId=" + "#{i}" + "&sorting=popular" #아티스트별
+          music_titles({ css: ".track"  }, :list)
+          music_images({ xpath: ".//td//a[1]//img/@src" }, :list)
+          music_singers({ css: ".tb_artist"  }, :list)
+          music_albums({ css: ".album"  }, :list)
 
-          features css: '.nav-item-opensource'
-          business css: '.nav-item-business'
-      end
-
-      if result.present?
-        result["music_titles"].each_with_index do |r, index|
-            if Singer.find_by(name: result["music_singers"]).present?
-              if Song.find_or_create_by(title: r,
-                                     singer_id: Singer.find_by(name: result["music_singers"][index]).id,
-                                     image: result["music_images"][index],
-                                     album: result["music_albums"][index]).nil?
-
-                Song.find_or_create_by(title: r,
+            features css: '.nav-item-opensource'
+            business css: '.nav-item-business'
+        end
+        if result.present?
+          result["music_titles"].each_with_index do |r, index|
+              if Singer.find_by(name: result["music_singers"]).present?
+                if Song.find_or_create_by(title: r,
                                        singer_id: Singer.find_by(name: result["music_singers"][index]).id,
                                        image: result["music_images"][index],
-                                       album: result["music_albums"][index])
-                puts i
-             end
-            end
+                                       album: result["music_albums"][index]).nil?
+
+                  Song.find_or_create_by(title: r,
+                                         singer_id: Singer.find_by(name: result["music_singers"][index]).id,
+                                         image: result["music_images"][index],
+                                         album: result["music_albums"][index])
+                  puts i
+               end
+              end
+          end
         end
+      rescue
+        puts "stop #{i}"
+        next
       end
-    rescue
-      puts "stop #{i}"
-      next
     end
   end
 
