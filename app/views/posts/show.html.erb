@@ -106,21 +106,23 @@
       <% end %>
 
       <div id="showCommentWrite">
-        <div>
-          <% if user_signed_in? && current_user.thumbnail.present? %>
-            <%= image_tag(current_user.thumbnail, id: "showImageComment") %>
-          <% else %>
-            <img src="/people.jpg" id="showImageComment">
-          <% end %>
-        </div>
+        <% if user_signed_in? %>
+          <div>
+            <% if current_user.thumbnail.present? %>
+              <%= image_tag(current_user.thumbnail, id: "showImageComment") %>
+            <% else %>
+              <img src="/people.jpg" id="showImageComment">
+            <% end %>
+          </div>
         <!-- 댓글작성기능 -->
-        <%= form_for(@comment, url: post_comments_path(@post), remote: true) do |f| %>
-          <div class="input-field">
-            <%= f.text_area :content, class: "showCommentTextarea", placeholder: "댓글쓰기...", required: true, id: "comment_content" %>
-          </div>
-          <div class="input-field">
-            <%= f.submit "댓글 쓰기", class: "btn indigo darken-4 right", id: "mceu_31" %>
-          </div>
+          <%= form_for(@comment, url: post_comments_path(@post), remote: true) do |f| %>
+            <div class="input-field">
+              <%= f.text_area :content, class: "showCommentTextarea", placeholder: "댓글쓰기...", required: true, id: "comment_content" %>
+            </div>
+            <div class="input-field">
+              <%= f.submit "댓글 쓰기", class: "btn indigo darken-4 right", id: "mceu_31" %>
+            </div>
+          <% end %>
         <% end %>
       </div>
     </div>
