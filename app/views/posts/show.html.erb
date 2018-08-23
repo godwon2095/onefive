@@ -107,7 +107,7 @@
 
       <div id="showCommentWrite">
         <div>
-          <% if current_user.thumbnail.present? %>
+          <% if user_signed_in? && current_user.thumbnail.present? %>
             <%= image_tag(current_user.thumbnail, id: "showImageComment") %>
           <% else %>
             <img src="/people.jpg" id="showImageComment">
