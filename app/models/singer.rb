@@ -3,7 +3,7 @@ class Singer < ActiveRecord::Base
 
   def self.generate_singers
     (401213..402000).each do |i|
-      begin
+      # begin
         result = Wombat.crawl do
           base_url "https://music.naver.com/"
           path "/artist/track.nhn?artistId=" + "#{i}" + "&sorting=popular" #아티스트별
@@ -21,10 +21,10 @@ class Singer < ActiveRecord::Base
             end
           end
         end
-      rescue
-        puts "stop #{i}"
-        next
-      end
+      # rescue
+      #   puts "stop #{i}"
+      #   next
+      # end
     end
 
   end
