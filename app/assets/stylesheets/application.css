@@ -188,11 +188,6 @@ blockquote{
     border-radius: 10px!important;
 }
 
-body.signup-body{
-    background-image: url('loginbackground.jpg');
-    background-size: cover;
-}
-
 .loginbutton{
     background-color: #0b1d7b!important;
 }

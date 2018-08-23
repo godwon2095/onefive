@@ -146,7 +146,7 @@
        <% if current_user.alarms.present? %>
          <% current_user.alarms.each do |alarm| %>
            <div class="sidenav_notice_profileimg" id="alarm-<%= alarm.id %>"> <!-- 프로필 이미지 -->
-             <% if alarm.find_from_who.thumbnail.present? %>
+             <% if alarm.find_from_who.try("thumbnail").present? %>
                <%= link_to image_tag(alarm.find_from_who, class: "circle sidenav_notice_profileimg_size"), profile_timeline_path(alarm.find_from_who) %>
              <% else %>
                <img src="/people.jpg" class="tl-size circle sidenav_notice_profileimg_size">
