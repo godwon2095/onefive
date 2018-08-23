@@ -2,7 +2,7 @@ class Singer < ActiveRecord::Base
   has_many :songs
 
   def self.generate_singers
-    (402810..500000).each do |i|
+    (all.count..(all.count+600)).each do |i|
       begin
         result = Wombat.crawl do
           base_url "https://music.naver.com/"
@@ -16,7 +16,8 @@ class Singer < ActiveRecord::Base
           result["music_singers"].each_with_index do |s, index|
             if Singer.find_by(name: s).nil?
               Singer.find_or_create_by(name: s)
-              # puts i
+              puts "#{i} 크롤링 함 : #{s}"
+
             end
           end
         end
