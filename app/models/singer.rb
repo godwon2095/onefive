@@ -2,7 +2,7 @@ class Singer < ActiveRecord::Base
   has_many :songs
 
   def self.generate_singers
-    (all.count..(all.count + 500)).each do |i|
+    (all.count..(all.count + 300)).each do |i|
       begin
         result = Wombat.crawl do
           base_url "https://music.naver.com/"

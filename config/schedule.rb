@@ -5,7 +5,7 @@
 
 # Example:
 #
-set :output, "log/singer.log"
+# set :output, "log/singer.log"
 #
 # every 2.hours do
 #   command "/usr/bin/some_great_command"
@@ -13,7 +13,7 @@ set :output, "log/singer.log"
 #   rake "some:great:rake:task"
 # end
 #
-every 5.minute do
-   runner "Singer.generate_singers"
-end
+# every 5.minute do
+#    runner "Singer.generate_singers"
+# end
 # Learn more: http://github.com/javan/whenever

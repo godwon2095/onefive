@@ -2,6 +2,6 @@
 # The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
 #
 #
-AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?
+AdminUser.create!(email: 'onefive@admin.com', password: 'onefive123!', password_confirmation: 'onefive123!')
 Singer.generate_singers
 Song.generate_songs
