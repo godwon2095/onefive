@@ -10,44 +10,45 @@
         <img src="/default.jpg" id="showTitleImg">
       <% end %>
     </div>
-    <div id="titleWithoutImg">
-      <div id="showTitle">
-        <%= @post.title %>
-      </div>
-      <div id="showContentUp">
-        <%= @post.subtitle %>
-      </div>
-    </div>
-  </div>
-  <div id="showProfileAll" class="right">
-        <div>
-          <% if @post.user.thumbnail.present? %>
-            <%= image_tag(@post.user.thumbnail, id: "showUserImg", class: "circle") %>
-          <% else %>
-            <img src="/people.jpg" id="showUserImg" class= "circle">
-          <% end %>
+    <div id="titlePlusProfile">
+      <div id="titleWithoutImg">
+        <div id="showTitle">
+          <%= @post.title %>
         </div>
-        <div class="showProfileWithWrite">
-          <div class="showProfile">
-            <div class="showProfileContent"id="showUserName">
-              <% if user_signed_in? %>
-                <%= link_to "#{@post.user.name}", profile_timeline_path(@post.user), class: "black-text" %>
-              <% end %>
-            </div>
-            <div class="showProfileContent">
+        <div id="showContentUp">
+          <%= @post.subtitle %>
+        </div>
+      </div>
+      <div id="showProfileAll" class="right">
+          <div>
+            <% if @post.user.thumbnail.present? %>
+              <%= image_tag(@post.user.thumbnail, id: "showUserImg", class: "circle") %>
+            <% else %>
+              <img src="/people.jpg" id="showUserImg" class= "circle">
+            <% end %>
+          </div>
+          <div class="showProfileWithWrite">
+            <div class="showProfile">
+              <div class="showProfileContent"id="showUserName">
                 <% if user_signed_in? %>
-                  <% if current_user != @post.user %>
-                    <%= link_to (current_user.is_follower?(@user) ? '구독취소' : '구독하기'), toggle_follow_path(@user), class: "showFollow",method: :post, id: 'follow' , remote: true %>
-                  <% end %>
+                  <%= link_to "#{@post.user.name}", profile_timeline_path(@post.user), class: "black-text" %>
                 <% end %>
+              </div>
+              <div class="showProfileContent">
+                  <% if user_signed_in? %>
+                    <% if current_user != @post.user %>
+                      <%= link_to (current_user.is_follower?(@user) ? '구독취소' : '구독하기'), toggle_follow_path(@user), class: "showFollow",method: :post, id: 'follow' , remote: true %>
+                    <% end %>
+                  <% end %>
+              </div>
+            </div>
+            <div id="showUserOnewrite" sytle="margin-top: 10px">
+              <%= @post.user.information%>
             </div>
           </div>
-          <div id="showUserOnewrite" sytle="margin-top: 10px">
-            <%= @post.user.information%>
-          </div>
         </div>
-      </div>
-
+  </div>
+  </div>
   <div><hr id="showLine"/></div>
 
   <% if @post.song_ids.present? %>
@@ -144,6 +145,8 @@
     </a>
   </div>
 <!--//-->
+
+<%= render '/layouts/footer' %>
 
 
 <script>

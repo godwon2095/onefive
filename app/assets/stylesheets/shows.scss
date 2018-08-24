@@ -22,6 +22,8 @@
 #showTitleImg {
   width: 320px;
   height: 320px;
+  display: flex;
+  flex-direction: flex-end;
 }
 
 #showTitle {
@@ -85,7 +87,7 @@
 }
 
 #showProfileAll {
-  width: 826px;
+  width: 500px;
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
@@ -94,9 +96,10 @@
 }
 
 #titleWithoutImg {
-  width: 500px;
+  width: 450px;
   display: flex;
   flex-direction: column;
+  margin-top: 50px;
 
 }
 
@@ -303,4 +306,13 @@
 
 #delete-margin {
   margin-left: 480px;
+}
+
+#titlePlusProfile {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 320px;
+  padding-right: 10px;
+  align-items: flex-end;
 }
