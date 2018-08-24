@@ -1,4 +1,6 @@
 $('#music-lists').empty();
-$('#music-lists').append('<% @musics[0..100].each do |music| %>'+
-                         '<li>' + '<%= image_tag(music.image) %> ' + '<%= link_to "#{music.title}", autoinit_post_path(music), class: "onefive", remote: true %> ' + '| <%= music.singer.name %> ' + '| <%= music.album %>'+ '</li>' + '<br>' +
+$('#music-lists').append('<% if @musics.present? %>'+
+                           '<% @musics[0..100].each do |music| %>'+
+                           '<li>' + '<%= image_tag(music.image) %> ' + '<%= link_to "#{music.title}", autoinit_post_path(music), class: "onefive", remote: true %> ' + '| <%= music.singer.name %> ' + '| <%= music.album %>'+ '</li>' + '<br>' +
+                           '<% end %>'+
                          '<% end %>');

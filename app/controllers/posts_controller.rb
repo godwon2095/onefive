@@ -56,8 +56,18 @@ class PostsController < ApplicationController
   end
 
   def direct_search_songs
-    if params[:search_music]
-      @musics = Song.search(params[:search_music])
+    if params[:search_song]
+      @musics = Song.search(params[:search_song])
+    end
+
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def direct_search_singers
+    if params[:search_singer]
+      @musics = Song.find_songs(Singer.search(params[:search_singer]))
     end
 
     respond_to do |format|

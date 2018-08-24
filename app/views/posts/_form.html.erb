@@ -110,9 +110,20 @@
     });
   }
 
+  function search_singers(search_singer){
+    $.get("/direct_search_singers/" + search_singer, function(){
+      console.log('pp');
+    });
+  }
+
   $('input#search_song').on('keyup', function(){
     var val = this.value;
     search_songs(val);
+  });
+
+  $('input#search_singer').on('keyup', function(){
+    var val = this.value;
+    search_singers(val);
   });
 </script>
 
