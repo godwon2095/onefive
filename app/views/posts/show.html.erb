@@ -7,7 +7,7 @@
       <% if @post.image.present? %>
         <%= image_tag @post.image_url(:thumb), id: "showTitleImg" %>
       <% else %>
-        <img src="/onefive.png" id="showTitleImg">
+        <img src="/default.jpg" id="showTitleImg">
       <% end %>
     </div>
     <div id="titleWithoutImg">
