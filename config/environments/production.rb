@@ -6,7 +6,7 @@ Rails.application.configure do
 
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.perform_deliveries = true
-  config.action_mailer.default_url_options = { host: 'https://www.1i05.me' } # REVIEW: 추후 실제 주소로 변경
+  config.action_mailer.default_url_options = { host: 'http://www.1i05.me' } # REVIEW: 추후 실제 주소로 변경
   ActionMailer::Base.smtp_settings = {
     :address              => 'smtp.gmail.com',
     :domain               => 'mail.google.com',
