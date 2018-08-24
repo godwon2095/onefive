@@ -9,6 +9,8 @@ class User < ActiveRecord::Base
 
   validate :password_complexity
   validates :password, length: { minimum: 8 }, unless: "password.nil?"
+  validates_uniqueness_of :name
+  validates_uniqueness_of :identity
 
   #포스팅
   has_many :posts
