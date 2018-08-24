@@ -2,8 +2,8 @@ class Song < ActiveRecord::Base
   belongs_to :singer
 
   def self.generate_songs
-    (400000..500000).each do |i|
-      # begin
+    (all.count..(all.count+500)).each do |i|
+      begin
         result = Wombat.crawl do
           base_url "https://music.naver.com/"
           path "/artist/track.nhn?artistId=" + "#{i}" + "&sorting=popular" #아티스트별
@@ -32,10 +32,10 @@ class Song < ActiveRecord::Base
               end
           end
         end
-      # rescue
-      #   puts "stop #{i}"
-      #   next
-      # end
+      rescue
+        puts "stop #{i}"
+        next
+      end
     end
   end
 

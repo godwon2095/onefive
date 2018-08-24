@@ -1,5 +1,5 @@
 <!-- 아래 코드 건드리지 말 것 -->
-<span id="text-<%= @post.id %>"><text id="copy-<%= @post.id %>" class="white-text toosmall">www.1i05.me/posts/<%= @post.id %></text></span>
+<span id="text-<%= @post.id %>"><text id="copy-<%= @post.id %>" class="white-text toosmall">http://www.1i05.me/posts/<%= @post.id %></text></span>
 
 <div id="showPage">
   <div id="showPage1">
@@ -33,8 +33,10 @@
               <% end %>
             </div>
             <div class="showProfileContent">
-                <% if user_signed_in? && current_user != @user %>
-                  <%= link_to (current_user.is_follower?(@user) ? '구독취소' : '구독하기'), toggle_follow_path(@user), class: "showFollow",method: :post, id: 'follow' , remote: true %>
+                <% if user_signed_in? %>
+                  <% if current_user != @post.user %>
+                    <%= link_to (current_user.is_follower?(@user) ? '구독취소' : '구독하기'), toggle_follow_path(@user), class: "showFollow",method: :post, id: 'follow' , remote: true %>
+                  <% end %>
                 <% end %>
             </div>
           </div>
@@ -82,12 +84,14 @@
   <div><hr id="showLine2"/></div>
 
   <!-- 수정 삭제 -->
-  <% if user_signed_in? && current_user == @post.user %>
-    <div class="edit-delete row">
-      <%= link_to '수정', edit_post_path(@post), class: "onefive col editedit" %>
-      <div class="onefive col thingthing">|</div>
-      <%= link_to '삭제', post_path(@post), method: :delete, class: "onefive col deletedelte" %>
-    </div>
+  <% if user_signed_in? %>
+    <% if current_user == @post.user %>
+      <div class="edit-delete row">
+        <%= link_to '수정', edit_post_path(@post), class: "onefive col editedit" %>
+        <div class="onefive col thingthing">|</div>
+        <%= link_to '삭제', post_path(@post), method: :delete, class: "onefive col deletedelte" %>
+      </div>
+    <% end %>
   <% end %>
 
   <div id="showIcon">
@@ -126,6 +130,7 @@
             </div>
           <% end %>
         </div>
+      <% else %>
       <% end %>
     </div>
   </div>

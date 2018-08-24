@@ -35,7 +35,7 @@
 
       <div id="showCommentWrite">
         <div>
-          <% if current_user.thumbnail.present? %>
+          <% if user_signed_in? && current_user.thumbnail.present? %>
             <i class="material-icons grey-text">subdirectory_arrow_right</i><%= image_tag(current_user.thumbnail, id: "subcommentImage") %>
           <% else %>
             <i class="material-icons grey-text">subdirectory_arrow_right</i><img src="/people.jpg" id="subcommentImage">
@@ -61,7 +61,7 @@
       <!--  대댓글작성기능 -->
       <div id="showCommentWrite">
         <div>
-          <% if current_user.thumbnail.present? %>
+          <% if user_signed_in? && current_user.thumbnail.present? %>
             <i class="material-icons grey-text">subdirectory_arrow_right</i><%= image_tag(current_user.thumbnail, id: "subcommentImage") %>
           <% else %>
             <i class="material-icons grey-text">subdirectory_arrow_right</i><img src="/people.jpg" id="subcommentImage">
