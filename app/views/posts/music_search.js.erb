@@ -1,12 +1,12 @@
 $('#music-lists3').empty();
 $('#music-lists3').append('<% if @musics.present? %>'+
                         '<% @musics[0..100].each do |m| %>'+
-                          '<div id="search_music_img">'+'<%= image_tag(m.image, height: '80', width: '80') %>'+'</div>'+
+                          '<div id="search_music_img">'+'<%= image_tag(m.image, height: '50', width: '50') %>'+'</div>'+
                           '<div id="search_music_article">'+
                             '<div class="music_item1">'+'<%= link_to "#{m.title}", by_song_post_path(m), class: "search_music_title" %>'+'</div>'+
                             '<div class="search_music_item music-item2">'+'<%= m.singer.name %>'+'</div>'+
                             '<div class="search_music_item music-item3">'+'['+'<%= m.album %>'+']'+'</div>'+
                           '</div>'+
-                          '<div><hr id="search_hrTag" class="search_hrTag_bottom"/> <!-- 구분선 --></div>'+
+                          '<div><hr id="search_hrTag"/> <!-- 구분선 --></div>'+
                          '<% end %>'+
                       '<% end %>');
