@@ -107,6 +107,8 @@ class PostsController < ApplicationController
       redirect_to :back, notice: "부제목은 필수 입력 항목입니다."
     elsif params[:post][:content] == ""
       redirect_to :back, notice: "내용은 필수 입력 항목입니다."
+    elsif params[:post][:song_ids] == nil
+      redirect_to :back, notice: "음악은 꼭 넣으셔야 합니다."
     else
       @post = Post.new(set_params)
       @post.user_id = current_user.id
