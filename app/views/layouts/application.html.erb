@@ -242,4 +242,15 @@
 
 <script>
   $('.dropdown-trigger').dropdown();
+
+  function music_direct_search(search_music){
+    $.get("/direct_music_search/" + search_music, function(data){
+    });
+  }
+
+  $('input.search_input_div_bar').on('keyup', function(){
+    var val = this.value;
+    music_direct_search(val);
+  });
+
 </script>

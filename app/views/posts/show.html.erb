@@ -17,12 +17,14 @@
       <div id="showContentUp">
         <%= @post.subtitle %>
       </div>
-      <div id="showProfileAll" class="right">
+    </div>
+  </div>
+  <div id="showProfileAll" class="right">
         <div>
           <% if @post.user.thumbnail.present? %>
-            <%= image_tag(@post.user.thumbnail, id: "showUserImg") %>
+            <%= image_tag(@post.user.thumbnail, id: "showUserImg", class: "circle") %>
           <% else %>
-            <img src="/people.jpg" id="showUserImg">
+            <img src="/people.jpg" id="showUserImg" class= "circle">
           <% end %>
         </div>
         <div class="showProfileWithWrite">
@@ -41,12 +43,10 @@
             </div>
           </div>
           <div id="showUserOnewrite" sytle="margin-top: 10px">
-            <%= @post.user.information %>
+            <%= @post.user.information%>
           </div>
         </div>
       </div>
-    </div>
-  </div>
 
   <div><hr id="showLine"/></div>
 

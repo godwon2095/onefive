@@ -37,6 +37,7 @@ Rails.application.routes.draw do
   get '/timelines/tag/:name' => 'timelines#tag'
   get '/check_identity/:identity' => 'checks#identity'
   get '/check_name/:name' => 'checks#name'
+  get '/direct_music_search/:search_music' => 'posts#music_search'
 
   devise_for :users
   devise_for :admin_users, ActiveAdmin::Devise.config

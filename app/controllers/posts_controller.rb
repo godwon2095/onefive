@@ -43,6 +43,18 @@ class PostsController < ApplicationController
     end
   end
 
+  def music_search
+    if params[:search_music]
+      songs = Song.search(params[:search_music])
+      singers = Song.find_songs(Singer.search(params[:search_music]))
+      @musics = songs + singers
+
+      respond_to do |format|
+        format.js
+      end
+    end
+  end
+
   def by_song
     post_ids = []
     Post.all.each do |p|

@@ -11,8 +11,10 @@
       </div><br>
 
     <div class="field">
-      <%= f.label :image, '대표사진' %>
-      <%= f.file_field :image %>
+      <%= f.label :image, '대표사진' %><br>
+      <%= f.file_field :image, id: "hidden_file_field" %>
+      <%= link_to 'image', '#', class: "material-icons black-text", id: "hidden_file_field_trigger" %>
+      <span id="added_file-result"></span>
     </div>
 
       <div class="field form_songtitle">
@@ -141,4 +143,14 @@ $('#search-post').on('click', function () {
   $('#search-music').attr('style', 'color: #7a7a7a !important');
   $('#search-user').attr('style', 'color: #7a7a7a !important');
 });
+
+$('#hidden_file_field_trigger').on('click', function(){
+  $('#hidden_file_field').trigger('click');
+});
+
+$('#hidden_file_field').on('change', function(){
+  var url = $(this).val();
+  $('#added_file-result').empty();
+  $('#added_file-result').append(url);
+})
 </script>

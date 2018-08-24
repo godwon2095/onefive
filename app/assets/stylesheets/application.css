@@ -109,6 +109,9 @@ hr{
 .hidden_file_field {
   display: none;
 }
+#hidden_file_field {
+  display: none;
+}
 
 /* 현규 추가 사항 */
 nav {
