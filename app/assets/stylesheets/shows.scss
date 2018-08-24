@@ -74,6 +74,7 @@
   flex-direction: row;
   line-height: 16px;
   align-items: flex-end;
+  margin-bottom: 7px;
 }
 
 #showProfileWithWrite {
@@ -258,12 +259,12 @@
 
 #showCommentContent {
   margin-top: 15px;
-  font-size: 16pt;
+  font-size: 13pt;
   color: black;
   font-family: 'Noto Sans KR';
   line-height: 16pt;
-  font-weight: lighter;
   width: 480px;
+  padding-left: 70px;
 }
 
 #showCommentWrite {
