@@ -48,7 +48,8 @@
                 </ul>
              </div> <!-- 탭 끝 -->
              <div id="search3"> <!-- 세번째 세션시작. 검색목록 나열 -->
-               <div id="search_music"><br> <!-- 음악을 눌렀을 때 -->
+
+               <div id="search_music" class="search_center_form"> <!-- 음악을 눌렀을 때 -->
                  <%= form_tag(search_post_posts_path, method: :get, remote: true) do %>
                    <span class="search_input"> <!--아이콘과 검색바 -->
                      <!--아이콘-->
@@ -60,8 +61,8 @@
                  <div id="music-lists3">
                  </div>
                </div> <!-- 음악을 눌렀을 때 끝 -->
-                   <!-- 성원형. 위에 search_music 아이디를 반복해주면 됩니다.-->
-              <div id="search_user"><br> <!-- 사용자를 눌렀을때 -->
+
+              <div id="search_user" class="search_center_form"> <!-- 사용자를 눌렀을때 -->
                 <form action='<%= posts_path %>' method="GET">
                   <span class="search_input"> <!--아이콘과 검색바 -->
                     <!--아이콘-->
@@ -71,9 +72,7 @@
                   </span>
                 </form>
               </div> <!-- 사용자를 눌렀을때 끝 -->
-
-
-              <div id="search_article"><br> <!-- 글을 눌렀을때 -->
+              <div id="search_article" class="search_center_form"> <!-- 글을 눌렀을때 -->
                 <div id=#search1> <!-- 첫번째 세션 -->
                   <form action='<%= posts_path %>' method="GET">
                     <span class="search_input"> <!--아이콘과 검색바 -->
