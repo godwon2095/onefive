@@ -2,11 +2,11 @@ class Singer < ActiveRecord::Base
   has_many :songs
 
   def self.generate_singers
-    (112579..112700).each do |i|
+    (460475..46900).each do |i|
       # begin
         result = Wombat.crawl do
           base_url "https://music.naver.com/"
-          path "/artist/track.nhn?artistId=" + "#{i}" + "&sorting=popular" #아티스트별
+          path "/artist/track.nhn?artistId=" + "#{i}" + "&sorting=popular"
             music_singers({ css: ".tb_artist"  }, :list)
               features css: '.nav-item-opensource'
               business css: '.nav-item-business'
