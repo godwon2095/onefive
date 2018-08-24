@@ -218,3 +218,23 @@ blockquote{
 #error_explanation li {
   color: red;
 }
+
+.content_song {
+  font-style: normal !important;
+}
+
+#search_input_style {
+  padding-left: 80px !important;
+  padding-top: 20px !important;
+}
+
+#field_control_img {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.field_control {
+  margin-left: 20px;
+  margin-bottom: 10px;
+}

@@ -10,16 +10,16 @@
         <%= f.text_area :subtitle, placeholder: "부제를 입력하세요.",class: "newPostFormSub", autocomplete: "off" %>
       </div><br>
 
-    <div class="field">
-      <%= f.label :image, '대표사진 업로드' %><br>
-      <%= f.file_field :image, id: "hidden_file_field" %>
-      <%= link_to 'image', '#', class: "material-icons black-text", id: "hidden_file_field_trigger" %>
-      <span id="added_file-result"></span>
-    </div>
-
-      <div class="field form_songtitle">
-        <a href="#modal" class="modal-trigger btn white indigo-text text-darken-4">음악 불러오기</a>
-        <div id="music-result">
+      <div id="field_control_img">
+        <div class="field form_songtitle">
+          <a href="#modal" class="modal-trigger btn white indigo-text text-darken-4">음악 불러오기</a>
+          <div id="music-result">
+          </div>
+        </div>
+        <div class="field field_control">
+          <%= f.file_field :image, id: "hidden_file_field" %>
+          <%= link_to 'image', '#', class: "large material-icons black-text", id: "hidden_file_field_trigger" %>
+          <span id="added_file-result"></span>
         </div>
       </div>
 
@@ -71,7 +71,7 @@
    <div id="search_singer"> <!-- 사용자를 눌렀을때 -->
      <div id=#search4> <!-- 첫번째 세션 -->
        <%= form_tag(search_posts_path, method: :get, remote: true) do %>
-         <div class="search_input"> <!--아이콘과 검색바 -->
+         <div class="search_input search_input_style"> <!--아이콘과 검색바 -->
            <!--아이콘-->
            <i class="material-icons search_icon">search</i>
            <!--검색-->
