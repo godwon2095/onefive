@@ -223,9 +223,9 @@ blockquote{
   font-style: normal !important;
 }
 
-#search_input_style {
-  padding-left: 80px !important;
-  padding-top: 20px !important;
+.search_input_search2 {
+  padding-left: 70px;
+  padding-top: 20px;
 }
 
 #field_control_img {
