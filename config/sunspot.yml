@@ -1,6 +1,6 @@
 production:
   solr:
-    hostname: www.1i05.me
+    hostname: http://www.1i05.me
     port: 8983
     log_level: WARNING
     path: /solr/production
