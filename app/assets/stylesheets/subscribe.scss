@@ -11,9 +11,9 @@
 .letSubscribe {
   font-family: 'Noto Sans KR';
   // NotoSerifKR <-- 궁서체
-  font-size: 32pt;
+  font-size: 20pt;
   font-weight: medium;
-  margin-bottom: 50px;
+  margin-bottom: 25px;
 }
 
 .subscribeProfileImg {
@@ -28,7 +28,7 @@
 .subscribeImgWrite {
   display: flex;
   align-items: center;
-  margin-bottom: 55px;
+  margin-bottom: 30px;
 }
 
 .subscribeProfileWrite {
@@ -40,16 +40,16 @@
 }
 
 .subscribeUser {
-  font-size: 24pt;
+  font-size: 16pt;
   font-family: 'NotoSerifKR';
   margin-top: 10px;
   margin-bottom: 15px;
 }
 
-.subscribeWrite {
+.fWrite {
   color: #404040;
   font-family: 'NotoSerifKR';
-  font-size: 22pt;
+  font-size: 14pt;
   margin-bottom: 10px;
 }
 
