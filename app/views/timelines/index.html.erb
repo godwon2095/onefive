@@ -1,6 +1,10 @@
-<div id="posts">
-  <%= render partial: "posts" %>
-</div>
+<% if @posts.present? %>
+  <div id="posts">
+    <%= render partial: "posts" %>
+  </div>
+<% else %>
+  <h5 class="grey-text center">아직 구독중인 사람이 없습니다.</h5>
+<% end %>
 
 <div id="infinite-posts">
   <%= will_paginate @posts %>

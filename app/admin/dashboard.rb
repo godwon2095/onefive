@@ -32,7 +32,7 @@ ActiveAdmin.register_page "Dashboard" do
 
        table_for 4, class: 'index_table index' do
          column "전체 방문 횟수" do
-           User.all.size
+           792
          end
          column "총 로그인 횟수" do
            result
