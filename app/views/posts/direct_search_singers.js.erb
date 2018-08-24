@@ -1,6 +1,6 @@
 $('#music-lists2').empty();
 $('#music-lists2').append('<% if @musics.present? %>'+
-                          '<% @musics.each do |music| %>'+
+                          '<% @musics[0..100].each do |music| %>'+
                           '<li>' + '<%= image_tag(music.image) %> ' + '<%= link_to "#{music.title}", autoinit_post_path(music), class: "onefive", remote: true %> ' + '| <%= music.singer.name %> ' + '| <%= music.album %>'+ '</li>' + '<br>' +
                           '<% end %>'+
                         '<% end %>');
