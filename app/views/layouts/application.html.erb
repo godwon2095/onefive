@@ -136,7 +136,7 @@
         <div class="sidenav_links_one"><%= link_to '로그아웃', destroy_user_session_path, method: :delete, class: :onefive %></div>
       </div>
       <div class="sidenav_notice_title center">
-        <%= link_to '소식', alarms_path, class: :onefive %>(<%= current_user.alarms.size %>)
+        <%= link_to '소식', '#', class: :onefive %>(<%= current_user.alarms.size %>)
       </div>
       <div class="sidenav_line">
         <hr width="200px" align="center" color="#8b8b8b" size="1">
