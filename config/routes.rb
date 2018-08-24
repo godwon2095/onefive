@@ -38,6 +38,7 @@ Rails.application.routes.draw do
   get '/check_identity/:identity' => 'checks#identity'
   get '/check_name/:name' => 'checks#name'
   get '/direct_music_search/:search_music' => 'posts#music_search'
+  get '/direct_search_songs/:search_song' => 'posts#direct_search_songs'
 
   devise_for :users
   devise_for :admin_users, ActiveAdmin::Devise.config

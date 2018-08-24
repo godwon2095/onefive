@@ -11,7 +11,7 @@
       </div><br>
 
     <div class="field">
-      <%= f.label :image, '대표사진' %><br>
+      <%= f.label :image, '대표사진 업로드' %><br>
       <%= f.file_field :image, id: "hidden_file_field" %>
       <%= link_to 'image', '#', class: "material-icons black-text", id: "hidden_file_field_trigger" %>
       <span id="added_file-result"></span>
@@ -55,7 +55,7 @@
             <!--아이콘-->
             <i class="material-icons search_icon">search</i>
             <!--검색-->
-            <div class="search_input_div"><input type="text" name="search_music"></div>
+            <div class="search_input_div"><input type="text" name="search_music" id="search_song"></div>
           </div>
         <% end %>
         <div><br><br>
@@ -75,7 +75,7 @@
            <!--아이콘-->
            <i class="material-icons search_icon">search</i>
            <!--검색-->
-           <div class="search_input_div"><input type="text" name="search_singer"></div>
+           <div class="search_input_div"><input type="text" name="search_singer" id="search_singer"></div>
          </div>
        <% end %>
        <div><br><br>
@@ -102,6 +102,17 @@
   $('#search-singer').on('click', function () {
     $(this).attr('style', 'color: #0b1d7b !important');
     $('#search-title').attr('style', 'color: #7a7a7a !important');
+  });
+
+  function search_songs(search_song){
+    $.get("/direct_search_songs/" + search_song, function(){
+      console.log('dd');
+    });
+  }
+
+  $('input#search_song').on('keyup', function(){
+    var val = this.value;
+    search_songs(val);
   });
 </script>
 
