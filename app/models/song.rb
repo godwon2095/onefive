@@ -27,7 +27,7 @@ class Song < ActiveRecord::Base
                                          singer_id: Singer.find_by(name: result["music_singers"][index]).id,
                                          image: result["music_images"][index],
                                          album: result["music_albums"][index])
-                  puts i
+                  # puts i
                end
               end
           end
