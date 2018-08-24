@@ -1,5 +1,9 @@
 <%= form_for(resource, as: resource_name, url: user_registration_path, html: { method: :put }) do |f| %>
-  <%= devise_error_messages! %> <!-- 이거 수정해야함 -->
+  <div>
+    <center>
+      <%= devise_error_messages! %> <!-- 이거 수정해야함 -->
+    </center>
+  </div>
   <div id="editPage">
 
     <div id="image-<%= current_user.id %>">

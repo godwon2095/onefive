@@ -208,3 +208,13 @@ blockquote{
   width: 150px;
   height: 150px;
 }
+
+#error_explanation h2 {
+  font-size: 22pt !important;
+  color: red;
+}
+
+
+#error_explanation li {
+  color: red;
+}
