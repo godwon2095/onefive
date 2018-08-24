@@ -22,7 +22,6 @@ class Singer < ActiveRecord::Base
           end
         end
       # rescue
-      #   puts "stop #{i}"
       #   next
       # end
     # end
