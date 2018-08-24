@@ -26,7 +26,7 @@
       <% if controller.controller_name == "posts" && controller.action_name == "index" %>
         <div class="navCenterWrite onefive nav2">지금 이 글</div>
       <% elsif controller.controller_name == "timelines" && controller.action_name == "index" %>
-        <div class="navCenterWrite onefive nav2">구독한글</div>
+        <div class="navCenterWrite onefive nav2">구독한 글</div>
       <% elsif controller.controller_name == "timelines" && controller.action_name == "saves" %>
         <div class="navCenterWrite onefive nav2">담은 글</div>
       <% end %>
@@ -131,7 +131,7 @@
         </div>
       </div>
       <div class="sidenav_links center">
-        <div class="sidenav_links_one"><%= link_to '모아보기', timelines_path, class: :onefive %></div><!-- 구독 주소 넣어주세요 -->
+        <div class="sidenav_links_one"><%= link_to '구독한 글', timelines_path, class: :onefive %></div><!-- 구독 주소 넣어주세요 -->
         <div class="sidenav_links_one"><%= link_to '지금 이 글', root_path, class: :onefive %></div><!-- 지금 이 글 주소 넣어주세요 -->
         <div class="sidenav_links_one"><%= link_to '담은 글', saves_timelines_path, class: :onefive %></div><!-- 담은 글 주소 넣어주세요 -->
         <div class="sidenav_links_one"><%= link_to '로그아웃', destroy_user_session_path, method: :delete, class: :onefive %></div>
