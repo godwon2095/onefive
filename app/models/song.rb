@@ -2,11 +2,11 @@ class Song < ActiveRecord::Base
   belongs_to :singer
 
   def self.generate_songs
-    (all.count..(all.count+300)).each do |i|
-      begin
+    # (all.count..(all.count+300)).each do |i|
+      # begin
         result = Wombat.crawl do
           base_url "https://music.naver.com/"
-          path "/artist/track.nhn?artistId=" + "#{i}" + "&sorting=popular" #아티스트별
+          path "/artist/track.nhn?artistId=" + "343255" + "&sorting=popular" #아티스트별
           music_titles({ css: ".track"  }, :list)
           music_images({ xpath: ".//td//a[1]//img/@src" }, :list)
           music_singers({ css: ".tb_artist"  }, :list)
@@ -32,11 +32,11 @@ class Song < ActiveRecord::Base
               end
           end
         end
-      rescue
-        puts "stop #{i}"
-        next
-      end
-    end
+      # rescue
+      #   puts "stop #{i}"
+      #   next
+      # end
+    # end
   end
 
   def self.search(query)
