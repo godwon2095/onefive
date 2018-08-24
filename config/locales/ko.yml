@@ -1,6 +1,33 @@
 ---
 ko:
+  attributes:
+    id: ID
+    thumbnail: "프로필이미지"
+    identity: "아이디"
+    name: "이름"
+    created_at: "생성시간"
+    updated_at: "업데이트시간"
+    user: '사용자'
+    post: '게시글'
+    song: '노래'
+    admin_users: '어드민유저'
+    view_count: '조회수'
+
+
+
+
   activerecord:
+    attributes:
+      post:
+        image: "대표사진"
+        title: "제목"
+        
+      song:
+        image: "앨범이미지"
+        title: "노래제목"
+        singer: "가수"
+        album: "앨범"
+
     errors:
       messages:
         record_invalid: 데이터 검증에 실패하였습니다. %{errors}

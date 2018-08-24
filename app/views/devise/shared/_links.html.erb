@@ -1,13 +1,13 @@
 <%- if controller_name != 'sessions' %>
-  <%= link_to "로그인", new_user_session_path(resource_name) %><br />
+  이미 계정이 있나요? <%= link_to "로그인", new_user_session_path(resource_name),class: "right" %><br />
 <% end -%>
 
 <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
-  <%= link_to "회원가입", new_user_registration_path(resource_name).sub(/\.[\w]*\z/, '') %><br />
+  아직 가입하지 않으셨나요? <%= link_to "회원가입", new_user_registration_path(resource_name).sub(/\.[\w]*\z/, ''), class: "right" %><br />
 <% end -%>
 
 <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
-  <%= link_to "비밀번호 찾기", new_user_password_path(resource_name) %><br />
+  <%= link_to "비밀번호를 잊으셨나요?", new_user_password_path(resource_name) %><br />
 <% end -%>
 
 <%- if devise_mapping.confirmable? && controller_name != 'confirmations' %>

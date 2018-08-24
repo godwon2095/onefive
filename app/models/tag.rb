@@ -9,7 +9,11 @@ class Tag < ActiveRecord::Base
   def generate_alarm
     if self.user.tag_on == true
       if self.user != self.comment.user
-        alarm = Alarm.create(user_id: self.user.id, content: self.user.name, findable_id: self.comment.post.id, is_read: false, alarm_type: "tag")
+        self.comment.content.scan(/@\w+/).map do |object|
+          if User.find_by(name: object.delete('@')).present?
+            alarm = Alarm.create(user_id: User.find_by(name: object.delete('@')).id, content: self.comment.user.name, findable_id: self.comment.post.id, is_read: false, alarm_type: "tag")
+          end
+        end
       end
     end
   end

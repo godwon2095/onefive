@@ -3,34 +3,46 @@
     <div class="card horizontal">
       <div class="card-stacked">
         <div class="card-content">
-          <div class="card_top">
-            <% if p.user == current_user %>
-              <a class="dropdown-trigger" data-target="dropdown2">
-                <i class="tiny material-icons onefive" style="float: right;">more_horiz</i>
-              </a>
-              <ul id="dropdown2" class="dropdown-content">
-                <li><a href="<%= edit_post_path(p) %>" id="onefive">수정</a></li>
-                <li class="divider" tabindex="-1"></li>
-                <li><a href="<%= post_path(p) %>" id="onefive" data-method="delete">삭제</a></li>
-              </ul>
-            <% end %>
-          </div>
-            <div class="content_title">
-              <%= link_to "#{p.title.truncate(14)}", post_path(p), class: "onefive" %>
-            </div>
-            <div class="content_song">
-              <% if p.song_ids.present? %>
-                <%= Song.find(p.song_ids.first.to_i).title.truncate(18) %> - <%= Song.find(p.song_ids.first.to_i).singer.name %>
-                <% if p.song_ids.size > 2 %>
-                  외 <%= p.song_ids.size - 1 %>곡
-                <% end %>
+          <div class="card_all">
+            <div class="card_img">
+              <% if p.image.present? %>
+                <%= image_tag p.image_url(:thumb), width: 150, height: 150 %>
+              <% else %>
+                <img src="/default.jpg" width="150px" height="150px">
               <% end %>
             </div>
-            <div class="content_subtitle">
-              <%= truncate(p.subtitle, :ommision => "...", :length => 50) %>
+            <div class="card_flex">
+              <div class="card_top">
+                <% if p.user == current_user %>
+                  <a class="dropdown-trigger" data-target="dropdown2">
+                    <i class="tiny material-icons onefive" style="float: right;">more_horiz</i>
+                  </a>
+                  <ul id="dropdown2" class="dropdown-content">
+                    <li><a href="<%= edit_post_path(p) %>" id="onefive">수정</a></li>
+                    <li class="divider" tabindex="-1"></li>
+                    <li><a href="<%= post_path(p) %>" id="onefive" data-method="delete">삭제</a></li>
+                  </ul>
+                <% end %>
+              </div>
+              <div class="content_title">
+                <%= link_to "#{p.title.truncate(14)}", post_path(p), class: "onefive" %>
+              </div>
+              <div class="content_song">
+                <% if p.song_ids.present? %>
+                <div class="content_song_icon"><i class="material-icons">album</i></div>
+                    <%= Song.find(p.song_ids.first.to_i).title.truncate(18) %> - <%= Song.find(p.song_ids.first.to_i).singer.name %>
+                  <% if p.song_ids.size > 2 %>
+                    외 <%= p.song_ids.size - 1 %>곡
+                  <% end %>
+                <% end %>
+              </div>
+              <div class="content_subtitle">
+                <%= truncate(p.subtitle, :ommision => "...", :length => 50) %>
+              </div>
+              <div class="content_preview">
+                <%= truncate_html(p.content, length: 160, omission: '...') %>
+              </div>
             </div>
-            <div class="content_preview">
-              <%= truncate_html(p.content, length: 160, omission: '...') %>
             </div>
           </div>
           <div class="card-action">
@@ -39,7 +51,7 @@
                 <i class="tiny material-icons onefive">comment</i>
               </div>
               <div class="things_commentcount">
-                <%= p.comments.size %>
+                <%= p.comments.size + p.subcomments.size %>
               </div>
               <div class="things_favorite">
                 <% if p.liked_users.include?(current_user) %>

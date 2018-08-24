@@ -37,6 +37,18 @@ nav{
   color: #0b1d7b;
   margin-top: 12px;
   margin-bottom: 10px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: flex-start;
+}
+
+.content_song_icon{
+  margin-right: 2px;
+}
+
+.content_song_title{
+  margin-top: 1px;
 }
 
 .content_subtitle{
@@ -60,7 +72,7 @@ nav{
 .card-content{
   padding: 25px 60px 30px 60px !important;
   // display: flex;
-  // align-items: center;
+  align-items: center;
 }
 
 .card-action{
@@ -115,10 +127,6 @@ nav{
   margin-left: auto;
 }
 
-.card_image_size {
-  width: 273px !important;
-  height: 362px;
-}
 #card-align {
   margin: 0px;
   color: #0b1d7b;
@@ -128,4 +136,22 @@ nav{
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
+}
+
+.card_all{
+  display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	align-items: center;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.card_flex{
+  width: 625px;
+}
+
+.card_img{
+  margin-right: 20px;
+  margin-top :20px;
 }

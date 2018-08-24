@@ -1,0 +1,109 @@
+
+/* 여기서부터 사이드 nav */
+.sidenav .user-view .circle {
+   height: 120px!important;
+   width: 120px!important;
+}
+
+.sidenav .user-view .circle, .sidenav .user-view .name, .sidenav .user-view .email{
+ display: inline-block!important;
+}
+
+.sidenav_border{
+ height: 10px;
+ width: 100%;
+ background-color: #0b1d7b;
+}
+
+.user-view{
+ padding: 40px 0px 0px 0px !important;
+}
+
+.sidenav_user_name{
+ font-family: 'Noto Sans KR', sans-serif;
+ font-size: 18pt;
+ color: #0b1d7b;
+ font-weight: bold;
+ margin-top: 20px;
+}
+
+.sidenav_user_subscribe > span{
+ color: #0b1d7b!important;
+}
+
+.sidenav_user_subscribe{
+ margin-top: 10px;
+ font-size: 12pt;
+ color: #0b1d7b;
+ font-weight: lighter;
+ font-family: 'Noto Sans KR', sans-serif;
+ margin-bottom: 45px;
+}
+
+.sidenav_links_one{
+ font-family: 'NotoSerifKR';
+ font-size: 18pt;
+ color: #0b1d7b;
+ margin-bottom: 20px;
+}
+
+.sidenav_notice_title{
+ font-family: 'NotoSerifKR';
+ font-size: 24pt;
+ color: #0b1d7b;
+ margin-top: 40px;
+}
+
+.sidenav_line{
+ margin-bottom: 20px;
+ margin-top: 20px;
+}
+
+.sidenav_notice{
+  width: 250px;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: center;
+  align-items: center;
+}
+
+.sidenav_notice_profileimg_size{
+    width: 40px !important;
+    height: 40px !important;
+}
+
+.sidenav_flex {
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#navSmallRight {
+  display: flex;
+  flex-direction: column;
+  width: 175px;
+  margin-left: 10px;
+  margin-right: 15px;
+}
+
+#navSmallRightExceptImg {
+  display: flex;
+  flex-direction: row;
+  width: 200px;
+  align-items: center;
+}
+
+.sidenav_notice_text_about {
+  font-family: 'NotoSerifKR';
+  font-size: 10pt;
+}
+
+.sidenav_notice_text_ago {
+  font-family: 'NotoSerifKR' ;
+  font-size: 8pt;
+}
+
+
+/*사이드 네브 끝*/

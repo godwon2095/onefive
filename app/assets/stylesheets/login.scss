@@ -15,16 +15,16 @@
     border-radius: 10px!important;
 }
 
-body.login-body {
-    background-image: url('loginbackground.jpg');
+.result-class {
+  font-size: 10px;
+}
+
+body.signup-body {
+    background-image: url(asset-path("loginbackground.jpg"));
     background-size: cover;
 }
 
-.loginbutton{
-    background-color: #0b1d7b!important;
-}
-
-.actions {
-    margin-top: 8px;
-    margin-bottom: 8px;
+body.login-body {
+    background-image: url(asset-path("loginbackground.jpg"));
+    background-size: cover;
 }

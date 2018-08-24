@@ -1,0 +1,58 @@
+#whoSubscribe {
+  margin-top:40px;
+  display: flex;
+  width: 586px;
+  margin-left: auto;
+  margin-right: auto;
+  flex-direction: column;
+
+}
+
+.letSubscribe {
+  font-family: 'Noto Sans KR';
+  // NotoSerifKR <-- 궁서체
+  font-size: 32pt;
+  font-weight: medium;
+  margin-bottom: 50px;
+}
+
+.subscribeProfileImg {
+  width: 70px;
+  height: 70px;
+}
+
+.subscribeImgWrite {
+  display: flex;
+}
+
+.subscribeImgWrite {
+  display: flex;
+  align-items: center;
+  margin-bottom: 55px;
+}
+
+.subscribeProfileWrite {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  margin-left: 10px;
+}
+
+.subscribeUser {
+  font-size: 24pt;
+  font-family: 'NotoSerifKR';
+  margin-top: 10px;
+  margin-bottom: 15px;
+}
+
+.subscribeWrite {
+  color: #404040;
+  font-family: 'NotoSerifKR';
+  font-size: 22pt;
+  margin-bottom: 10px;
+}
+
+#whomSubscribe {
+  margin-top: 20px;
+}

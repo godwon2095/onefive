@@ -4,7 +4,7 @@
       <% if subcomment.user.thumbnail.present? %>
         <i class="material-icons grey-text">subdirectory_arrow_right</i><%= image_tag(subcomment.user.thumbnail, id: "subcommentImage") %>
       <% else %>
-        <i class="material-icons grey-text"><img src="/people.jpg" id="showImageComment">
+        <i class="material-icons grey-text">subdirectory_arrow_right</i><img src="/people.jpg" id="subcommentImage">
       <% end %>
     </div>
     <div id="showSubcomment">

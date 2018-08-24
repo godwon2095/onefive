@@ -35,7 +35,7 @@
 
       <div id="showCommentWrite">
         <div>
-          <% if current_user.thumbnail.present? %>
+          <% if user_signed_in? && current_user.thumbnail.present? %>
             <i class="material-icons grey-text">subdirectory_arrow_right</i><%= image_tag(current_user.thumbnail, id: "subcommentImage") %>
           <% else %>
             <i class="material-icons grey-text">subdirectory_arrow_right</i><img src="/people.jpg" id="subcommentImage">
@@ -61,7 +61,7 @@
       <!--  대댓글작성기능 -->
       <div id="showCommentWrite">
         <div>
-          <% if current_user.thumbnail.present? %>
+          <% if user_signed_in? && current_user.thumbnail.present? %>
             <i class="material-icons grey-text">subdirectory_arrow_right</i><%= image_tag(current_user.thumbnail, id: "subcommentImage") %>
           <% else %>
             <i class="material-icons grey-text">subdirectory_arrow_right</i><img src="/people.jpg" id="subcommentImage">
@@ -74,7 +74,7 @@
             <%= f.hidden_field :comment_id, value: "#{comment.id}" %>
           </div>
           <div class="input-field">
-            <%= f.submit "대댓글 쓰기", class: "btn indigo darken-4 right" %>
+            <%= f.submit "대댓글 쓰기", class: "btn indigo darken-4 right", id: "mceu_31" %>
           </div>
         <% end %>
       </div>

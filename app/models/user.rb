@@ -1,11 +1,16 @@
 class User < ActiveRecord::Base
-  before_save :skip_confirmation!, if: :development?
+  # before_save :skip_confirmation!, if: :development?
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
          :confirmable
+
+  validate :password_complexity
+  validates :password, length: { minimum: 8 }, unless: "password.nil?"
+  validates_uniqueness_of :name
+  validates_uniqueness_of :identity
 
   #포스팅
   has_many :posts
@@ -55,7 +60,8 @@ class User < ActiveRecord::Base
     Post.where(user_id: self.ids)
   end
 
-  def make_toast
-
+  def password_complexity
+    return if password.blank? || password =~ /^(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,15}$/
+     errors.add :password, '비밀번호를 더 복잡하게 설정해주세요!(숫자, 특수문자 포함. 8자 이상)'
   end
 end
