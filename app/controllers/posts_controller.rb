@@ -56,8 +56,18 @@ class PostsController < ApplicationController
   end
 
   def direct_search_songs
-    if params[:search_music]
-      @musics = Song.search(params[:search_music])
+    if params[:search_song]
+      @musics = Song.search(params[:search_song])
+    end
+
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def direct_search_singers
+    if params[:search_singer]
+      @musics = Song.find_songs(Singer.search(params[:search_singer]))
     end
 
     respond_to do |format|
@@ -97,6 +107,8 @@ class PostsController < ApplicationController
       redirect_to :back, notice: "부제목은 필수 입력 항목입니다."
     elsif params[:post][:content] == ""
       redirect_to :back, notice: "내용은 필수 입력 항목입니다."
+    elsif params[:post][:song_ids] == nil
+      redirect_to :back, notice: "음악은 꼭 넣으셔야 합니다."
     else
       @post = Post.new(set_params)
       @post.user_id = current_user.id

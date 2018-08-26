@@ -208,3 +208,33 @@ blockquote{
   width: 150px;
   height: 150px;
 }
+
+#error_explanation h2 {
+  font-size: 22pt !important;
+  color: red;
+}
+
+
+#error_explanation li {
+  color: red;
+}
+
+.content_song {
+  font-style: normal !important;
+}
+
+.search_input_search2 {
+  padding-left: 70px;
+  padding-top: 20px;
+}
+
+#field_control_img {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.field_control {
+  margin-left: 20px;
+  margin-bottom: 10px;
+}

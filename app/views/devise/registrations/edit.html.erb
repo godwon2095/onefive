@@ -1,5 +1,9 @@
 <%= form_for(resource, as: resource_name, url: user_registration_path, html: { method: :put }) do |f| %>
-  <%= devise_error_messages! %> <!-- 이거 수정해야함 -->
+  <div>
+    <center>
+      <%= devise_error_messages! %> <!-- 이거 수정해야함 -->
+    </center>
+  </div>
   <div id="editPage">
 
     <div id="image-<%= current_user.id %>">
@@ -32,7 +36,7 @@
     </div>
     <div>
       <div class="field all_element_editProfile">
-      <%= f.text_field :identity, autofocus: false, autocomplete: "off" %>
+      <%= f.text_field :name, autofocus: false, autocomplete: "off" %>
       </div>
     </div>
     <div class="oneLineLable">

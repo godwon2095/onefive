@@ -35,9 +35,6 @@ label{
     margin-bottom: 10px;
 }
 
-.hiphop{
-    margin-top: 50px;
-}
 
 .titleNewForm {
     height: 100px !important;
@@ -57,7 +54,11 @@ label{
      box-shadow: 0 1px 0 0 #000;
    }
 
-
+.newPostFormSub {
+  border: none;
+  outline: none;
+  resize: none;
+}
 
 
 

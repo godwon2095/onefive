@@ -2,6 +2,7 @@
 <html>
 <head>
   <title>한/시/오/분</title>
+  <link rel="shortcut icon" href="/favicon.ico">
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => false %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
@@ -25,7 +26,7 @@
       <% if controller.controller_name == "posts" && controller.action_name == "index" %>
         <div class="navCenterWrite onefive nav2">지금 이 글</div>
       <% elsif controller.controller_name == "timelines" && controller.action_name == "index" %>
-        <div class="navCenterWrite onefive nav2">모아보기</div>
+        <div class="navCenterWrite onefive nav2">구독한 글</div>
       <% elsif controller.controller_name == "timelines" && controller.action_name == "saves" %>
         <div class="navCenterWrite onefive nav2">담은 글</div>
       <% end %>
@@ -48,7 +49,8 @@
                 </ul>
              </div> <!-- 탭 끝 -->
              <div id="search3"> <!-- 세번째 세션시작. 검색목록 나열 -->
-               <div id="search_music"><br> <!-- 음악을 눌렀을 때 -->
+
+               <div id="search_music" class="search_center_form"> <!-- 음악을 눌렀을 때 -->
                  <%= form_tag(search_post_posts_path, method: :get, remote: true) do %>
                    <span class="search_input"> <!--아이콘과 검색바 -->
                      <!--아이콘-->
@@ -60,8 +62,8 @@
                  <div id="music-lists3">
                  </div>
                </div> <!-- 음악을 눌렀을 때 끝 -->
-                   <!-- 성원형. 위에 search_music 아이디를 반복해주면 됩니다.-->
-              <div id="search_user"><br> <!-- 사용자를 눌렀을때 -->
+
+              <div id="search_user" class="search_center_form"> <!-- 사용자를 눌렀을때 -->
                 <form action='<%= posts_path %>' method="GET">
                   <span class="search_input"> <!--아이콘과 검색바 -->
                     <!--아이콘-->
@@ -71,9 +73,7 @@
                   </span>
                 </form>
               </div> <!-- 사용자를 눌렀을때 끝 -->
-
-
-              <div id="search_article"><br> <!-- 글을 눌렀을때 -->
+              <div id="search_article" class="search_center_form"> <!-- 글을 눌렀을때 -->
                 <div id=#search1> <!-- 첫번째 세션 -->
                   <form action='<%= posts_path %>' method="GET">
                     <span class="search_input"> <!--아이콘과 검색바 -->
@@ -130,13 +130,13 @@
         </div>
       </div>
       <div class="sidenav_links center">
-        <div class="sidenav_links_one"><%= link_to '모아보기', timelines_path, class: :onefive %></div><!-- 구독 주소 넣어주세요 -->
+        <div class="sidenav_links_one"><%= link_to '구독한 글', timelines_path, class: :onefive %></div><!-- 구독 주소 넣어주세요 -->
         <div class="sidenav_links_one"><%= link_to '지금 이 글', root_path, class: :onefive %></div><!-- 지금 이 글 주소 넣어주세요 -->
         <div class="sidenav_links_one"><%= link_to '담은 글', saves_timelines_path, class: :onefive %></div><!-- 담은 글 주소 넣어주세요 -->
         <div class="sidenav_links_one"><%= link_to '로그아웃', destroy_user_session_path, method: :delete, class: :onefive %></div>
       </div>
       <div class="sidenav_notice_title center">
-        <%= link_to '소식', alarms_path, class: :onefive %>(<%= current_user.alarms.size %>)
+        <%= link_to '소식', '#', class: :onefive %>(<%= current_user.alarms.size %>)
       </div>
       <div class="sidenav_line">
         <hr width="200px" align="center" color="#8b8b8b" size="1">
@@ -147,7 +147,7 @@
          <% current_user.alarms.each do |alarm| %>
            <div class="sidenav_notice_profileimg" id="alarm-<%= alarm.id %>"> <!-- 프로필 이미지 -->
              <% if alarm.find_from_who.try("thumbnail").present? %>
-               <%= link_to image_tag(alarm.find_from_who, class: "circle sidenav_notice_profileimg_size"), profile_timeline_path(alarm.find_from_who) %>
+               <%= link_to image_tag(alarm.find_from_who.thumbnail, class: "circle sidenav_notice_profileimg_size"), profile_timeline_path(alarm.find_from_who) %>
              <% else %>
                <img src="/people.jpg" class="tl-size circle sidenav_notice_profileimg_size">
              <% end %>

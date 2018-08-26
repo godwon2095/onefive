@@ -1,6 +1,6 @@
 production:
   solr:
-    hostname: localhost
+    hostname: http://www.1i05.me
     port: 8983
     log_level: WARNING
     path: /solr/production
@@ -20,4 +20,3 @@ test:
     port: 8981
     log_level: WARNING
     path: /solr/test
-    

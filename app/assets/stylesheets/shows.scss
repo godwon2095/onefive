@@ -22,6 +22,8 @@
 #showTitleImg {
   width: 320px;
   height: 320px;
+  display: flex;
+  flex-direction: flex-end;
 }
 
 #showTitle {
@@ -74,6 +76,7 @@
   flex-direction: row;
   line-height: 16px;
   align-items: flex-end;
+  margin-bottom: 7px;
 }
 
 #showProfileWithWrite {
@@ -84,7 +87,7 @@
 }
 
 #showProfileAll {
-  width: 826px;
+  width: 500px;
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
@@ -93,9 +96,10 @@
 }
 
 #titleWithoutImg {
-  width: 500px;
+  width: 450px;
   display: flex;
   flex-direction: column;
+  margin-top: 50px;
 
 }
 
@@ -258,12 +262,12 @@
 
 #showCommentContent {
   margin-top: 15px;
-  font-size: 16pt;
+  font-size: 13pt;
   color: black;
   font-family: 'Noto Sans KR';
   line-height: 16pt;
-  font-weight: lighter;
   width: 480px;
+  padding-left: 70px;
 }
 
 #showCommentWrite {
@@ -302,4 +306,13 @@
 
 #delete-margin {
   margin-left: 480px;
+}
+
+#titlePlusProfile {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 320px;
+  padding-right: 10px;
+  align-items: flex-end;
 }

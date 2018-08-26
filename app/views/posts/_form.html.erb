@@ -7,24 +7,24 @@
       </div>
 
       <div class="field form_subtitle">
-        <%= f.text_area :subtitle, placeholder: "부제를 입력하세요.", autocomplete: "off" %>
+        <%= f.text_area :subtitle, placeholder: "부제를 입력하세요.",class: "newPostFormSub", autocomplete: "off" %>
       </div><br>
 
-    <div class="field">
-      <%= f.label :image, '대표사진 업로드' %><br>
-      <%= f.file_field :image, id: "hidden_file_field" %>
-      <%= link_to 'image', '#', class: "material-icons black-text", id: "hidden_file_field_trigger" %>
-      <span id="added_file-result"></span>
-    </div>
-
-      <div class="field form_songtitle">
-        <a href="#modal" class="modal-trigger btn white indigo-text text-darken-4">음악 불러오기</a>
-        <div id="music-result">
+      <div id="field_control_img">
+        <div class="field form_songtitle">
+          <a href="#modal" class="modal-trigger btn white indigo-text text-darken-4">음악 불러오기</a>
+          <div id="music-result">
+          </div>
+        </div>
+        <div class="field field_control">
+          <%= f.file_field :image, id: "hidden_file_field" %>
+          <%= link_to 'image', '#', class: "large material-icons black-text", id: "hidden_file_field_trigger" %>
+          <span id="added_file-result"></span>
         </div>
       </div>
 
       <div class="field hiphop">
-        <%= f.text_area :content, class: "tinymce" %>
+        <%= f.text_area :content, class: "tinymce", placeholder: '모든 칸을 채우지 않은 채 제출하면 전부 날아갈 수 있어요 ㅇ.<' %>
         <%= tinymce %>
       </div><br>
 
@@ -51,7 +51,7 @@
     <div id="search_title"> <!-- 제목을 눌렀을 때 -->
       <div id=#search4> <!-- 첫번째 세션 -->
         <%= form_tag(search_posts_path, method: :get, remote: true) do %>
-          <div class="search_input"> <!--아이콘과 검색바 -->
+          <div class="search_input search_input_search2"> <!--아이콘과 검색바 -->
             <!--아이콘-->
             <i class="material-icons search_icon">search</i>
             <!--검색-->
@@ -71,7 +71,7 @@
    <div id="search_singer"> <!-- 사용자를 눌렀을때 -->
      <div id=#search4> <!-- 첫번째 세션 -->
        <%= form_tag(search_posts_path, method: :get, remote: true) do %>
-         <div class="search_input"> <!--아이콘과 검색바 -->
+         <div class="search_input search_input_search2"> <!--아이콘과 검색바 -->
            <!--아이콘-->
            <i class="material-icons search_icon">search</i>
            <!--검색-->
@@ -110,9 +110,20 @@
     });
   }
 
+  function search_singers(search_singer){
+    $.get("/direct_search_singers/" + search_singer, function(){
+      console.log('pp');
+    });
+  }
+
   $('input#search_song').on('keyup', function(){
     var val = this.value;
     search_songs(val);
+  });
+
+  $('input#search_singer').on('keyup', function(){
+    var val = this.value;
+    search_singers(val);
   });
 </script>
 

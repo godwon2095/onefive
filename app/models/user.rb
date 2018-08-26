@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  # before_save :skip_confirmation!, if: :development?
+  before_save :skip_confirmation!, if: :development?
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -40,7 +40,7 @@ class User < ActiveRecord::Base
   mount_uploader :thumbnail, ImageUploader
 
   def development?
-    Rails.env.development?
+    Rails.env.production?
   end
 
   def is_like?(post)
